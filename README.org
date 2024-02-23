@@ -10,7 +10,7 @@ project intro
 
 [[https://docs.freebsd.org/en/books/handbook/linuxemu/][Linux Binary Compatibility]]
 
-install debootstrap which we use to install ubuntu in a chroot on freebsd
+install debootstrap which we use to create an ubuntu chroot on freebsd
 
 #+begin_src sh
 sudo pkg install debootstrap 

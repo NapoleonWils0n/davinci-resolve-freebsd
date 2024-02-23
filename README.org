@@ -40,6 +40,7 @@ permit nopass :username cmd chroot
 permit nopass keepenv root as root
 #+end_src
 
+# Horizontal Rule
 -----
 
 *** ubuntu rc.d script 

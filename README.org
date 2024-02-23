@@ -3,6 +3,8 @@
 ** Freebsd ubuntu linuxulator
 *** Install needed packages on freebsd
 
+install debootstrap
+
 #+begin_src sh
 sudo pkg install debootstrap 
 #+end_src
@@ -169,6 +171,8 @@ mount
 #+end_src
 
 *** create linuxulator script for lunar and mantic
+
+save the following code as two scripts called lunar and mantic
 
 #+begin_src sh
 case $ARCH in

@@ -1,4 +1,5 @@
 #+STARTUP: show2levels
+#+OPTIONS: toc
 * DaVinci Resolve Freebsd
 ** Freebsd ubuntu linuxulator
 *** Install needed packages on freebsd

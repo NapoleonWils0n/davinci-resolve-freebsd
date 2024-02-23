@@ -1,5 +1,8 @@
 #+STARTUP: show2levels
 * DaVinci Resolve Freebsd
+
+project intro
+
 ** Freebsd
 *** debootstrap
 

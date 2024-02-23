@@ -187,6 +187,9 @@ Create necessary mount points for the Ubuntu Linuxulator chroot in
 sudo mkdir -p {/compat/ubuntu/dev/fd,/compat/ubuntu/dev/shm,/compat/ubuntu/home,/compat/ubuntu/tmp,/compat/ubuntu/proc,/compat/ubuntu/sys}
 #+end_src
 
+# Horizontal Rule
+-----
+
 *** Enable Linux compatibility layer (Ubuntu):
 
 start ubuntu

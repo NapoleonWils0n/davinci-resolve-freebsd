@@ -1,5 +1,5 @@
 #+STARTUP: show2levels
-* DaVinci Resolve
+* DaVinci Resolve Freebsd
 ** ubuntu
 *** Install needed packages on freebsd
 

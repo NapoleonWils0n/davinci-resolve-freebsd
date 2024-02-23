@@ -21,6 +21,8 @@ sudo pkg install debootstrap
 
 *** doas
 
+[[https://man.freebsd.org/cgi/man.cgi?query=doas.conf&sektion=5&format=html][doas.conf man page]]
+
 install doas so we enter the chroot without being prompted for a password
 
 #+begin_src sh

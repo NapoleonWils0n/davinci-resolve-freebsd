@@ -20,6 +20,8 @@ install doas so we enter the chroot without being prompted for a password
 sudo pkg install doas
 #+end_src
 
+edit the doas.conf file and change username to your username on freebsd
+
 path to the doas.conf on freebsd
 
 #+begin_example
@@ -29,8 +31,6 @@ path to the doas.conf on freebsd
 doas.conf
 
 + [[file:freebsd/usr/local/etc/doas.conf][doas.conf]] in this repository
-  
-change username to your username on freebsd
 
 #+begin_src conf
 # permit user

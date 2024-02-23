@@ -123,7 +123,7 @@ load_rc_config $name
 run_rc_command "$1"
 #+end_src
 
-copy the ubuntu script to /usr/local/etc/rc.d/
+copy the ubuntu script to /usr/local/etc/rc.d/ in the chroot
 
 #+begin_src sh
 sudo cp ubuntu /usr/local/etc/rc.d/
@@ -148,14 +148,14 @@ sudo mkdir -p {/compat/ubuntu/dev/fd,/compat/ubuntu/dev/shm,/compat/ubuntu/home,
 
 *** stop linux if its running
 
-if you have install centos using the linuxulator
+if you have install centos using the linuxulator \\
 and it is installed in /compat/linux 
 
 #+begin_example
 /compat/linux
 #+end_example
 
-you need to stop it before starting ubuntu
+you need to stop it before starting ubuntu \\
 because you can only run linuxulator install at a time
 
 stop linux

@@ -46,6 +46,36 @@ permit nopass keepenv root as root
 # Horizontal Rule
 -----
 
+*** stop linux if its running
+
+if you have centos installed in
+
+#+begin_example
+/compat/linux
+#+end_example
+
+you need to stop it before starting ubuntu \\
+because you can only run instance of the linuxulator at a time
+
+if you don't have a linux install in /compat/linux you can skip this step
+
+stop linux
+
+#+begin_src sh
+sudo service linux stop
+#+end_src
+
+linunx enable no
+
+#+begin_src sh
+sudo sysrc linux_enable="NO"
+#+end_src
+
+reboot so the linux mount points are unmounted
+
+# Horizontal Rule
+-----
+
 *** ubuntu rc.d script 
 
 ubuntu
@@ -141,36 +171,6 @@ make the script executable
 #+begin_src sh
 sudo chmod +x /usr/local/etc/rc.d/ubuntu
 #+end_src
-
-# Horizontal Rule
------
-
-*** stop linux if its running
-
-if you have centos installed in
-
-#+begin_example
-/compat/linux
-#+end_example
-
-you need to stop it before starting ubuntu \\
-because you can only run instance of the linuxulator at a time
-
-if you don't have a linux install in /compat/linux you can skip this step
-
-stop linux
-
-#+begin_src sh
-sudo service linux stop
-#+end_src
-
-linunx enable no
-
-#+begin_src sh
-sudo sysrc linux_enable="NO"
-#+end_src
-
-reboot so the linux mount points are unmounted
 
 # Horizontal Rule
 -----

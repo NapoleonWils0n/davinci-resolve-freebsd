@@ -144,7 +144,7 @@ sudo chmod +x /usr/local/etc/rc.d/ubuntu
 
 *** stop linux if its running
 
-if you have install centos installed in
+if you have centos installed in
 
 #+begin_example
 /compat/linux

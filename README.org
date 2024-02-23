@@ -85,6 +85,22 @@ ubuntu
 
 + [[file:freebsd/usr/local/etc/rc.d/ubuntu][ubuntu]] script in this repository
 
+copy the ubuntu script to
+
+#+begin_example
+/usr/local/etc/rc.d/
+#+end_example
+
+#+begin_src sh
+sudo cp ubuntu /usr/local/etc/rc.d/
+#+end_src
+
+make the script executable
+
+#+begin_src sh
+sudo chmod +x /usr/local/etc/rc.d/ubuntu
+#+end_src
+
 #+begin_src sh
 #!/bin/sh
 #
@@ -157,22 +173,6 @@ ubuntu_start()
 
 load_rc_config $name
 run_rc_command "$1"
-#+end_src
-
-copy the ubuntu script to
-
-#+begin_example
-/usr/local/etc/rc.d/
-#+end_example
-
-#+begin_src sh
-sudo cp ubuntu /usr/local/etc/rc.d/
-#+end_src
-
-make the script executable
-
-#+begin_src sh
-sudo chmod +x /usr/local/etc/rc.d/ubuntu
 #+end_src
 
 # Horizontal Rule

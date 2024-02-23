@@ -146,12 +146,6 @@ create the /compat/ubuntu directory and sub directories
 sudo mkdir -p {/compat/ubuntu/dev/fd,/compat/ubuntu/dev/shm,/compat/ubuntu/home,/compat/ubuntu/tmp,/compat/ubuntu/proc,/compat/ubuntu/sys}
 #+end_src
 
-command 
-
-#+begin_example
-sudo mkdir -p {/compat/ubuntu/dev/fd,/compat/ubuntu/dev/shm,/compat/ubuntu/home,/compat/ubuntu/tmp,/compat/ubuntu/proc,/compat/ubuntu/sys}
-#+end_example
-
 *** stop linux if its running
 
 if you have install centos installed in /compat/linux 

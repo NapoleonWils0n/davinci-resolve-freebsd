@@ -41,6 +41,8 @@ permit nopass keepenv root as root
 
 *** ubuntu rc.d script 
 
+link to the [[file:freebsd/usr/local/etc/rc.d/ubuntu][ubuntu]] script in this repository
+
 ubuntu rc.d script content
 
 #+begin_src sh

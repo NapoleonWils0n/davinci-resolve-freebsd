@@ -176,7 +176,13 @@ mount
 
 *** create linuxulator script for lunar and mantic
 
-save the following code as two scripts called lunar and mantic
+lunar and mantic script in this repository
+
+[[file:freebsd/usr/local/share/debootstrap/scripts/lunar][lunar]]
+
+[[file:freebsd/usr/local/share/debootstrap/scripts/mantic][mantic]]
+
+lunar and mantic script
 
 #+begin_src sh
 case $ARCH in

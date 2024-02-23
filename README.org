@@ -243,6 +243,17 @@ mount
 
 *** create linuxulator script for lunar and mantic
 
+debootstrap has a collection of scripts to install different version of debian and ubuntu
+
+the debootstrap scripts are installed in this location of freebsd
+
+#+begin_example
+/usr/local/share/debootstrap/scripts
+#+end_example
+
+ubuntu jammy is the latest version of ubuntu including as a script with debootstrap \\
+however there seems to be a bug with ubuntu jammy installed in a chroot on freebsd
+
 lunar and mantic script in this repository
 
 [[file:freebsd/usr/local/share/debootstrap/scripts/lunar][lunar]]

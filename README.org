@@ -1,6 +1,6 @@
 #+STARTUP: show2levels
 * DaVinci Resolve Freebsd
-** Freebsd ubuntu linuxulator
+** Freebsd
 *** debootstrap
 
 install debootstrap
@@ -592,6 +592,7 @@ sudo debootstrap --arch=amd64 --no-check-gpg mantic /compat/ubuntu http://archiv
 sudo service ubuntu restart
 #+end_src
 
+** ubuntu
 *** Chroot into your Linux environment:
 
 #+begin_src sh

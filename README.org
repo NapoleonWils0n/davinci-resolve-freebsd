@@ -38,8 +38,9 @@ permit nopass :username cmd chroot
 
 # root as root
 permit nopass keepenv root as root
-
 #+end_src
+
+-----
 
 *** ubuntu rc.d script 
 

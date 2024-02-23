@@ -154,7 +154,7 @@ if you have centos installed in
 #+end_example
 
 you need to stop it before starting ubuntu \\
-because you can only run linuxulator install at a time
+because you can only run instance of the linuxulator at a time
 
 if you don't have a linux install in /compat/linux you can skip this step
 

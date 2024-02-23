@@ -26,11 +26,11 @@ path to the doas.conf on freebsd
 /usr/local/etc/doas.conf
 #+end_example
 
-change username to your username on freebsd
-
 doas.conf
 
 + [[file:freebsd/usr/local/etc/doas.conf][doas.conf]] in this repository
+  
+change username to your username on freebsd
 
 #+begin_src conf
 # permit user

@@ -576,10 +576,21 @@ printf "APT::Cache-Start 251658240;" > /etc/apt/apt.conf.d/00aptitude
 *** Enable more repositories:
 
 add more repos
+[trusted=yes] is needed for lunar and mantic
+
+freebsd path to the sources.list in the chroot
 
 #+begin_example
 /compat/ubuntu/etc/apt/sources.list
 #+end_example
+
+path to the sources.list in the chroot
+
+#+begin_example
+/etc/apt/sources.list
+#+end_example
+
+sources.list
 
 #+begin_example
 deb [trusted=yes] http://archive.ubuntu.com/ubuntu/ mantic main restricted universe multiverse

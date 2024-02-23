@@ -148,8 +148,7 @@ sudo mkdir -p {/compat/ubuntu/dev/fd,/compat/ubuntu/dev/shm,/compat/ubuntu/home,
 
 *** stop linux if its running
 
-if you have install centos using the linuxulator \\
-and it is installed in /compat/linux 
+if you have install centos installed in /compat/linux 
 
 #+begin_example
 /compat/linux

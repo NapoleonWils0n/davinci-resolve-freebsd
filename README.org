@@ -135,6 +135,9 @@ make the script executable
 sudo chmod +x /usr/local/etc/rc.d/ubuntu
 #+end_src
 
+# Horizontal Rule
+-----
+
 *** Create necessary mount points for a working Linuxulator:
 
 create the /compat/ubuntu directory and sub directories

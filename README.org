@@ -6,6 +6,10 @@ project intro
 ** Freebsd
 *** debootstrap
 
+[[https://wiki.debian.org/Debootstrap][Debootstrap - Debian Wiki]]
+
+[[https://docs.freebsd.org/en/books/handbook/linuxemu/][Linux Binary Compatibility]]
+
 install debootstrap which we use to install ubuntu in a chroot on freebsd
 
 #+begin_src sh

@@ -123,7 +123,11 @@ load_rc_config $name
 run_rc_command "$1"
 #+end_src
 
-copy the ubuntu script to //usr/local/etc/rc.d/
+copy the ubuntu script to
+
+#+begin_example
+/usr/local/etc/rc.d/
+#+end_example
 
 #+begin_src sh
 sudo cp ubuntu /usr/local/etc/rc.d/

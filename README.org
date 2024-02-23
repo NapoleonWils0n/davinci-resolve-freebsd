@@ -17,7 +17,13 @@ install doas so we enter the chroot without being prompted for a password
 sudo pkg install doas
 #+end_src
 
-doas.conf location
+freebsd path to the doas.conf in the chroot
+
+#+begin_example
+/compat/ubuntu/usr/local/etc/doas.conf
+#+end_example
+
+path to the doas.conf in the chroot
 
 #+begin_example
 /usr/local/etc/doas.conf
@@ -637,6 +643,8 @@ in the chroot
 #+begin_src sh
 /etc/default/locale
 #+end_src
+
+locale
 
 #+begin_src sh
 LANG=en_GB.UTF-8

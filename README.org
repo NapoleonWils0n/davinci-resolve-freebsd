@@ -68,7 +68,7 @@ stop linux
 sudo service linux stop
 #+end_src
 
-linunx enable no
+use sysrc to set linux_enable="NO" in your /etc/rc.conf
 
 #+begin_src sh
 sudo sysrc linux_enable="NO"

@@ -1,7 +1,7 @@
 #+STARTUP: show2levels
 * DaVinci Resolve Freebsd
 ** Freebsd ubuntu linuxulator
-*** Install needed packages on freebsd
+*** debootstrap
 
 install debootstrap
 

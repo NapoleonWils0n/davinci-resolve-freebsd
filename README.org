@@ -798,10 +798,10 @@ download link for 535.146.02
 change into the directory you download the nvidia drivers into on the freebsd host
 
 then copy the nvidia run file into the home directory in the chroot
-change djwilcox for your username
+change username for your username
 
 #+begin_src sh
-cp -rv NVIDIA-Linux-x86_64-535.146.02.run /compat/ubuntu/home/djwilcox
+cp -rv NVIDIA-Linux-x86_64-535.146.02.run /compat/ubuntu/home/username
 #+end_src
 
 *** chroot into ubuntu 
@@ -813,10 +813,10 @@ sudo chroot /compat/ubuntu /bin/bash
 #+end_src
 
 switch to our user
-replace djwilcox with your username
+replace username with your username
 
 #+begin_src sh
-su - djwilcox
+su - username
 #+end_src
 
 *** nvidia Pre-Installation Requirements
@@ -939,13 +939,13 @@ tar zxvf makeresolvedeb_1.6.4_multi.sh.tar.gz
 copy the resolve.run to the chroot home directory
 
 #+begin_src sh
-cp -rv DaVinci_Resolve_18.6.4_Linux.run /compat/ubuntu/home/djwilcox
+cp -rv DaVinci_Resolve_18.6.4_Linux.run /compat/ubuntu/home/username
 #+end_src
 
 copy the resolve.run to the chroot home directory
 
 #+begin_src sh
-cp -rv makeresolvedeb_1.6.4_multi.sh /compat/ubuntu/home/djwilcox
+cp -rv makeresolvedeb_1.6.4_multi.sh /compat/ubuntu/home/username
 #+end_src
 
 **** makeresolvedeb create deb file
@@ -959,7 +959,7 @@ sudo chroot /compat/ubuntu /bin/bash
 switch to out user in the chroot
 
 #+begin_src sh
-su - djwilcox
+su - username
 #+end_src
 
 install zip
@@ -980,7 +980,7 @@ then run makeresolvedeb
 ./makeresolvedeb_1.6.4_multi.sh DaVinci_Resolve_18.6.5_Linux.run
 #+end_src
 
-this will take about an hour
+this may take about an hour
 
 **** install the da vinci resolve deb file
 
@@ -1021,7 +1021,7 @@ in the ubuntu chroot
 #+begin_src sh
 mkdir -p ~/.config/gpu
 cp dummy-uvm.so ~/.config/gpu
-LD_PRELOAD=/home/djwilcox/.config/gpu/dummy-uvm.so
+LD_PRELOAD=/home/username/.config/gpu/dummy-uvm.so
 #+end_src
 
 *** x11
@@ -1049,7 +1049,7 @@ sudo apt install libwlroots11 libwlroots-dev libxkbcommon0
 
 #+begin_src sh
 sudo mkdir -p /var/run/user/1001
-sudo chown -R djwilcox:1001 /var/run/user/1001
+sudo chown -R username:1001 /var/run/user/1001
 sudo chmod 700 /var/run/user/1001
 #+end_src
 
@@ -1062,116 +1062,7 @@ we need to set an enviormental variable for wayland in our shell config
 #+begin_src sh
 # ~/.zshrc
 
-# ssh zsh fix
-[[ $TERM == "dumb" ]] && unsetopt zle && PS1='$ ' && return
-
-# Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
-HISTSIZE=1000
-
-# variables for PS3 prompt
-newline=$'\n'
-yesmaster='Yes Master ? '
-
-# PS3 prompt function
-function zle-line-init zle-keymap-select {
-    PS1="[%n@%M %~]${newline}${yesmaster}"
-    zle reset-prompt
-}
-
-# run PS3 prompt function
-zle -N zle-line-init
-zle -N zle-keymap-select
-
-# set terminal window title to program name
-case $TERM in
-  (*xterm* | xterm-256color)
-    function precmd {
-      print -Pn "\e]0;%(1j,%j job%(2j|s|); ,)%~\a"
-    }
-    function preexec {
-      printf "\033]0;%s\a" "$1"
-    }
-  ;;
-esac
-
-# Fix bugs when switching modes
-bindkey -v # vi mode
-bindkey "^?" backward-delete-char
-bindkey "^u" backward-kill-line
-bindkey "^a" beginning-of-line
-bindkey "^e" end-of-line
-bindkey "^k" kill-line
-
-# Use modern completion system
-autoload -Uz compinit
-compinit
-
-# Set/unset  shell options
-setopt notify globdots pushdtohome cdablevars autolist
-setopt recexact longlistjobs
-setopt autoresume histignoredups pushdsilent noclobber
-setopt autopushd pushdminus extendedglob rcquotes mailwarning
-setopt histignorealldups sharehistory
-#setopt auto_cd
-cdpath=($HOME)
-unsetopt bgnice autoparamslash
-
-# Completion Styles
-
-# list of completers to use
-zstyle ':completion:*::::' completer _expand _complete _ignored _approximate
-
-# allow one error for every three characters typed in approximate completer
-zstyle -e ':completion:*:approximate:*' max-errors \
-    'reply=( $(( ($#PREFIX+$#SUFFIX)/3 )) numeric )'
-    
-# insert all expansions for expand completer
-zstyle ':completion:*:expand:*' tag-order all-expansions
-
-# formatting and messages
-zstyle ':completion:*' verbose yes
-zstyle ':completion:*:descriptions' format '%B%d%b'
-zstyle ':completion:*:messages' format '%d'
-zstyle ':completion:*:warnings' format 'No matches for: %d'
-zstyle ':completion:*:corrections' format '%B%d (errors: %e)%b'
-zstyle ':completion:*' group-name ''
-
-#eval "$(dircolors -b)"
-zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
-zstyle ':completion:*' list-colors ''
-
-# match uppercase from lowercase
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
-
-# offer indexes before parameters in subscripts
-zstyle ':completion:*:*:-subscript-:*' tag-order indexes parameters
-
-# Filename suffixes to ignore during completion (except after rm command)
-zstyle ':completion:*:*:(^rm):*:*files' ignored-patterns '*?.o' '*?.c~' \
-    '*?.old' '*?.pro' '.hidden'
-
-# ignore completion functions (until the _ignored completer)
-zstyle ':completion:*:functions' ignored-patterns '_*'
-
-# kill - red, green, blue
-zstyle ':completion:*:*:kill:*' list-colors '=(#b) #([0-9]#)*( *[a-z])*=22=31=34'
-
-# list optiones colour, white + cyan
-zstyle ':completion:*:options' list-colors '=(#b) #(-[a-zA-Z0-9,]#)*(-- *)=36=37'
-
-# zsh autocompletion for sudo and doas
-zstyle ":completion:*:(sudo|su|doas):*" command-path /usr/local/bin /usr/sbin /home/djwilcox/bin
-
-# rehash commands
-zstyle ':completion:*' rehash true
-
-# highlighting
-#source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-#ZSH_HIGHLIGHT_STYLES[suffix-alias]=fg=cyan,underline
-#ZSH_HIGHLIGHT_STYLES[precommand]=fg=cyan,underline
-#ZSH_HIGHLIGHT_STYLES[arg0]=fg=cyan
-#ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
-#ZSH_HIGHLIGHT_PATTERNS=('rm -rf *' 'fg=white,bold,bg=red')
+# add your zsh code below
 #+end_src
 
 ***** zshenv
@@ -1208,7 +1099,7 @@ export QT_QPA_PLATFORM=xcb
 ***** copy zsh config to the chroot
 
 #+begin_src sh
-cp .zshrc .zshenv /compat/ubuntu/home/djwilcox
+cp .zshrc .zshenv /compat/ubuntu/home/username
 #+end_src
 
 ** pulseaudio
@@ -1217,7 +1108,7 @@ cp .zshrc .zshenv /compat/ubuntu/home/djwilcox
 copy the pulseaudio cookie from the host to the chroot
 
 #+begin_src sh
-cp ~/.config/pulse/cookie /compat/ubuntu/home/djwilcox/.config/pulse/cookie
+cp ~/.config/pulse/cookie /compat/ubuntu/home/username/.config/pulse/cookie
 #+end_src
 
 *** freebsd
@@ -1258,7 +1149,7 @@ pulseaudio --start --daemonize
 full path to the client.conf from freebsd to the chroot
 
 #+begin_example
-/compat/ubuntu/home/djwilcox/.config/pulse/client.conf
+/compat/ubuntu/home/username/.config/pulse/client.conf
 #+end_example
 
 client.conf path in the chroot

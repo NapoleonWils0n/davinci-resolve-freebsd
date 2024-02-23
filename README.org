@@ -26,11 +26,11 @@ path to the doas.conf on freebsd
 /usr/local/etc/doas.conf
 #+end_example
 
-+ [[file:freebsd/usr/local/etc/doas.conf][doas.conf]] in this repository
-
 change username to your username on freebsd
 
 doas.conf
+
++ [[file:freebsd/usr/local/etc/doas.conf][doas.conf]] in this repository
 
 #+begin_src conf
 # permit user
@@ -48,9 +48,9 @@ permit nopass keepenv root as root
 
 *** ubuntu rc.d script 
 
-+ [[file:freebsd/usr/local/etc/rc.d/ubuntu][ubuntu]] script in this repository
-
 ubuntu
+
++ [[file:freebsd/usr/local/etc/rc.d/ubuntu][ubuntu]] script in this repository
 
 #+begin_src sh
 #!/bin/sh

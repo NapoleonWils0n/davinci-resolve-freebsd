@@ -141,7 +141,17 @@ create the /compat/ubuntu directory and sub directories
 sudo mkdir -p {/compat/ubuntu/dev/fd,/compat/ubuntu/dev/shm,/compat/ubuntu/home,/compat/ubuntu/tmp,/compat/ubuntu/proc,/compat/ubuntu/sys}
 #+end_src
 
-*** stop linux
+*** stop linux if its running
+
+if you have install centos using the linuxulator
+and it is installed in /compat/linux 
+
+#+begin_example
+/compat/linux
+#+end_example
+
+you need to stop it before starting ubuntu
+because you can only run linuxulator install at a time
 
 stop linux
 

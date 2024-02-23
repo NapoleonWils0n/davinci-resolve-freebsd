@@ -23,7 +23,7 @@ doas.conf location
 /usr/local/etc/doas.conf
 #+end_example
 
-link to [[file:freebsd/usr/local/etc/doas.conf][doas.conf]] in this repository
+[[file:freebsd/usr/local/etc/doas.conf][doas.conf]] in this repository
 
 doas.conf
 
@@ -41,7 +41,7 @@ permit nopass keepenv root as root
 
 *** ubuntu rc.d script 
 
-link to the [[file:freebsd/usr/local/etc/rc.d/ubuntu][ubuntu]] script in this repository
+[[file:freebsd/usr/local/etc/rc.d/ubuntu][ubuntu]] script in this repository
 
 ubuntu rc.d script content
 

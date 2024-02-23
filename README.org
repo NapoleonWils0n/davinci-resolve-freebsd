@@ -12,6 +12,9 @@ install debootstrap which we use to install ubuntu in a chroot on freebsd
 sudo pkg install debootstrap 
 #+end_src
 
+# Horizontal Rule
+-----
+
 *** doas
 
 install doas so we enter the chroot without being prompted for a password

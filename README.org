@@ -1,0 +1,1454 @@
+#+STARTUP: show2levels
+* linuxlator ubuntu
+** ubuntu
+*** Install needed packages on freebsd
+
+#+begin_src sh
+sudo pkg install debootstrap 
+#+end_src
+
+*** doas
+
+install doas so we enter the chroot without being prompted for a password
+
+#+begin_src sh
+sudo pkg install doas
+#+end_src
+
+doas.conf location
+
+#+begin_example
+/usr/local/etc/doas.conf
+#+end_example
+
+doas.conf
+
+#+begin_src conf
+# permit user
+permit keepenv :djwilcox
+
+# chroot
+permit nopass :djwilcox cmd chroot
+
+# root as root
+permit nopass keepenv root as root
+
+#+end_src
+
+*** ubuntu rc.d script 
+
+ubuntu rc.d script content
+
+#+begin_src sh
+#!/bin/sh
+#
+# PROVIDE: ubuntu
+# REQUIRE: archdep mountlate
+# KEYWORD: nojail
+#
+# This is a modified version of /etc/rc.d/linux
+# Based on the script by mrclksr:
+# https://github.com/mrclksr/linux-browser-installer/blob/main/rc.d/ubuntu.in
+#
+. /etc/rc.subr
+
+name="ubuntu"
+desc="Enable Ubuntu chroot, and Linux ABI"
+rcvar="ubuntu_enable"
+start_cmd="${name}_start"
+stop_cmd=":"
+
+unmounted()
+{
+    [ `stat -f "%d" "$1"` == `stat -f "%d" "$1/.."` -a \
+      `stat -f "%i" "$1"` != `stat -f "%i" "$1/.."` ]
+}
+
+ubuntu_start()
+{
+    local _emul_path _tmpdir
+
+    load_kld -e 'linux(aout|elf)' linux
+    case `sysctl -n hw.machine_arch` in
+    amd64)
+        load_kld -e 'linux64elf' linux64
+        ;;
+    esac
+    if [ -x /compat/ubuntu/sbin/ldconfigDisabled ]; then
+        _tmpdir=`mktemp -d -t linux-ldconfig`
+        /compat/ubuntu/sbin/ldconfig -C ${_tmpdir}/ld.so.cache
+        if ! cmp -s ${_tmpdir}/ld.so.cache /compat/ubuntu/etc/ld.so.cache; then
+            cat ${_tmpdir}/ld.so.cache > /compat/ubuntu/etc/ld.so.cache
+        fi
+        rm -rf ${_tmpdir}
+    fi
+
+    # Linux uses the pre-pts(4) tty naming scheme.
+    load_kld pty
+
+    # Handle unbranded ELF executables by defaulting to ELFOSABI_LINUX.
+    if [ `sysctl -ni kern.elf64.fallback_brand` -eq "-1" ]; then
+        sysctl kern.elf64.fallback_brand=3 > /dev/null
+    fi
+
+    if [ `sysctl -ni kern.elf32.fallback_brand` -eq "-1" ]; then
+        sysctl kern.elf32.fallback_brand=3 > /dev/null
+    fi
+    sysctl compat.linux.emul_path=/compat/ubuntu
+
+    _emul_path="/compat/ubuntu"
+    unmounted "${_emul_path}/dev" && (mount -o nocover -t devfs devfs "${_emul_path}/dev" || exit 1)
+    unmounted "${_emul_path}/dev/fd" && (mount -o nocover,linrdlnk -t fdescfs fdescfs "${_emul_path}/dev/fd" || exit 1)
+    unmounted "${_emul_path}/dev/shm" && (mount -o nocover,mode=1777 -t tmpfs tmpfs "${_emul_path}/dev/shm" || exit 1)
+    unmounted "${_emul_path}/home" && (mount -t nullfs /home "${_emul_path}/home" || exit 1)
+    unmounted "${_emul_path}/proc" && (mount -o nocover -t linprocfs linprocfs "${_emul_path}/proc" || exit 1)
+    unmounted "${_emul_path}/sys" && (mount -o nocover -t linsysfs linsysfs "${_emul_path}/sys" || exit 1)
+    unmounted "${_emul_path}/tmp" && (mount -t nullfs /tmp "${_emul_path}/tmp" || exit 1)
+    unmounted /dev/fd && (mount -o nocover -t fdescfs fdescfs /dev/fd || exit 1)
+    unmounted /proc && (mount -o nocover -t procfs procfs /proc || exit 1)
+    true
+}
+
+load_rc_config $name
+run_rc_command "$1"
+#+end_src
+
+copy the ubuntu script to /usr/local/etc/rc.d/
+
+#+begin_src sh
+sudo cp ubuntu /usr/local/etc/rc.d/
+#+end_src
+
+make the script executable
+
+#+begin_src sh
+sudo chmod +x /usr/local/etc/rc.d/ubuntu
+#+end_src
+
+*** Create necessary mount points for a working Linuxulator:
+
+#+begin_src sh
+sudo mkdir -p {/compat/ubuntu/dev/fd,/compat/ubuntu/dev/shm,/compat/ubuntu/home,/compat/ubuntu/tmp,/compat/ubuntu/proc,/compat/ubuntu/sys}
+#+end_src
+
+*** stop linux
+
+stop linux
+
+#+begin_src sh
+sudo service linux stop
+#+end_src
+
+linunx enable no
+
+#+begin_src sh
+sudo sysrc linux_enable="NO"
+#+end_src
+
+reboot so the linux mount points are unmounted
+
+*** Enable Linux compatibility layer (Ubuntu):
+
+
+start ubuntu
+
+#+begin_src sh
+sudo sysrc ubuntu_enable="YES"
+#+end_src
+
+Start Ubuntu service:
+
+#+begin_src sh
+sudo service ubuntu start
+#+end_src
+
+check everything is mounted
+
+#+begin_src sh
+mount
+#+end_src
+
+*** create linuxulator script for lunar and mantic
+
+#+begin_src sh
+case $ARCH in
+  amd64|i386)
+	case $SUITE in
+	  gutsy|hardy|intrepid|jaunty|karmic|lucid|lunar|mantic|maverick|natty|oneiric|precise|quantal|raring|saucy|utopic|vivid|wily|yakkety|zesty)
+	default_mirror http://old-releases.ubuntu.com/ubuntu
+	  ;;
+	  ,*)
+	default_mirror http://archive.ubuntu.com/ubuntu
+	;;
+	esac
+	;;
+  sparc)
+	case $SUITE in
+	  gutsy)
+	default_mirror http://old-releases.ubuntu.com/ubuntu
+	;;
+	  ,*)
+	default_mirror http://ports.ubuntu.com/ubuntu-ports
+	;;
+	esac
+	;;
+  ,*)
+	default_mirror http://ports.ubuntu.com/ubuntu-ports
+	;;
+esac
+mirror_style release
+download_style apt
+finddebs_style from-indices
+variants - buildd fakechroot minbase
+keyring /usr/local/share/keyrings/ubuntu-archive-keyring.gpg
+
+if doing_variant fakechroot; then
+	test "$FAKECHROOT" = "true" || error 1 FAKECHROOTREQ "This variant requires fakechroot environment to be started"
+fi
+
+case $ARCH in
+	alpha|ia64) LIBC="libc6.1" ;;
+	kfreebsd-*) LIBC="libc0.1" ;;
+	hurd-*)     LIBC="libc0.3" ;;
+	,*)          LIBC="libc6" ;;
+esac
+
+case $SUITE in
+	gutsy|hardy|intrepid|jaunty|karmic|lucid|lunar|mantic|maverick|natty|oneiric|precise|quantal|raring|saucy|trusty|utopic|vivid|wily|xenial|yakkety|zesty|artful|bionic|cosmic|disco|eoan|focal|groovy|hirsute) ;;
+	,*)
+		# impish+ will use zstd compression, check if supported
+		dpkg_zstd="$(dpkg-deb --help 2>/dev/null | grep ' zstd,' || :)"
+		if [ -z "$EXTRACTOR_OVERRIDE" ] && [ -z "$dpkg_zstd" ]; then
+			info CHOSENEXTRACTOR "%s uses zstd compression, setting --extractor=ar option" "$SUITE"
+			export EXTRACTOR_OVERRIDE=ar
+		fi
+	;;
+esac
+
+work_out_debs () {
+	required="$(get_debs Priority: required)"
+
+	if doing_variant - || doing_variant fakechroot; then
+		#required="$required $(get_debs Priority: important)"
+		#  ^^ should be getting debconf here somehow maybe
+		base="$(get_debs Priority: important)"
+	elif doing_variant buildd; then
+		base="apt build-essential"
+	elif doing_variant minbase; then
+		base="apt"
+	fi
+
+	if doing_variant fakechroot; then
+		# ldd.fake needs binutils
+		required="$required binutils"
+	fi
+
+	case $MIRRORS in
+	    https://*)
+		case "$CODENAME" in
+			gutsy|hardy|intrepid|jaunty|karmic|lucid|lunar|mantic|maverick|natty|oneiric|precise|quantal|raring|saucy|trusty|utopic|vivid|wily|xenial|yakkety|zesty)
+			base="$base apt-transport-https ca-certificates"
+			;;
+			,*)
+			base="$base ca-certificates"
+			;;
+		esac
+		;;
+	esac
+
+	# do not install usrmerge in fresh bootstraps
+	# but do print it for germinate to accept it into minimal
+	if [ "$WHAT_TO_DO" = "finddebs printdebs kill_target" ]; then
+		case "$CODENAME" in
+			# "merged-usr" blacklist for past releases
+			gutsy|hardy|intrepid|jaunty|karmic|lucid|lunar|mantic|maverick|natty|oneiric|precise|quantal|raring|saucy|trusty|utopic|vivid|wily|xenial|yakkety|zesty|artful|bionic|cosmic|disco|eoan|focal|groovy)
+			;;
+			hirsute)
+				# keep hirsute buildd chroots split-usr to allow for escape hatch
+				if ! doing_variant buildd; then
+					if [ -z "$MERGED_USR" ] || [ "$MERGED_USR" = "yes" ]; then
+						base="$base usrmerge"
+					fi
+				fi
+				;;
+			,*)
+				# all future series post hirsute use merged-usr in buildd chroots too
+				if [ -z "$MERGED_USR" ] || [ "$MERGED_USR" = "yes" ]; then
+					base="$base usrmerge"
+				fi
+				;;
+		esac
+	fi
+}
+
+first_stage_install () {
+	case "$CODENAME" in
+		# "merged-usr" blacklist for past releases
+		gutsy|hardy|intrepid|jaunty|karmic|lucid|lunar|mantic|maverick|natty|oneiric|precise|quantal|raring|saucy|trusty|utopic|vivid|wily|xenial|yakkety|zesty|artful|bionic|cosmic)
+			[ -z "$MERGED_USR" ] && MERGED_USR="no"
+			;;
+		disco|eoan|focal|groovy)
+			# see https://bugs.debian.org/838388
+			EXTRACT_DEB_TAR_OPTIONS="$EXTRACT_DEB_TAR_OPTIONS -k"
+			;;
+		hirsute)
+			# keep hirsute buildd chroots split-usr to allow for escape hatch
+			if [ -z "$MERGED_USR" ]; then
+				if doing_variant buildd; then
+					MERGED_USR="no"
+				else
+					MERGED_USR="yes"
+				fi
+			fi
+			# see https://bugs.debian.org/838388
+			EXTRACT_DEB_TAR_OPTIONS="$EXTRACT_DEB_TAR_OPTIONS -k"
+			;;
+		,*)
+			# all future series post hirsute use merged-usr in buildd chroots too
+			[ -z "$MERGED_USR" ] && MERGED_USR="yes"
+			# see https://bugs.debian.org/838388
+			EXTRACT_DEB_TAR_OPTIONS="$EXTRACT_DEB_TAR_OPTIONS -k"
+			;;
+	esac
+
+	setup_merged_usr
+	extract $required
+
+	mkdir -p "$TARGET/var/lib/dpkg"
+	: >"$TARGET/var/lib/dpkg/status"
+	: >"$TARGET/var/lib/dpkg/available"
+
+	setup_etc
+	if [ ! -e "$TARGET/etc/fstab" ]; then
+		echo '# UNCONFIGURED FSTAB FOR BASE SYSTEM' > "$TARGET/etc/fstab"
+		chown 0:0 "$TARGET/etc/fstab"; chmod 644 "$TARGET/etc/fstab"
+	fi
+
+	setup_devices
+
+        if doing_variant fakechroot || [ "$CONTAINER" = "docker" ]; then
+		setup_proc_symlink
+	fi
+}
+
+second_stage_install () {
+	in_target /bin/true
+
+	setup_dynamic_devices
+
+	x_feign_install () {
+		local pkg="$1"
+		local deb="$(debfor $pkg)"
+		local ver="$(in_target dpkg-deb -f "$deb" Version)"
+
+		mkdir -p "$TARGET/var/lib/dpkg/info"
+
+		echo \
+"Package: $pkg
+Version: $ver
+Maintainer: unknown
+Status: install ok installed" >> "$TARGET/var/lib/dpkg/status"
+
+		touch "$TARGET/var/lib/dpkg/info/${pkg}.list"
+	}
+
+	x_feign_install dpkg
+
+	x_core_install () {
+		smallyes '' | in_target dpkg --force-depends --install $(debfor "$@")
+	}
+
+	p () {
+		baseprog="$(($baseprog + ${1:-1}))"
+	}
+
+	if ! doing_variant fakechroot; then
+		setup_proc
+		in_target /sbin/ldconfig
+	fi
+
+	DEBIAN_FRONTEND=noninteractive
+	DEBCONF_NONINTERACTIVE_SEEN=true
+	export DEBIAN_FRONTEND DEBCONF_NONINTERACTIVE_SEEN
+
+	baseprog=0
+	bases=7
+
+	p; progress $baseprog $bases INSTCORE "Installing core packages" #1
+	info INSTCORE "Installing core packages..."
+
+	p; progress $baseprog $bases INSTCORE "Installing core packages" #2
+	ln -sf mawk "$TARGET/usr/bin/awk"
+	x_core_install base-passwd
+	x_core_install base-files
+	p; progress $baseprog $bases INSTCORE "Installing core packages" #3
+	x_core_install dpkg
+
+	if [ ! -e "$TARGET/etc/localtime" ]; then
+		ln -sf /usr/share/zoneinfo/UTC "$TARGET/etc/localtime"
+	fi
+
+	if doing_variant fakechroot; then
+		install_fakechroot_tools
+	fi
+
+	p; progress $baseprog $bases INSTCORE "Installing core packages" #4
+	x_core_install $LIBC
+
+	p; progress $baseprog $bases INSTCORE "Installing core packages" #5
+	x_core_install perl-base
+
+	p; progress $baseprog $bases INSTCORE "Installing core packages" #6
+	rm "$TARGET/usr/bin/awk"
+	x_core_install mawk
+
+	p; progress $baseprog $bases INSTCORE "Installing core packages" #7
+	if doing_variant -; then
+		x_core_install debconf
+	fi
+
+	baseprog=0
+	bases=$(set -- $required; echo $#)
+
+	info UNPACKREQ "Unpacking required packages..."
+
+	exec 7>&1
+
+	smallyes '' |
+		(repeatn 5 in_target_failmsg UNPACK_REQ_FAIL_FIVE "Failure while unpacking required packages.  This will be attempted up to five times." "" \
+		dpkg --status-fd 8 --force-depends --unpack $(debfor $required) 8>&1 1>&7 || echo EXITCODE $?) |
+		dpkg_progress $baseprog $bases UNPACKREQ "Unpacking required packages" UNPACKING
+
+	info CONFREQ "Configuring required packages..."
+
+	if doing_variant fakechroot && [ -e "$TARGET/var/lib/dpkg/info/initscripts.postinst" ]
+	then
+		# fix initscripts postinst (no mounting possible, and wrong if condition)
+		sed -i '/dpkg.*--compare-versions/ s/\<lt\>/lt-nl/' "$TARGET/var/lib/dpkg/info/initscripts.postinst"
+	fi
+
+	echo \
+"#!/bin/sh
+exit 101" > "$TARGET/usr/sbin/policy-rc.d"
+	chmod 755 "$TARGET/usr/sbin/policy-rc.d"
+
+	mv "$TARGET/sbin/start-stop-daemon" "$TARGET/sbin/start-stop-daemon.REAL"
+	echo \
+"#!/bin/sh
+echo
+echo \"Warning: Fake start-stop-daemon called, doing nothing\"" > "$TARGET/sbin/start-stop-daemon"
+	chmod 755 "$TARGET/sbin/start-stop-daemon"
+
+	if [ -x "$TARGET/sbin/initctl" ]; then
+	  mv "$TARGET/sbin/initctl" "$TARGET/sbin/initctl.REAL"
+	  echo \
+"#!/bin/sh
+if [ \"\$1\" = version ]; then exec /sbin/initctl.REAL \"\$@\"; fi
+echo
+echo \"Warning: Fake initctl called, doing nothing\"" > "$TARGET/sbin/initctl"
+	  chmod 755 "$TARGET/sbin/initctl"
+	fi
+
+	setup_dselect_method apt
+
+	smallyes '' |
+		(in_target_failmsg CONF_REQ_FAIL "Failure while configuring required packages." "" \
+		dpkg --status-fd 8 --configure --pending --force-configure-any --force-depends 8>&1 1>&7 || echo EXITCODE $?) |
+		dpkg_progress $baseprog $bases CONFREQ "Configuring required packages" CONFIGURING
+
+	baseprog=0
+	bases="$(set -- $base; echo $#)"
+
+	info UNPACKBASE "Unpacking the base system..."
+
+	setup_available $required $base
+	done_predeps=
+	while predep=$(get_next_predep); do
+		# We have to resolve dependencies of pre-dependencies manually because
+		# dpkg --predep-package doesn't handle this.
+		predep=$(without "$(without "$(resolve_deps $predep)" "$required")" "$done_predeps")
+		# XXX: progress is tricky due to how dpkg_progress works
+		# -- cjwatson 2009-07-29
+		# This step sometimes fails due to some missing functionality in Linuxulator.  Just ignore it.
+		set +e
+		p; smallyes '' |
+		in_target dpkg --force-overwrite --force-confold --skip-same-version --install $(debfor $predep)
+		rc=$?
+		base=$(without "$base" "$predep")
+		done_predeps="$done_predeps $predep"
+
+		if [ $rc != 0 ]; then
+			warning FREEBSD_00 "Applying FreeBSD-specific workaround..."
+			# ... for "Failed to mount /etc/machine-id: Bad address" with Focal.
+			in_target truncate -s0 /var/lib/dpkg/info/systemd.postinst
+			in_target dpkg --configure systemd
+		fi
+		set -e
+	done
+
+	if [ -n "$base" ]; then
+		smallyes '' |
+			(repeatn 5 in_target_failmsg INST_BASE_FAIL_FIVE "Failure while installing base packages.  This will be re-attempted up to five times." "" \
+			dpkg --status-fd 8 --force-overwrite --force-confold --skip-same-version --unpack $(debfor $base) 8>&1 1>&7 || echo EXITCODE $?) |
+			dpkg_progress $baseprog $bases UNPACKBASE "Unpacking base system" UNPACKING
+
+		info CONFBASE "Configuring the base system..."
+
+		# This step sometimes fails due to some missing functionality in Linuxulator.  Just ignore it.
+		set +e
+		smallyes '' |
+			(repeatn 5 in_target_failmsg CONF_BASE_FAIL_FIVE "Failure while configuring base packages.  This will be re-attempted up to five times." "" \
+			dpkg --status-fd 8 --force-confold --skip-same-version --configure -a 8>&1 1>&7 || echo EXITCODE $?) |
+			dpkg_progress $baseprog $bases CONFBASE "Configuring base system" CONFIGURING
+		set -e
+	fi
+
+	if [ -x "$TARGET/sbin/initctl.REAL" ]; then
+		mv "$TARGET/sbin/initctl.REAL" "$TARGET/sbin/initctl"
+	fi
+	mv "$TARGET/sbin/start-stop-daemon.REAL" "$TARGET/sbin/start-stop-daemon"
+	rm -f "$TARGET/usr/sbin/policy-rc.d"
+
+	echo \
+"# Workaround for Linuxulator missing mremap(2) support; without it,
+# apt(8) fails like this:
+# E: Dynamic MMap ran out of room. Please increase the size of APT::Cache-Start.
+APT::Cache-Start 251658240;" >> "$TARGET/etc/apt/apt.conf.d/00freebsd"
+
+	progress $bases $bases CONFBASE "Configuring base system"
+	info BASESUCCESS "Base system installed successfully."
+}
+
+#+end_src
+
+make the scripts executable
+
+#+begin_src sh
+chmod +x lunar mantic
+#+end_src
+
+copy the scripts to the debootstrap scripts directory
+
+#+begin_src sh
+sudo cp lunar mantic /usr/local/share/debootstrap/scripts
+#+end_src
+
+*** Install Ubuntu 22.04 into /compat/ubuntu:
+
+#+begin_src sh
+sudo debootstrap --arch=amd64 --no-check-gpg mantic /compat/ubuntu http://archive.ubuntu.com/ubuntu/
+#+end_src
+
+*** Restart Ubuntu service to make sure everything is properly mounted:
+
+#+begin_src sh
+sudo service ubuntu restart
+#+end_src
+
+*** Chroot into your Linux environment:
+
+#+begin_src sh
+sudo chroot /compat/ubuntu /bin/bash
+#+end_src
+
+*** Set correct timezone inside your chroot:
+
+#+begin_src sh
+printf "%b\n" "0.0 0 0.0\n0\nUTC" > /etc/adjtime
+#+end_src
+
+For some reason sudo is necessary here, otherwise it fails.
+
+#+begin_src sh
+sudo dpkg-reconfigure tzdata 
+#+end_src
+
+*** Fix APT package manager:
+
+#+begin_src sh
+printf "APT::Cache-Start 251658240;" > /etc/apt/apt.conf.d/00aptitude
+#+end_src
+
+*** Enable more repositories:
+
+add more repos
+
+#+begin_example
+/compat/ubuntu/etc/apt/sources.list
+#+end_example
+
+#+begin_example
+deb [trusted=yes] http://archive.ubuntu.com/ubuntu/ mantic main restricted universe multiverse
+deb [trusted=yes] http://archive.ubuntu.com/ubuntu/ mantic-updates main restricted universe multiverse
+deb [trusted=yes] http://archive.ubuntu.com/ubuntu/ mantic-security main restricted universe multiverse
+#+end_example
+
+*** apt update
+
+make sure you are chrooted with sudo
+
+#+begin_src sh
+apt update
+#+end_src
+
+upgrade
+
+#+begin_src sh
+apt upgrade 
+#+end_src
+
+*** set locale
+
+on the host
+
+#+begin_src sh
+/compat/ubuntu/etc/default/locale
+#+end_src
+
+in the chroot
+
+#+begin_src sh
+/etc/default/locale
+#+end_src
+
+#+begin_src sh
+LANG=en_GB.UTF-8
+LANGUAGE=
+LC_CTYPE="en_GB.UTF-8"
+LC_NUMERIC="en_GB.UTF-8"
+LC_TIME="en_GB.UTF-8"
+LC_COLLATE=C
+LC_MONETARY="en_GB.UTF-8"
+LC_MESSAGES="en_GB.UTF-8"
+LC_PAPER="en_GB.UTF-8"
+LC_NAME="en_GB.UTF-8"
+LC_ADDRESS="en_GB.UTF-8"
+LC_TELEPHONE="en_GB.UTF-8"
+LC_MEASUREMENT="en_GB.UTF-8"
+LC_IDENTIFICATION="en_GB.UTF-8"
+LC_ALL=
+#+end_src
+
+locale-gen
+
+#+begin_src sh
+locale-gen
+#+end_src
+
+dpkg-reconfigure locales
+
+#+begin_src sh
+dpkg-reconfigure locales
+#+end_src
+
+*** Install required programs:
+
+install the shell our user is going to use
+
+#+begin_src sh
+apt install zsh pulseaudio ffmpeg
+#+end_src
+
+*** copy user and group
+
+check your user and group on freebsd
+
+#+begin_src sh
+id
+#+end_src
+
+output
+
+#+begin_src sh
+uid=1001(djwilcox) gid=1001(djwilcox) groups=1001(djwilcox),0(wheel),5(operator),44(video),47(realtime)
+#+end_src
+
+copy user from freebsd /etc/passwd to /compat/ubuntu/etc/passwd
+
+#+begin_example
+djwilcox:*:1001:1001:Daniel J Wilcox:/home/djwilcox:/usr/local/bin/zsh
+#+end_example
+
+we also need to check that the shell path is correct
+change zsh path to /bin/zsh
+
+freebsd passwd
+
+#+begin_src sh
+djwilcox:*:1001:1001:Daniel J Wilcox:/home/djwilcox:/usr/local/bin/zsh
+#+end_src
+
+ubuntu passwd
+
+host path
+
+#+begin_example
+/compat/ubuntu/etc/passwd
+#+end_example
+
+chroot path
+
+#+begin_example
+/etc/passwd
+#+end_example
+
+#+begin_src sh
+djwilcox:*:1001:1001:Daniel J Wilcox:/home/djwilcox:/bin/zsh
+#+end_src
+
+copy the group from freebsd to ubuntu
+
+freebsd /etc/group
+
+#+begin_src conf
+djwilcox:*:1001:
+#+end_src
+
+ubuntu /etc/group
+
+#+begin_src conf
+djwilcox:*:1001:
+#+end_src
+
+*** add user to groups
+
+#+begin_src sh
+usermod -a -G adm djwilcox
+usermod -a -G cdrom djwilcox
+usermod -a -G sudo djwilcox
+usermod -a -G dip djwilcox
+usermod -a -G plugdev djwilcox
+usermod -a -G users djwilcox
+usermod -a -G video djwilcox
+usermod -a -G audio djwilcox
+usermod -a -G pulse djwilcox
+usermod -a -G pulse-access djwilcox
+#+end_src
+
+*** sudo set up
+
+edit the sudoers file
+
+#+begin_src sh
+visudo
+#+end_src
+
+add your user to the sudoers file
+
+#+begin_src sh
+djwilcox ALL=(ALL:ALL) ALL
+#+end_src
+
+*** passwd
+
+create a passwd for your user
+
+as root
+
+#+begin_src sh
+passwd djwilcox
+#+end_src
+
+passwd
+ubuntu
+
+*** hosts
+
+edit the hosts file in the chroot and add your hostname
+
+#+begin_src sh
+sudo vi /etc/hosts
+#+end_src
+
+add the hostname to stop errors when using sudo saying couldnt resolve hostname
+
+#+begin_src conf
+127.0.0.1       pollux
+#+end_src
+
+*** switch to out user with su
+
+#+begin_src sh
+sudo chroot /compat/ubuntu /bin/bash
+#+end_src
+
+switch to your user in the chroot
+replace djwilcox with your username
+
+#+begin_src sh
+su - djwilcox
+#+end_src
+
+** davinci resolve install
+
+da vinci resolve install on ubuntu with nvidia graphics
+
+*** nvidia download
+
+download the linux version matching the version on the freebsd host
+
+[[https://www.nvidia.com/Download/Find.aspx?lang=en-us]]
+
+download link for 535.146.02 
+
+[[https://www.nvidia.com/download/driverResults.aspx/216728/en-us/]]
+
+*** copy the nvidia run file in the chroot home direcory
+
+change into the directory you download the nvidia drivers into on the freebsd host
+
+then copy the nvidia run file into the home directory in the chroot
+change djwilcox for your username
+
+#+begin_src sh
+cp -rv NVIDIA-Linux-x86_64-535.146.02.run /compat/ubuntu/home/djwilcox
+#+end_src
+
+*** chroot into ubuntu 
+
+chroot into ubuntu
+
+#+begin_src sh
+sudo chroot /compat/ubuntu /bin/bash
+#+end_src
+
+switch to our user
+replace djwilcox with your username
+
+#+begin_src sh
+su - djwilcox
+#+end_src
+
+*** nvidia Pre-Installation Requirements
+
+[[https://docs.nvidia.com/datacenter/tesla/tesla-installation-notes/index.html]]
+
+Verify the system has build tools such as make, gcc installed  
+
+install build-essential for gcc
+
+#+begin_src sh
+sudo apt install build-essential
+#+end_src
+
+*** install the nvidia driver
+
+chmod 
+
+#+begin_src sh
+chmod +x NVIDIA-Linux-x86_64-535.146.02.run
+#+end_src
+
+single line
+
+#+begin_src sh
+sudo ./NVIDIA-Linux-x86_64-535.146.02.run --install-compat32-libs --no-nvidia-modprobe --no-backup --no-kernel-module --no-x-check --no-nouveau-check --no-cc-version-check --no-kernel-module-source --no-check-for-alternate-installs --install-libglvnd --skip-depmod --no-systemd
+#+end_src
+
+multi line
+
+#+begin_src sh
+sudo ./NVIDIA-Linux-x86_64-535.146.02.run \
+--install-compat32-libs \
+--no-nvidia-modprobe --no-backup --no-kernel-module \
+--no-x-check --no-nouveau-check \
+--no-cc-version-check --no-kernel-module-source \
+--no-check-for-alternate-installs \
+--install-libglvnd --skip-depmod --no-systemd
+#+end_src
+
+*** Install xorriso and fakeroot
+
++ install fakeroot and xorriso for makeresolvedeb
+
+#+begin_src sh
+sudo apt install fakeroot xorriso
+#+end_src
+
+*** nvidia-cuda-toolkit
+
++ install the nvidia-cuda-toolkit
+
+#+begin_src sh
+sudo apt install nvidia-cuda-toolkit ocl-icd-opencl-dev libglu1-mesa libfuse2 initramfs-tools
+#+end_src
+
+*** blacklist Nouveau nvidia driver
+
+create the blacklist-nvidia-nouveau.conf file
+
+#+begin_src sh
+sudo vi /etc/modprobe.d/blacklist-nvidia-nouveau.conf
+#+end_src
+
+add the following code and save the file
+
+#+begin_src conf
+blacklist nouveau
+options nouveau modeset=0
+#+end_src
+
+*** update-initramfs
+
+If you have full disk encryption enabled you have to run the command
+
+#+begin_src sh
+sudo update-initramfs -u
+#+end_src
+
+*** reboot
+
+#+begin_src sh
+sudo reboot
+#+end_src
+
+*** nvidia-smi
+
+use nvidia-smi to see GPU info and process that are using Nvidia GPU
+
+#+begin_src sh
+nvidia-smi
+#+end_src
+
+*** da vinci resolve download
+
++ download da vinci resolve
+
+[[https://www.blackmagicdesign.com/products/davinciresolve/][da vinci resolve]]
+
++ unzip the da-vinci-resolve.zip
+
+#+begin_src sh
+unzip "DaVinci_Resolve_*_Linux.zip"
+#+end_src
+
+*** makeresolvedeb
+
++ download the makeresolvedeb script
+
+[[https://www.danieltufvesson.com/makeresolvedeb][makeresolvedeb]]
+
++ extract the makeresolvedeb.tar.gz file
+
+#+begin_src sh
+tar zxvf makeresolvedeb_1.6.4_multi.sh.tar.gz
+#+end_src  
+
+**** copy the resolve.run and make resolve script to the chroot
+
+copy the resolve.run to the chroot home directory
+
+#+begin_src sh
+cp -rv DaVinci_Resolve_18.6.4_Linux.run /compat/ubuntu/home/djwilcox
+#+end_src
+
+copy the resolve.run to the chroot home directory
+
+#+begin_src sh
+cp -rv makeresolvedeb_1.6.4_multi.sh /compat/ubuntu/home/djwilcox
+#+end_src
+
+**** makeresolvedeb create deb file
+
+make sure you have chrooted into ubuntu by running
+
+#+begin_src sh
+sudo chroot /compat/ubuntu /bin/bash
+#+end_src
+
+switch to out user in the chroot
+
+#+begin_src sh
+su - djwilcox
+#+end_src
+
+install zip
+
+#+begin_src sh
+sudo apt install zip
+#+end_src
+
+unzip the resolve zip
+
+#+begin_src sh
+unzip DaVinci_Resolve_18.6.5_Linux.zip
+#+end_src
+
+then run makeresolvedeb
+
+#+begin_src sh
+./makeresolvedeb_1.6.4_multi.sh DaVinci_Resolve_18.6.5_Linux.run
+#+end_src
+
+this will take about an hour
+
+**** install the da vinci resolve deb file
+
+#+begin_src sh
+sudo dpkg -i davinci-resolve_18.6.5-mrd1.6.4_amd64.deb 
+#+end_src
+
+or
+
+#+begin_src sh
+sudo apt install davinci-resolve_18.6.5-mrd1.6.4_amd64.deb
+#+end_src
+
+*** qt
+
+#+begin_src sh
+sudo apt install adwaita-qt qt5ct 
+#+end_src
+
+*** lib fix
+
+#+begin_src sh
+cd /opt/resolve/libs
+sudo mv libglib-2.0.so.0 libglib-2.0.so.0.bak
+sudo cp /usr/lib/x86_64-linux-gnu/libglib-2.0.so.0 /opt/resolve/libs/
+#+end_src
+
+#+begin_src sh
+sudo apt install liblog4cxx-dev
+#+end_src
+
+*** gpu dummy-uvm.so
+
+enable the gpu in the chroot
+
+in the ubuntu chroot
+
+#+begin_src sh
+mkdir -p ~/.config/gpu
+cp dummy-uvm.so ~/.config/gpu
+LD_PRELOAD=/home/djwilcox/.config/gpu/dummy-uvm.so
+#+end_src
+
+*** x11
+
+on ubuntu in the chroot
+
+#+begin_src sh
+sudo apt install xorg xserver-xorg xserver-xorg-core
+#+end_src
+
+*** wayland 
+**** wayland packages
+
+#+begin_src sh
+sudo apt install libinput-tools wayland-protocols qtwayland5 qt6-wayland wayland-utils 
+#+end_src
+
+packages that may need to be installed 
+
+#+begin_example
+sudo apt install libwlroots11 libwlroots-dev libxkbcommon0
+#+end_example
+
+**** create the xdg runtime directory, change the user and set the permissions
+
+#+begin_src sh
+sudo mkdir -p /var/run/user/1001
+sudo chown -R djwilcox:1001 /var/run/user/1001
+sudo chmod 700 /var/run/user/1001
+#+end_src
+
+**** wayland environment
+
+we need to set an enviormental variable for wayland in our shell config
+
+***** zshrc
+
+#+begin_src sh
+# ~/.zshrc
+
+# ssh zsh fix
+[[ $TERM == "dumb" ]] && unsetopt zle && PS1='$ ' && return
+
+# Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
+HISTSIZE=1000
+
+# variables for PS3 prompt
+newline=$'\n'
+yesmaster='Yes Master ? '
+
+# PS3 prompt function
+function zle-line-init zle-keymap-select {
+    PS1="[%n@%M %~]${newline}${yesmaster}"
+    zle reset-prompt
+}
+
+# run PS3 prompt function
+zle -N zle-line-init
+zle -N zle-keymap-select
+
+# set terminal window title to program name
+case $TERM in
+  (*xterm* | xterm-256color)
+    function precmd {
+      print -Pn "\e]0;%(1j,%j job%(2j|s|); ,)%~\a"
+    }
+    function preexec {
+      printf "\033]0;%s\a" "$1"
+    }
+  ;;
+esac
+
+# Fix bugs when switching modes
+bindkey -v # vi mode
+bindkey "^?" backward-delete-char
+bindkey "^u" backward-kill-line
+bindkey "^a" beginning-of-line
+bindkey "^e" end-of-line
+bindkey "^k" kill-line
+
+# Use modern completion system
+autoload -Uz compinit
+compinit
+
+# Set/unset  shell options
+setopt notify globdots pushdtohome cdablevars autolist
+setopt recexact longlistjobs
+setopt autoresume histignoredups pushdsilent noclobber
+setopt autopushd pushdminus extendedglob rcquotes mailwarning
+setopt histignorealldups sharehistory
+#setopt auto_cd
+cdpath=($HOME)
+unsetopt bgnice autoparamslash
+
+# Completion Styles
+
+# list of completers to use
+zstyle ':completion:*::::' completer _expand _complete _ignored _approximate
+
+# allow one error for every three characters typed in approximate completer
+zstyle -e ':completion:*:approximate:*' max-errors \
+    'reply=( $(( ($#PREFIX+$#SUFFIX)/3 )) numeric )'
+    
+# insert all expansions for expand completer
+zstyle ':completion:*:expand:*' tag-order all-expansions
+
+# formatting and messages
+zstyle ':completion:*' verbose yes
+zstyle ':completion:*:descriptions' format '%B%d%b'
+zstyle ':completion:*:messages' format '%d'
+zstyle ':completion:*:warnings' format 'No matches for: %d'
+zstyle ':completion:*:corrections' format '%B%d (errors: %e)%b'
+zstyle ':completion:*' group-name ''
+
+#eval "$(dircolors -b)"
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*' list-colors ''
+
+# match uppercase from lowercase
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+
+# offer indexes before parameters in subscripts
+zstyle ':completion:*:*:-subscript-:*' tag-order indexes parameters
+
+# Filename suffixes to ignore during completion (except after rm command)
+zstyle ':completion:*:*:(^rm):*:*files' ignored-patterns '*?.o' '*?.c~' \
+    '*?.old' '*?.pro' '.hidden'
+
+# ignore completion functions (until the _ignored completer)
+zstyle ':completion:*:functions' ignored-patterns '_*'
+
+# kill - red, green, blue
+zstyle ':completion:*:*:kill:*' list-colors '=(#b) #([0-9]#)*( *[a-z])*=22=31=34'
+
+# list optiones colour, white + cyan
+zstyle ':completion:*:options' list-colors '=(#b) #(-[a-zA-Z0-9,]#)*(-- *)=36=37'
+
+# zsh autocompletion for sudo and doas
+zstyle ":completion:*:(sudo|su|doas):*" command-path /usr/local/bin /usr/sbin /home/djwilcox/bin
+
+# rehash commands
+zstyle ':completion:*' rehash true
+
+# highlighting
+#source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+#ZSH_HIGHLIGHT_STYLES[suffix-alias]=fg=cyan,underline
+#ZSH_HIGHLIGHT_STYLES[precommand]=fg=cyan,underline
+#ZSH_HIGHLIGHT_STYLES[arg0]=fg=cyan
+#ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
+#ZSH_HIGHLIGHT_PATTERNS=('rm -rf *' 'fg=white,bold,bg=red')
+#+end_src
+
+***** zshenv
+
+#+begin_src sh
+# ~/.zshenv
+
+# Path
+typeset -U PATH path
+path=("/opt/resolve/bin" "$path[@]")
+export PATH
+
+# xdg directories
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_RUNTIME_DIR="/var/run/user/`id -u`"
+
+# dummy-uvm.so for access to the gpu
+export LD_PRELOAD="$HOME/.config/gpu/dummy-uvm.so"
+export __NV_PRIME_RENDER_OFFLOAD=1
+export __GLX_VENDOR_LIBRARY_NAME=nvidia
+
+# wayland
+export XDG_SESSION_TYPE=wayland
+export WAYLAND_DISPLAY=wayland-0
+export DISPLAY=:1
+
+# qt5
+export QT_QPA_PLATFORMTHEME=qt5ct
+export QT_QPA_PLATFORM=xcb
+#+end_src
+
+***** copy zsh config to the chroot
+
+#+begin_src sh
+cp .zshrc .zshenv /compat/ubuntu/home/djwilcox
+#+end_src
+
+** pulseaudio
+*** cookie
+
+copy the pulseaudio cookie from the host to the chroot
+
+#+begin_src sh
+cp ~/.config/pulse/cookie /compat/ubuntu/home/djwilcox/.config/pulse/cookie
+#+end_src
+
+*** freebsd
+**** default.pa
+
+use the pulseaudio default.pa config file to create a pulseaudio socket in the /tmp directory
+
+the /tmp directory is mounted in the chroot and allows us to route the audio from the chroot to the host
+
+#+begin_example
+~/.config/pulse/default.pa
+#+end_example
+
+default.pa
+
+#+begin_src conf
+#!/usr/local/bin/pulseaudio -nF
+
+# include default.pa and override
+.include /usr/local/etc/pulse/default.pa
+
+# chroot
+.ifexists module-esound-protocol-unix.so
+load-module module-esound-protocol-unix
+.endif
+load-module module-native-protocol-unix socket=/tmp/pulseaudio.socket
+#+end_src
+
+**** start pulseaudio
+
+#+begin_src sh
+pulseaudio --start --daemonize
+#+end_src
+
+*** ubuntu
+**** client.conf
+
+full path to the client.conf from freebsd to the chroot
+
+#+begin_example
+/compat/ubuntu/home/djwilcox/.config/pulse/client.conf
+#+end_example
+
+client.conf path in the chroot
+
+#+begin_example
+~/.config/pulse/client.conf
+#+end_example
+
+client.conf
+
+#+begin_src conf
+# This file is part of PulseAudio.
+#
+# PulseAudio is free software; you can redistribute it and/or modify
+# it under the terms of the GNU Lesser General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# PulseAudio is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+# General Public License for more details.
+#
+# You should have received a copy of the GNU Lesser General Public License
+# along with PulseAudio; if not, see <http://www.gnu.org/licenses/>.
+
+## Configuration file for PulseAudio clients. See pulse-client.conf(5) for
+## more information. Default values are commented out.  Use either ; or # for
+## commenting.
+
+; default-sink = oss_output.dsp1
+; default-source =
+default-server = /tmp/pulseaudio.socket
+; default-dbus-server =
+
+; autospawn = yes
+; daemon-binary = /usr/local/bin/pulseaudio
+; extra-arguments = --log-target=syslog
+
+; cookie-file =
+
+; enable-shm = yes
+; shm-size-bytes = 0 # setting this 0 will use the system-default, usually 64 MiB
+
+; auto-connect-localhost = no
+; auto-connect-display = no
+
+#+end_src
+
+** Xwayland
+
+create the xwayland window on freebsd
+
+1920x1080 fullscreen
+
+#+begin_src sh
+Xwayland -host-grab -fullscreen -geometry 1920x1080 :01
+#+end_src
+
+host-grab is needed so you can click around in resolve
+press ctrl + shift to release the mouse
+
+in the chroots ~/.zshenv
+
+export the display
+
+#+begin_src sh
+export DISPLAY=:1
+#+end_src
+
+open resolve in the chroot and it will be displayed in the xwayland window on freebsd
+
+** X11
+
+install Xephyr
+
+#+begin_src sh
+sudo pkg install Xephyr
+#+end_src
+
+create the Xephyr window on freebsd
+
+1920x1080 
+
+#+begin_src sh
+Xephyr -br -ac -noreset -screen 1920x1080 :1
+#+end_src
+
+in the chroots ~/.zshenv
+
+export the display
+
+#+begin_src sh
+export DISPLAY=:1
+#+end_src
+
+open resolve in the chroot and it will be displayed in the xwayland window on freebsd
+
+** davinci resolve launcher
+*** freebsd
+**** resolve
+
+freebsd path to script
+
+#+begin_example
+/usr/local/bin/resolve
+#+end_example
+
+resolve script
+
+#+begin_src sh
+#!/bin/sh
+
+# start pulseaudio
+pulseaudio --start --daemonize
+
+# sleep
+sleep 1
+
+# create the xwayland window
+Xwayland -host-grab -fullscreen -geometry 1920x1080 :01 &
+
+# chroot with doas
+doas chroot /compat/ubuntu /usr/local/bin/wrapper
+#+end_src
+
+*** ubuntu
+**** wrapper-resolve
+
+freebsd path to script in the chroot
+
+#+begin_example
+/compat/ubuntu/usr/local/bin/wrapper-resolve
+#+end_example
+
+chroot path
+
+#+begin_example
+/usr/local/bin/wrapper-resolve
+#+end_example
+
+wrapper-resolve script
+
+#+begin_src sh
+#!/bin/bash
+
+# change username below to the name of the user in the chroot
+su username -c '/opt/resolve/bin/resolve' 2>/dev/null
+#+end_src
+
+*** desktop entry
+
+copy the desktop entry to
+
+#+begin_example
+~/.local/share/applications
+#+end_example
+
+#+begin_src sh
+cp davinci-resolve.desktop ~/.local/share/applications
+#+end_src
+
+davinci resolve desktop entry for freebsd
+
+#+begin_src conf
+[Desktop Entry]
+Version=1.0
+Encoding=UTF-8
+Type=Application
+Name=DaVinci Resolve
+Exec=/usr/local/bin/resolve
+Icon=/compat/ubuntu/opt/resolve/graphics/DV_Resolve.png
+Terminal=false
+MimeType=application/x-resolveproj;
+StartupNotify=true
+Categories=AudioVideo
+#+end_src
+
+** linuxulator delete
+
+disable ubuntu
+
+#+begin_src sh
+sudo sysrc ubuntu_enable="NO"
+#+end_src
+
+reboot to make sure the linux mounts are unmounted
+
+delete the /compat/ubuntu directory
+
+#+begin_src sh
+sudo rm -rxv /compat/ubuntu
+#+end_src

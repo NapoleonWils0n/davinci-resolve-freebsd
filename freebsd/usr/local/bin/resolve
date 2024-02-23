@@ -1,0 +1,13 @@
+#!/bin/sh
+
+# start pulseaudio
+pulseaudio --start --daemonize
+
+# sleep
+sleep 1
+
+# create the xwayland window
+Xwayland -host-grab -fullscreen -geometry 1920x1080 :01 &
+
+# chroot with doas
+doas chroot /compat/ubuntu /usr/local/bin/wrapper

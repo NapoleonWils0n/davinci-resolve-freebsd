@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# change username below to the name of the user in the chroot
+su username -c '/opt/resolve/bin/resolve' 2>/dev/null

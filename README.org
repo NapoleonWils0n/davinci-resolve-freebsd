@@ -600,13 +600,15 @@ path to the sources.list in the chroot
 /etc/apt/sources.list
 #+end_example
 
+[[file:compat/ubuntu/etc/apt/sources.list][sources.list]] in this repository
+
 sources.list
 
-#+begin_example
+#+begin_src conf
 deb [trusted=yes] http://archive.ubuntu.com/ubuntu/ mantic main restricted universe multiverse
 deb [trusted=yes] http://archive.ubuntu.com/ubuntu/ mantic-updates main restricted universe multiverse
 deb [trusted=yes] http://archive.ubuntu.com/ubuntu/ mantic-security main restricted universe multiverse
-#+end_example
+#+end_src
 
 *** apt update
 

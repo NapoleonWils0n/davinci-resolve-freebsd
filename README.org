@@ -6,7 +6,7 @@ project intro
 ** Freebsd
 *** debootstrap
 
-install debootstrap
+install debootstrap which we use to install ubuntu in a chroot on freebsd
 
 #+begin_src sh
 sudo pkg install debootstrap 
@@ -175,22 +175,19 @@ reboot so the linux mount points are unmounted
 # Horizontal Rule
 -----
 
-*** Create necessary mount points for a working Linuxulator:
+*** Create Linuxulator mount points
 
-create the
+Create necessary mount points for the Ubuntu Linuxulator chroot in 
 
 #+begin_example
 /compat/ubuntu
 #+end_example
-
-directory and sub directories
 
 #+begin_src sh
 sudo mkdir -p {/compat/ubuntu/dev/fd,/compat/ubuntu/dev/shm,/compat/ubuntu/home,/compat/ubuntu/tmp,/compat/ubuntu/proc,/compat/ubuntu/sys}
 #+end_src
 
 *** Enable Linux compatibility layer (Ubuntu):
-
 
 start ubuntu
 

@@ -49,7 +49,7 @@ permit nopass keepenv root as root
 # Horizontal Rule
 -----
 
-*** stop linux if its running
+*** Stop linux if its running
 
 if you have centos installed in
 
@@ -92,7 +92,7 @@ reboot so the linux mount points are unmounted
 # Horizontal Rule
 -----
 
-*** ubuntu rc.d script 
+*** Ubuntu rc.d script 
 
 ubuntu
 
@@ -241,7 +241,7 @@ mount
 # Horizontal Rule
 -----
 
-*** create linuxulator script for lunar and mantic
+*** Create linuxulator script for lunar and mantic
 
 debootstrap has a collection of scripts to install different version of debian and ubuntu
 

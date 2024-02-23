@@ -25,10 +25,10 @@ doas.conf
 
 #+begin_src conf
 # permit user
-permit keepenv :djwilcox
+permit keepenv :username
 
 # chroot
-permit nopass :djwilcox cmd chroot
+permit nopass :username cmd chroot
 
 # root as root
 permit nopass keepenv root as root
@@ -660,13 +660,13 @@ id
 output
 
 #+begin_src sh
-uid=1001(djwilcox) gid=1001(djwilcox) groups=1001(djwilcox),0(wheel),5(operator),44(video),47(realtime)
+uid=1001(username) gid=1001(username) groups=1001(username),0(wheel),5(operator),44(video),47(realtime)
 #+end_src
 
 copy user from freebsd /etc/passwd to /compat/ubuntu/etc/passwd
 
 #+begin_example
-djwilcox:*:1001:1001:Daniel J Wilcox:/home/djwilcox:/usr/local/bin/zsh
+username:*:1001:1001:USER NAME:/home/username:/usr/local/bin/zsh
 #+end_example
 
 we also need to check that the shell path is correct
@@ -675,7 +675,7 @@ change zsh path to /bin/zsh
 freebsd passwd
 
 #+begin_src sh
-djwilcox:*:1001:1001:Daniel J Wilcox:/home/djwilcox:/usr/local/bin/zsh
+username:*:1001:1001:USER NAME:/home/username:/usr/local/bin/zsh
 #+end_src
 
 ubuntu passwd
@@ -693,7 +693,7 @@ chroot path
 #+end_example
 
 #+begin_src sh
-djwilcox:*:1001:1001:Daniel J Wilcox:/home/djwilcox:/bin/zsh
+username:*:1001:1001:USER NAME:/home/djwilcox:/bin/zsh
 #+end_src
 
 copy the group from freebsd to ubuntu
@@ -701,28 +701,28 @@ copy the group from freebsd to ubuntu
 freebsd /etc/group
 
 #+begin_src conf
-djwilcox:*:1001:
+username:*:1001:
 #+end_src
 
 ubuntu /etc/group
 
 #+begin_src conf
-djwilcox:*:1001:
+username:*:1001:
 #+end_src
 
 *** add user to groups
 
 #+begin_src sh
-usermod -a -G adm djwilcox
-usermod -a -G cdrom djwilcox
-usermod -a -G sudo djwilcox
-usermod -a -G dip djwilcox
-usermod -a -G plugdev djwilcox
-usermod -a -G users djwilcox
-usermod -a -G video djwilcox
-usermod -a -G audio djwilcox
-usermod -a -G pulse djwilcox
-usermod -a -G pulse-access djwilcox
+usermod -a -G adm username
+usermod -a -G cdrom username
+usermod -a -G sudo username
+usermod -a -G dip username
+usermod -a -G plugdev username
+usermod -a -G users username
+usermod -a -G video username
+usermod -a -G audio username
+usermod -a -G pulse username
+usermod -a -G pulse-access username
 #+end_src
 
 *** sudo set up
@@ -736,7 +736,7 @@ visudo
 add your user to the sudoers file
 
 #+begin_src sh
-djwilcox ALL=(ALL:ALL) ALL
+username ALL=(ALL:ALL) ALL
 #+end_src
 
 *** passwd
@@ -746,7 +746,7 @@ create a passwd for your user
 as root
 
 #+begin_src sh
-passwd djwilcox
+passwd username
 #+end_src
 
 passwd
@@ -763,7 +763,7 @@ sudo vi /etc/hosts
 add the hostname to stop errors when using sudo saying couldnt resolve hostname
 
 #+begin_src conf
-127.0.0.1       pollux
+127.0.0.1       hostname
 #+end_src
 
 *** switch to out user with su
@@ -773,10 +773,10 @@ sudo chroot /compat/ubuntu /bin/bash
 #+end_src
 
 switch to your user in the chroot
-replace djwilcox with your username
+replace username with your username
 
 #+begin_src sh
-su - djwilcox
+su - username
 #+end_src
 
 ** davinci resolve install

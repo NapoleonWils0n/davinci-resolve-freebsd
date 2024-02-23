@@ -583,13 +583,15 @@ copy the scripts to the debootstrap scripts directory
 sudo cp lunar mantic /usr/local/share/debootstrap/scripts
 #+end_src
 
-*** Install Ubuntu 22.04 into /compat/ubuntu:
+*** Install Ubuntu
 
 #+begin_src sh
 sudo debootstrap --arch=amd64 --no-check-gpg mantic /compat/ubuntu http://archive.ubuntu.com/ubuntu/
 #+end_src
 
-*** Restart Ubuntu service to make sure everything is properly mounted:
+*** Restart Ubuntu
+
+Restart the Ubuntu service to make sure everything is properly mounted:
 
 #+begin_src sh
 sudo service ubuntu restart

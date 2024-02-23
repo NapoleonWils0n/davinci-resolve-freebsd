@@ -178,7 +178,7 @@ sudo chmod +x /usr/local/etc/rc.d/ubuntu
 # Horizontal Rule
 -----
 
-*** Create Linuxulator mount points
+*** Create the Linuxulator mount points for Ubuntu
 
 Create necessary mount points for the Ubuntu Linuxulator chroot in 
 
@@ -193,7 +193,7 @@ sudo mkdir -p {/compat/ubuntu/dev/fd,/compat/ubuntu/dev/shm,/compat/ubuntu/home,
 # Horizontal Rule
 -----
 
-*** Enable Linux compatibility layer (Ubuntu):
+*** Enable the Ubuntu service
 
 start ubuntu
 

@@ -27,6 +27,8 @@ path to the doas.conf on freebsd
 
 doas.conf
 
+change username to your username on freebsd
+
 #+begin_src conf
 # permit user
 permit keepenv :username

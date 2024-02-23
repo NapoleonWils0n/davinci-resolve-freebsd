@@ -208,8 +208,6 @@ sudo mkdir -p {/compat/ubuntu/dev/fd,/compat/ubuntu/dev/shm,/compat/ubuntu/home,
 
 *** Enable the Ubuntu service
 
-enable the ubuntu service
-
 use sysrc to set ubuntu_enable="YES" in your /etc/rc.conf
 
 #+begin_src sh

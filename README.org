@@ -174,7 +174,13 @@ reboot so the linux mount points are unmounted
 
 *** Create necessary mount points for a working Linuxulator:
 
-create the /compat/ubuntu directory and sub directories
+create the
+
+#+begin_example
+/compat/ubuntu
+#+end_example
+
+directory and sub directories
 
 #+begin_src sh
 sudo mkdir -p {/compat/ubuntu/dev/fd,/compat/ubuntu/dev/shm,/compat/ubuntu/home,/compat/ubuntu/tmp,/compat/ubuntu/proc,/compat/ubuntu/sys}

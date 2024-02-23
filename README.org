@@ -23,6 +23,8 @@ doas.conf location
 /usr/local/etc/doas.conf
 #+end_example
 
+link to [[file:freebsd/usr/local/etc/doas.conf][doas.conf]] in this repository
+
 doas.conf
 
 #+begin_src conf

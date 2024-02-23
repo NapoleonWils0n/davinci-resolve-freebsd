@@ -213,6 +213,9 @@ check everything is mounted
 mount
 #+end_src
 
+# Horizontal Rule
+-----
+
 *** create linuxulator script for lunar and mantic
 
 lunar and mantic script in this repository

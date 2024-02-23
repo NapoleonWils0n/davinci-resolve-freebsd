@@ -1,6 +1,6 @@
 #+STARTUP: show2levels
 * DaVinci Resolve Freebsd
-** ubuntu
+** Freebsd ubuntu linuxulator
 *** Install needed packages on freebsd
 
 #+begin_src sh

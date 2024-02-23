@@ -135,6 +135,8 @@ sudo chmod +x /usr/local/etc/rc.d/ubuntu
 
 *** Create necessary mount points for a working Linuxulator:
 
+create the /compat/ubuntu directory and sub directories
+
 #+begin_src sh
 sudo mkdir -p {/compat/ubuntu/dev/fd,/compat/ubuntu/dev/shm,/compat/ubuntu/home,/compat/ubuntu/tmp,/compat/ubuntu/proc,/compat/ubuntu/sys}
 #+end_src

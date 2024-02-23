@@ -138,14 +138,6 @@ sudo chmod +x /usr/local/etc/rc.d/ubuntu
 # Horizontal Rule
 -----
 
-*** Create necessary mount points for a working Linuxulator:
-
-create the /compat/ubuntu directory and sub directories
-
-#+begin_src sh
-sudo mkdir -p {/compat/ubuntu/dev/fd,/compat/ubuntu/dev/shm,/compat/ubuntu/home,/compat/ubuntu/tmp,/compat/ubuntu/proc,/compat/ubuntu/sys}
-#+end_src
-
 *** stop linux if its running
 
 if you have install centos installed in /compat/linux 
@@ -172,6 +164,14 @@ sudo sysrc linux_enable="NO"
 #+end_src
 
 reboot so the linux mount points are unmounted
+
+*** Create necessary mount points for a working Linuxulator:
+
+create the /compat/ubuntu directory and sub directories
+
+#+begin_src sh
+sudo mkdir -p {/compat/ubuntu/dev/fd,/compat/ubuntu/dev/shm,/compat/ubuntu/home,/compat/ubuntu/tmp,/compat/ubuntu/proc,/compat/ubuntu/sys}
+#+end_src
 
 *** Enable Linux compatibility layer (Ubuntu):
 

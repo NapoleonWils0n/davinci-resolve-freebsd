@@ -1,5 +1,5 @@
 #+STARTUP: show2levels
-* linuxlator ubuntu
+* DaVinci Resolve
 ** ubuntu
 *** Install needed packages on freebsd
 

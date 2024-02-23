@@ -74,6 +74,19 @@ linunx enable no
 sudo sysrc linux_enable="NO"
 #+end_src
 
+or you can edit your
+
+#+begin_example
+/etc/rc.conf
+#+end_example
+
+and set linux_enable to NO
+
+#+begin_src conf
+linux_enable="NO"
+#+end_src
+
+
 reboot so the linux mount points are unmounted
 
 # Horizontal Rule

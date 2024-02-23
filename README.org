@@ -157,6 +157,8 @@ if you have install centos installed in /compat/linux
 you need to stop it before starting ubuntu \\
 because you can only run linuxulator install at a time
 
+if you don't have a linux install in /compat/linux you can skip this step
+
 stop linux
 
 #+begin_src sh

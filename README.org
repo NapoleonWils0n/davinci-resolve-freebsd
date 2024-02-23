@@ -165,6 +165,9 @@ sudo sysrc linux_enable="NO"
 
 reboot so the linux mount points are unmounted
 
+# Horizontal Rule
+-----
+
 *** Create necessary mount points for a working Linuxulator:
 
 create the /compat/ubuntu directory and sub directories

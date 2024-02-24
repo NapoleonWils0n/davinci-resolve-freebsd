@@ -908,7 +908,10 @@ username:*:1001:
 # Horizontal Rule
 -----
 
-*** Add user to groups
+*** Add user to groups in the chroot
+
+add the user we created to groups in the chroot \\
+replace username with the username you created
 
 #+begin_src sh
 usermod -a -G adm username

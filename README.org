@@ -4,6 +4,12 @@
 project intro
 
 ** Freebsd
+*** clone this repository
+
+#+begin_src sh
+git clone https://github.com/NapoleonWils0n/davinci-resolve-freebsd.git
+#+end_src
+
 *** debootstrap
 
 [[https://wiki.debian.org/Debootstrap][Debootstrap - Debian Wiki]]
@@ -265,11 +271,25 @@ that sets the permission of a lot of binaries and libraries in the ubuntu chroot
 which means that only the root user can execute the binaries and libaries \\
 so you would have to run GUI applications as root
 
+i copied one of the existing debootstrap files and added the lunar and mantic version of Ubuntu to the file
+
 lunar and mantic script in this repository
 
 [[file:freebsd/usr/local/share/debootstrap/scripts/lunar][lunar]]
 
 [[file:freebsd/usr/local/share/debootstrap/scripts/mantic][mantic]]
+
+make the scripts executable
+
+#+begin_src sh
+chmod +x lunar mantic
+#+end_src
+
+copy the scripts to the debootstrap scripts directory
+
+#+begin_src sh
+sudo cp lunar mantic /usr/local/share/debootstrap/scripts
+#+end_src
 
 lunar and mantic script
 
@@ -624,19 +644,20 @@ APT::Cache-Start 251658240;" >> "$TARGET/etc/apt/apt.conf.d/00freebsd"
 
 #+end_src
 
-make the scripts executable
-
-#+begin_src sh
-chmod +x lunar mantic
-#+end_src
-
-copy the scripts to the debootstrap scripts directory
-
-#+begin_src sh
-sudo cp lunar mantic /usr/local/share/debootstrap/scripts
-#+end_src
-
 *** Install Ubuntu
+
+use debootstrap
+
+#+begin_example
+/compat/ubuntu
+#+end_example
+
+
+#+begin_example
+http://archive.ubuntu.com/ubuntu/
+#+end_example
+
+install mantic
 
 #+begin_src sh
 sudo debootstrap --arch=amd64 --no-check-gpg mantic /compat/ubuntu http://archive.ubuntu.com/ubuntu/

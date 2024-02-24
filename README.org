@@ -1223,7 +1223,7 @@ cp -rv makeresolvedeb_1.6.4_multi.sh.tar.gz /compat/ubuntu/home/username
 # Horizontal Rule
 -----
 
-**** makeresolvedeb create deb file
+*** makeresolvedeb create deb file
 
 make sure you have chrooted into ubuntu by running
 
@@ -1263,7 +1263,7 @@ then run makeresolvedeb
 
 this may take about an hour
 
-**** DaVinci Resolve deb install
+*** DaVinci Resolve deb install
 
 #+begin_src sh
 sudo dpkg -i davinci-resolve_18.6.5-mrd1.6.4_amd64.deb 

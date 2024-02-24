@@ -1291,17 +1291,6 @@ LD_PRELOAD=/home/username/.config/gpu/dummy-uvm.so
 # Horizontal Rule
 -----
 
-*** X11 install
-
-on ubuntu in the chroot
-
-#+begin_src sh
-sudo apt install xorg xserver-xorg xserver-xorg-core
-#+end_src
-
-# Horizontal Rule
------
-
 *** Wayland install
 **** Wayland packages
 
@@ -1370,6 +1359,17 @@ export QT_QPA_PLATFORM=xcb
 
 #+begin_src sh
 cp .zshrc .zshenv /compat/ubuntu/home/username
+#+end_src
+
+# Horizontal Rule
+-----
+
+*** X11 install
+
+on ubuntu in the chroot
+
+#+begin_src sh
+sudo apt install xorg xserver-xorg xserver-xorg-core
 #+end_src
 
 # Horizontal Rule

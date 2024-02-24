@@ -4,7 +4,7 @@
 project intro
 
 ** Freebsd
-*** clone this repository
+*** Clone this repository
 
 more info
 

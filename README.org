@@ -1207,7 +1207,8 @@ tar zxvf makeresolvedeb_1.6.4_multi.sh.tar.gz
 
 **** copy the resolve.run and make resolve script to the chroot
 
-copy the resolve.run to the chroot home directory
+copy the resolve.run to the chroot home directory \\
+replace username with your username in the command below
 
 #+begin_src sh
 cp -rv DaVinci_Resolve_18.6.4_Linux.run /compat/ubuntu/home/username

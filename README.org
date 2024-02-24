@@ -1193,7 +1193,16 @@ you will then need to register on the site with an email address
 once you have submitted the form the Davinci Resolve zip file will start to download, \\
 the zip file has a file size of 2.4 gigabytes so may take an hour or so to download
 
-move the zip into the home directory in the chroot
+copy the Davinci Resolve zip into the home directory in the chroot
+
+you dont need to use sudo to copy files in the home directory in the chroot \\
+because we have the same user with the same id in the chroot as on the host
+
+replace username with your username in the chroot in the command below
+
+#+begin_src sh
+cp -rv DaVinci_Resolve_18.6.4_Linux.zip /compat/ubuntu/home/username
+#+end_src
 
 # Horizontal Rule
 -----

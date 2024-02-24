@@ -1406,14 +1406,46 @@ otherwise zsh will complain that theres is no config file
 
 ***** zshenv
 
+shell path
+
 set the shell path to include resolve bin directory \\
-this allows us to type resolve instead of the full path to open Davinci Resolve in the chroot
+this allows us to type resolve
 
 #+begin_example
-/opt/resolve/bin
+resolve
 #+end_example
 
-#+begin_src sh
+instead of the full path to open Davinci Resolve in the chroot
+
+#+begin_example
+/opt/resolve/bin/resolve
+#+end_example
+
+export the XDG directories \\
+remember to create the XDG_RUNTIME_DIR directory
+
+LD_PRELOAD is used to load the so file
+
+#+begin_src conf
+export LD_PRELOAD="$HOME/.config/gpu/dummy-uvm.so"
+#+end_src
+
+you need to export some variables for Nvidia \\
+otherwise you won't be able to drag a clip into the timeline in Davinci Resolve and you will get a error saying gpu is full
+
+#+begin_src conf
+export __NV_PRIME_RENDER_OFFLOAD=1
+export __GLX_VENDOR_LIBRARY_NAME=nvidia
+#+end_src
+
+export DISPLAY
+
+#+begin_src conf
+export DISPLAY=:1
+#+end_src
+
+
+#+begin_src conf
 # ~/.zshenv
 
 # Path

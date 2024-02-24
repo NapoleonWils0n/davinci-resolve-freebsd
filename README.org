@@ -724,6 +724,8 @@ sudo dpkg-reconfigure tzdata
 
 *** Fix APT package manager
 
+run the following command as we haven't set up sudo for our user yet
+
 #+begin_src sh
 printf "APT::Cache-Start 251658240;" > /etc/apt/apt.conf.d/00aptitude
 #+end_src
@@ -761,6 +763,8 @@ deb [trusted=yes] http://archive.ubuntu.com/ubuntu/ mantic-security main restric
 -----
 
 *** apt update
+
+run the following commands as we haven't set up sudo for our user yet
 
 #+begin_src sh
 apt update
@@ -809,6 +813,8 @@ LC_IDENTIFICATION="en_GB.UTF-8"
 LC_ALL=
 #+end_src
 
+run the following commands as we haven't set up sudo for our user yet
+
 locale-gen
 
 #+begin_src sh
@@ -825,6 +831,8 @@ dpkg-reconfigure locales
 -----
 
 *** Shell install
+
+run the following commands as we haven't set up sudo for our user yet
 
 install the shell our user is going to use \\
 it must match the shell set in the ubuntu /etc/passwd file which we will set up 
@@ -918,6 +926,8 @@ username:*:1001:
 
 *** Add user to groups in the chroot
 
+run the following commands as we haven't set up sudo for our user yet
+
 add the user we created to groups in the chroot \\
 replace username with the username you created
 
@@ -938,6 +948,8 @@ usermod -a -G pulse-access username
 -----
 
 *** sudo set up
+
+run the following commands as we haven't set up sudo for our user yet
 
 edit the sudoers file with visudo
 
@@ -971,6 +983,8 @@ ubuntu
 -----
 
 *** Couldnt resolve hostname fix
+
+run the following commands as we haven't set up sudo for our user yet
 
 add the your hostname from freebsd to the hosts file in the ubuntu chroot \\
 to stop errors when using sudo saying couldnt resolve hostname

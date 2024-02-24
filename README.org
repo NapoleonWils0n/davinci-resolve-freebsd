@@ -281,15 +281,9 @@ which we will use later to install Ubuntu Mantic which doesn't have the persmiss
 
 lunar and mantic script in this repository
 
-[[file:freebsd/usr/local/share/debootstrap/scripts/lunar][lunar]]
++ [[file:freebsd/usr/local/share/debootstrap/scripts/lunar][lunar]]
 
-[[file:freebsd/usr/local/share/debootstrap/scripts/mantic][mantic]]
-
-make the scripts executable
-
-#+begin_src sh
-chmod +x lunar mantic
-#+end_src
++ [[file:freebsd/usr/local/share/debootstrap/scripts/mantic][mantic]]
 
 copy the scripts to the debootstrap scripts directory
 

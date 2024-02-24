@@ -972,7 +972,7 @@ username ALL=(ALL:ALL) ALL
 
 *** passwd
 
-create a passwd for your user
+create a passwd for your user, replace username with your username
 
 run the following command as root
 

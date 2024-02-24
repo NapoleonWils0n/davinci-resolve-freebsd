@@ -754,8 +754,6 @@ deb [trusted=yes] http://archive.ubuntu.com/ubuntu/ mantic-security main restric
 
 *** apt update
 
-make sure you are chrooted with sudo
-
 #+begin_src sh
 apt update
 #+end_src
@@ -1017,6 +1015,9 @@ download link for 535.146.02
 
 [[https://www.nvidia.com/download/driverResults.aspx/216728/en-us/]]
 
+# Horizontal Rule
+-----
+
 *** copy the nvidia run file in the chroot home direcory
 
 change into the directory you download the nvidia drivers into on the freebsd host
@@ -1027,6 +1028,9 @@ change username for your username
 #+begin_src sh
 cp -rv NVIDIA-Linux-x86_64-535.146.02.run /compat/ubuntu/home/username
 #+end_src
+
+# Horizontal Rule
+-----
 
 *** chroot into ubuntu 
 
@@ -1043,6 +1047,9 @@ replace username with your username
 su - username
 #+end_src
 
+# Horizontal Rule
+-----
+
 *** nvidia Pre-Installation Requirements
 
 [[https://docs.nvidia.com/datacenter/tesla/tesla-installation-notes/index.html]]
@@ -1055,11 +1062,17 @@ install build-essential for gcc
 sudo apt install build-essential
 #+end_src
 
+# Horizontal Rule
+-----
+
 *** ffmpeg install
 
 #+begin_src sh
 apt install ffmpeg
 #+end_src
+
+# Horizontal Rule
+-----
 
 *** install the nvidia driver
 
@@ -1087,6 +1100,9 @@ sudo ./NVIDIA-Linux-x86_64-535.146.02.run \
 --install-libglvnd --skip-depmod --no-systemd
 #+end_src
 
+# Horizontal Rule
+-----
+
 *** Install xorriso and fakeroot
 
 + install fakeroot and xorriso for makeresolvedeb
@@ -1095,6 +1111,9 @@ sudo ./NVIDIA-Linux-x86_64-535.146.02.run \
 sudo apt install fakeroot xorriso
 #+end_src
 
+# Horizontal Rule
+-----
+
 *** nvidia-cuda-toolkit
 
 + install the nvidia-cuda-toolkit
@@ -1102,6 +1121,9 @@ sudo apt install fakeroot xorriso
 #+begin_src sh
 sudo apt install nvidia-cuda-toolkit ocl-icd-opencl-dev libglu1-mesa libfuse2 initramfs-tools
 #+end_src
+
+# Horizontal Rule
+-----
 
 *** blacklist Nouveau nvidia driver
 
@@ -1118,6 +1140,9 @@ blacklist nouveau
 options nouveau modeset=0
 #+end_src
 
+# Horizontal Rule
+-----
+
 *** update-initramfs
 
 If you have full disk encryption enabled you have to run the command
@@ -1126,11 +1151,17 @@ If you have full disk encryption enabled you have to run the command
 sudo update-initramfs -u
 #+end_src
 
+# Horizontal Rule
+-----
+
 *** reboot
 
 #+begin_src sh
 sudo reboot
 #+end_src
+
+# Horizontal Rule
+-----
 
 *** nvidia-smi
 
@@ -1139,6 +1170,9 @@ use nvidia-smi to see GPU info and process that are using Nvidia GPU
 #+begin_src sh
 nvidia-smi
 #+end_src
+
+# Horizontal Rule
+-----
 
 *** da vinci resolve download
 
@@ -1151,6 +1185,9 @@ nvidia-smi
 #+begin_src sh
 unzip "DaVinci_Resolve_*_Linux.zip"
 #+end_src
+
+# Horizontal Rule
+-----
 
 *** makeresolvedeb
 
@@ -1224,11 +1261,17 @@ or
 sudo apt install davinci-resolve_18.6.5-mrd1.6.4_amd64.deb
 #+end_src
 
+# Horizontal Rule
+-----
+
 *** qt
 
 #+begin_src sh
 sudo apt install adwaita-qt qt5ct 
 #+end_src
+
+# Horizontal Rule
+-----
 
 *** lib fix
 
@@ -1242,6 +1285,9 @@ sudo cp /usr/lib/x86_64-linux-gnu/libglib-2.0.so.0 /opt/resolve/libs/
 sudo apt install liblog4cxx-dev
 #+end_src
 
+# Horizontal Rule
+-----
+
 *** gpu dummy-uvm.so
 
 enable the gpu in the chroot
@@ -1254,6 +1300,9 @@ cp dummy-uvm.so ~/.config/gpu
 LD_PRELOAD=/home/username/.config/gpu/dummy-uvm.so
 #+end_src
 
+# Horizontal Rule
+-----
+
 *** x11
 
 on ubuntu in the chroot
@@ -1261,6 +1310,9 @@ on ubuntu in the chroot
 #+begin_src sh
 sudo apt install xorg xserver-xorg xserver-xorg-core
 #+end_src
+
+# Horizontal Rule
+-----
 
 *** wayland 
 **** wayland packages
@@ -1331,6 +1383,9 @@ export QT_QPA_PLATFORM=xcb
 #+begin_src sh
 cp .zshrc .zshenv /compat/ubuntu/home/username
 #+end_src
+
+# Horizontal Rule
+-----
 
 ** pulseaudio
 *** cookie
@@ -1429,6 +1484,9 @@ default-server = /tmp/pulseaudio.socket
 
 #+end_src
 
+# Horizontal Rule
+-----
+
 ** Xwayland
 
 create the xwayland window on freebsd
@@ -1451,6 +1509,9 @@ export DISPLAY=:1
 #+end_src
 
 open resolve in the chroot and it will be displayed in the xwayland window on freebsd
+
+# Horizontal Rule
+-----
 
 ** X11
 
@@ -1477,6 +1538,9 @@ export DISPLAY=:1
 #+end_src
 
 open resolve in the chroot and it will be displayed in the xwayland window on freebsd
+
+# Horizontal Rule
+-----
 
 ** davinci resolve launcher
 *** freebsd
@@ -1557,6 +1621,9 @@ MimeType=application/x-resolveproj;
 StartupNotify=true
 Categories=AudioVideo
 #+end_src
+
+# Horizontal Rule
+-----
 
 ** linuxulator delete
 

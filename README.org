@@ -1278,13 +1278,27 @@ sudo apt install davinci-resolve_18.6.5-mrd1.6.4_amd64.deb
 # Horizontal Rule
 -----
 
-*** lib fix
+*** libglib-2.0.so.0 fix
+
+change directory in the chroot to the resolve libs directory
 
 #+begin_src sh
 cd /opt/resolve/libs
+#+end_src
+
+rename libglib-2.0.so.0 to libglib-2.0.so.0.bak
+
+#+begin_src sh
 sudo mv libglib-2.0.so.0 libglib-2.0.so.0.bak
+#+end_src
+
+copy the libglib-2.0.so.0 from the chroot system lib directory to the resolve libs directory
+
+#+begin_src sh
 sudo cp /usr/lib/x86_64-linux-gnu/libglib-2.0.so.0 /opt/resolve/libs/
 #+end_src
+
+install liblog4cxx-dev
 
 #+begin_src sh
 sudo apt install liblog4cxx-dev

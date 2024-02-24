@@ -1182,7 +1182,8 @@ nvidia-smi
 
 on the Freebsd host
 
-Go to the Davinci Resolve website and click the "Davinci Resolve Free Download Now" button
+Go to the Davinci Resolve website and click the \\
+"Davinci Resolve Free Download Now" link
 
 [[https://www.blackmagicdesign.com/products/davinciresolve/][Davinci Resolve]]
 

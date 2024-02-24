@@ -1193,6 +1193,8 @@ you will then need to register on the site with an email address
 once you have submitted the form the Davinci Resolve zip file will start to download, \\
 the zip file has a file size of 2.4 gigabytes so may take an hour or so to download
 
+move the zip into the home directory in the chroot
+
 # Horizontal Rule
 -----
 
@@ -1272,15 +1274,6 @@ sudo apt install davinci-resolve_18.6.5-mrd1.6.4_amd64.deb
 # Horizontal Rule
 -----
 
-*** qt
-
-#+begin_src sh
-sudo apt install adwaita-qt qt5ct 
-#+end_src
-
-# Horizontal Rule
------
-
 *** lib fix
 
 #+begin_src sh
@@ -1315,7 +1308,7 @@ LD_PRELOAD=/home/username/.config/gpu/dummy-uvm.so
 **** Wayland packages
 
 #+begin_src sh
-sudo apt install libinput-tools wayland-protocols qtwayland5 qt6-wayland wayland-utils 
+sudo apt install libinput-tools wayland-protocols qtwayland5 qt6-wayland wayland-utils adwaita-qt qt5ct
 #+end_src
 
 packages that may need to be installed 

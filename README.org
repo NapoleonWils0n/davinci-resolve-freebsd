@@ -830,54 +830,40 @@ apt install zsh pulseaudio
 # Horizontal Rule
 -----
 
-*** Copy user from Freebsd to Ubuntu
+*** Copy user and group from Freebsd to Ubuntu
 
 The Linuxulator will create a nullfs mount for home in the chroot that is already set to out username
 
 So if we user useradd to create a user with our username it will give you an error that the home directory already exists
 
-By 
-
-check your user and group on freebsd
-
-#+begin_src sh
-id
-#+end_src
-
-output
-
-#+begin_src sh
-uid=1001(username) gid=1001(username) groups=1001(username),0(wheel),5(operator),44(video),47(realtime)
-#+end_src
-
-copy user from freebsd
+We can just copy the settings for our user from Freebsd passwd file
 
 #+begin_example
 /etc/passwd
 #+end_example
 
-to
+to the passwd file on Ubuntu
 
 #+begin_example
 /compat/ubuntu/etc/passwd
 #+end_example
 
-Freebsd /etc/passwd 
+**** Freebsd /etc/passwd 
 
 #+begin_example
 username:*:1001:1001:USER NAME:/home/username:/usr/local/bin/zsh
 #+end_example
 
 we also need to check that the shell path is correct \\
-change zsh path to /bin/zsh
+change zsh path to /bin/zsh in the chroot
 
-freebsd passwd
+Freebsd passwd
 
 #+begin_src sh
 username:*:1001:1001:USER NAME:/home/username:/usr/local/bin/zsh
 #+end_src
 
-ubuntu passwd
+**** ubuntu passwd
 
 host path
 
@@ -895,7 +881,19 @@ chroot path
 username:*:1001:1001:USER NAME:/home/djwilcox:/bin/zsh
 #+end_src
 
-copy the group from freebsd to ubuntu
+check your user and group on freebsd
+
+#+begin_src sh
+id
+#+end_src
+
+output
+
+#+begin_src sh
+uid=1001(username) gid=1001(username) groups=1001(username),0(wheel),5(operator),44(video),47(realtime)
+#+end_src
+
+**** copy the group from freebsd to ubuntu
 
 freebsd /etc/group
 
@@ -912,7 +910,7 @@ username:*:1001:
 # Horizontal Rule
 -----
 
-*** add user to groups
+*** Add user to groups
 
 #+begin_src sh
 usermod -a -G adm username
@@ -963,7 +961,7 @@ ubuntu
 # Horizontal Rule
 -----
 
-*** couldnt resolve hostname fix
+*** Couldnt resolve hostname fix
 
 add the your hostname from freebsd to the hosts file in the ubuntu chroot \\
 to stop errors when using sudo saying couldnt resolve hostname
@@ -989,7 +987,7 @@ hosts
 # Horizontal Rule
 -----
 
-*** switch to out user with su
+*** Switch to out user with su
 
 #+begin_src sh
 sudo chroot /compat/ubuntu /bin/bash

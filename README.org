@@ -1012,11 +1012,11 @@ su - username
 # Horizontal Rule
 -----
 
-** davinci resolve install
+** Davinci Resolve install
 
 da vinci resolve install on ubuntu with nvidia graphics
 
-*** nvidia download
+*** Nvidia download
 
 download the linux version matching the version on the freebsd host
 
@@ -1029,7 +1029,7 @@ download link for 535.146.02
 # Horizontal Rule
 -----
 
-*** copy the nvidia run file in the chroot home direcory
+*** Copy the nvidia run file in the chroot home direcory
 
 change into the directory you download the nvidia drivers into on the freebsd host
 
@@ -1043,7 +1043,7 @@ cp -rv NVIDIA-Linux-x86_64-535.146.02.run /compat/ubuntu/home/username
 # Horizontal Rule
 -----
 
-*** chroot into ubuntu 
+*** Chroot into ubuntu 
 
 chroot into ubuntu
 
@@ -1061,7 +1061,7 @@ su - username
 # Horizontal Rule
 -----
 
-*** nvidia Pre-Installation Requirements
+*** Nvidia Pre-Installation Requirements
 
 [[https://docs.nvidia.com/datacenter/tesla/tesla-installation-notes/index.html]]
 
@@ -1085,7 +1085,7 @@ apt install ffmpeg
 # Horizontal Rule
 -----
 
-*** install the nvidia driver
+*** Nvidia driver install
 
 chmod 
 
@@ -1114,9 +1114,9 @@ sudo ./NVIDIA-Linux-x86_64-535.146.02.run \
 # Horizontal Rule
 -----
 
-*** Install xorriso and fakeroot
+*** xorriso and fakeroot install
 
-+ install fakeroot and xorriso for makeresolvedeb
+install fakeroot and xorriso for makeresolvedeb
 
 #+begin_src sh
 sudo apt install fakeroot xorriso
@@ -1125,7 +1125,7 @@ sudo apt install fakeroot xorriso
 # Horizontal Rule
 -----
 
-*** nvidia-cuda-toolkit
+*** Nvidia-cuda-toolkit
 
 + install the nvidia-cuda-toolkit
 
@@ -1136,7 +1136,7 @@ sudo apt install nvidia-cuda-toolkit ocl-icd-opencl-dev libglu1-mesa libfuse2 in
 # Horizontal Rule
 -----
 
-*** blacklist Nouveau nvidia driver
+*** Blacklist Nouveau nvidia driver
 
 create the blacklist-nvidia-nouveau.conf file
 
@@ -1156,19 +1156,8 @@ options nouveau modeset=0
 
 *** update-initramfs
 
-If you have full disk encryption enabled you have to run the command
-
 #+begin_src sh
 sudo update-initramfs -u
-#+end_src
-
-# Horizontal Rule
------
-
-*** reboot
-
-#+begin_src sh
-sudo reboot
 #+end_src
 
 # Horizontal Rule
@@ -1202,11 +1191,11 @@ unzip "DaVinci_Resolve_*_Linux.zip"
 
 *** makeresolvedeb
 
-+ download the makeresolvedeb script
+download the makeresolvedeb script
 
 [[https://www.danieltufvesson.com/makeresolvedeb][makeresolvedeb]]
 
-+ extract the makeresolvedeb.tar.gz file
+extract the makeresolvedeb.tar.gz file
 
 #+begin_src sh
 tar zxvf makeresolvedeb_1.6.4_multi.sh.tar.gz

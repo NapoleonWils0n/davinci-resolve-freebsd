@@ -696,6 +696,9 @@ use doas to chroot into ubuntu without a password
 doas chroot /compat/ubuntu /bin/bash
 #+end_src
 
+# Horizontal Rule
+-----
+
 *** Set correct timezone inside your chroot:
 
 #+begin_src sh

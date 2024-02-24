@@ -1,12 +1,12 @@
 #+STARTUP: show2levels
 * DaVinci Resolve Freebsd
 
-project intro
+project intro and screenshot of resolve with gpu settings
 
 ** Freebsd
 *** Clone this repository
 
-more info
+more info about the repo
 
 #+begin_src sh
 git clone https://github.com/NapoleonWils0n/davinci-resolve-freebsd.git
@@ -115,14 +115,10 @@ ubuntu
 
 + [[file:freebsd/usr/local/etc/rc.d/ubuntu][ubuntu]] script in this repository
 
-copy the ubuntu script to
-
-#+begin_example
-/usr/local/etc/rc.d/
-#+end_example
+copy the ubuntu script from the repository to /usr/local/etc/rc.d/
 
 #+begin_src sh
-sudo cp ubuntu /usr/local/etc/rc.d/
+sudo cp davinci-resolve-freebsd/freebsd/usr/local/etc/rc.d/ubuntu /usr/local/etc/rc.d/
 #+end_src
 
 make the script executable

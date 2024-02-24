@@ -1381,7 +1381,16 @@ sudo chmod 700 /var/run/user/1001
 
 we need to set an enviormental variable for wayland in our shell config
 
+copy zsh config to the chroot
+
+#+begin_src sh
+cp .zshrc .zshenv /compat/ubuntu/home/username
+#+end_src
+
 ***** zshrc
+
+we create a blank .zshrc file \\
+otherwise zsh will complain that theres is no config file
 
 #+begin_src sh
 # ~/.zshrc
@@ -1418,12 +1427,6 @@ export DISPLAY=:1
 # qt5
 export QT_QPA_PLATFORMTHEME=qt5ct
 export QT_QPA_PLATFORM=xcb
-#+end_src
-
-***** copy zsh config to the chroot
-
-#+begin_src sh
-cp .zshrc .zshenv /compat/ubuntu/home/username
 #+end_src
 
 # Horizontal Rule

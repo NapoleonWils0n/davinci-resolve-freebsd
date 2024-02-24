@@ -827,6 +827,9 @@ install the shell our user is going to use
 apt install zsh pulseaudio ffmpeg
 #+end_src
 
+# Horizontal Rule
+-----
+
 *** copy user and group
 
 check your user and group on freebsd
@@ -888,6 +891,9 @@ ubuntu /etc/group
 username:*:1001:
 #+end_src
 
+# Horizontal Rule
+-----
+
 *** add user to groups
 
 #+begin_src sh
@@ -903,6 +909,9 @@ usermod -a -G pulse username
 usermod -a -G pulse-access username
 #+end_src
 
+# Horizontal Rule
+-----
+
 *** sudo set up
 
 edit the sudoers file
@@ -917,6 +926,9 @@ add your user to the sudoers file
 username ALL=(ALL:ALL) ALL
 #+end_src
 
+# Horizontal Rule
+-----
+
 *** passwd
 
 create a passwd for your user
@@ -930,19 +942,34 @@ passwd username
 passwd
 ubuntu
 
-*** hosts
+# Horizontal Rule
+-----
 
-edit the hosts file in the chroot and add your hostname
+*** couldnt resolve hostname fix
 
-#+begin_src sh
-sudo vi /etc/hosts
-#+end_src
+add the your hostname from freebsd to the hosts file in the ubuntu chroot \\
+to stop errors when using sudo saying couldnt resolve hostname
 
-add the hostname to stop errors when using sudo saying couldnt resolve hostname
+freebsd path to the hosts in the chroot
+
+#+begin_example
+/compat/ubuntu/etc/hosts
+#+end_example
+
+path to the hosts in the chroot
+
+#+begin_example
+/etc/hosts
+#+end_example
+
+hosts
 
 #+begin_src conf
 127.0.0.1       hostname
 #+end_src
+
+# Horizontal Rule
+-----
 
 *** switch to out user with su
 

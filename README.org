@@ -725,8 +725,7 @@ printf "APT::Cache-Start 251658240;" > /etc/apt/apt.conf.d/00aptitude
 
 *** Enable more repositories:
 
-add more repos
-[trusted=yes] is needed for lunar and mantic
+add more repositories [trusted=yes] is needed for lunar and mantic
 
 freebsd path to the sources.list in the chroot
 
@@ -983,6 +982,9 @@ replace username with your username
 #+begin_src sh
 su - username
 #+end_src
+
+# Horizontal Rule
+-----
 
 ** davinci resolve install
 

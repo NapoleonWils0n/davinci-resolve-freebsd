@@ -15,7 +15,7 @@ git clone https://github.com/NapoleonWils0n/davinci-resolve-freebsd.git
 # Horizontal Rule
 -----
 
-*** Install debootstrap
+*** debootstrap install
 
 install debootstrap which we use to create an ubuntu chroot on freebsd
 
@@ -30,7 +30,7 @@ sudo pkg install debootstrap
 # Horizontal Rule
 -----
 
-*** Install doas
+*** doas install
 
 [[https://man.freebsd.org/cgi/man.cgi?query=doas.conf&sektion=5&format=html][doas.conf man page]]
 
@@ -769,7 +769,7 @@ apt upgrade
 # Horizontal Rule
 -----
 
-*** set locale
+*** Set locale
 
 on the host
 
@@ -818,18 +818,25 @@ dpkg-reconfigure locales
 # Horizontal Rule
 -----
 
-*** Install required programs:
+*** Shell install
 
-install the shell our user is going to use
+install the shell our user is going to use \\
+it must match the shell set in the ubuntu /etc/passwd file which we will set up 
 
 #+begin_src sh
-apt install zsh pulseaudio ffmpeg
+apt install zsh pulseaudio 
 #+end_src
 
 # Horizontal Rule
 -----
 
-*** copy user and group
+*** Copy user from Freebsd to Ubuntu
+
+The Linuxulator will create a nullfs mount for home in the chroot that is already set to out username
+
+So if we user useradd to create a user with our username it will give you an error that the home directory already exists
+
+By 
 
 check your user and group on freebsd
 
@@ -843,13 +850,25 @@ output
 uid=1001(username) gid=1001(username) groups=1001(username),0(wheel),5(operator),44(video),47(realtime)
 #+end_src
 
-copy user from freebsd /etc/passwd to /compat/ubuntu/etc/passwd
+copy user from freebsd
+
+#+begin_example
+/etc/passwd
+#+end_example
+
+to
+
+#+begin_example
+/compat/ubuntu/etc/passwd
+#+end_example
+
+Freebsd /etc/passwd 
 
 #+begin_example
 username:*:1001:1001:USER NAME:/home/username:/usr/local/bin/zsh
 #+end_example
 
-we also need to check that the shell path is correct
+we also need to check that the shell path is correct \\
 change zsh path to /bin/zsh
 
 freebsd passwd
@@ -1036,6 +1055,12 @@ install build-essential for gcc
 
 #+begin_src sh
 sudo apt install build-essential
+#+end_src
+
+*** ffmpeg install
+
+#+begin_src sh
+apt install ffmpeg
 #+end_src
 
 *** install the nvidia driver

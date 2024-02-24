@@ -688,7 +688,7 @@ sudo service ubuntu restart
 # Horizontal Rule
 -----
 
-*** Chroot into your Ubuntu with doas
+*** Chroot into Ubuntu with doas
 
 use doas to chroot into Ubuntu as root without a password
 

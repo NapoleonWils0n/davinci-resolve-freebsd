@@ -1180,7 +1180,10 @@ nvidia-smi
 
 *** Davinci Resolve download
 
+Go to the Davinci Resolve website and click the "Davinci Resolve Free Download Now" button
 
+then click the Linux download link for either the Free version or the paid Studio version
+you will then need to register on the site with an email address 
 
 [[https://www.blackmagicdesign.com/products/davinciresolve/][Davinci Resolve]]
 

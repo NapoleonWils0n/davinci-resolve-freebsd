@@ -1079,7 +1079,7 @@ sudo apt install build-essential
 *** ffmpeg install
 
 #+begin_src sh
-apt install ffmpeg
+sudo apt install ffmpeg
 #+end_src
 
 # Horizontal Rule
@@ -1162,13 +1162,13 @@ nvidia-smi
 # Horizontal Rule
 -----
 
-*** da vinci resolve download
+*** Davinci Resolve download
 
-+ download da vinci resolve
+download da vinci resolve
 
 [[https://www.blackmagicdesign.com/products/davinciresolve/][da vinci resolve]]
 
-+ unzip the da-vinci-resolve.zip
+unzip the da-vinci-resolve.zip
 
 #+begin_src sh
 unzip "DaVinci_Resolve_*_Linux.zip"
@@ -1291,7 +1291,7 @@ LD_PRELOAD=/home/username/.config/gpu/dummy-uvm.so
 # Horizontal Rule
 -----
 
-*** x11
+*** X11 install
 
 on ubuntu in the chroot
 
@@ -1302,8 +1302,8 @@ sudo apt install xorg xserver-xorg xserver-xorg-core
 # Horizontal Rule
 -----
 
-*** wayland 
-**** wayland packages
+*** Wayland install
+**** Wayland packages
 
 #+begin_src sh
 sudo apt install libinput-tools wayland-protocols qtwayland5 qt6-wayland wayland-utils 
@@ -1315,7 +1315,7 @@ packages that may need to be installed
 sudo apt install libwlroots11 libwlroots-dev libxkbcommon0
 #+end_example
 
-**** create the xdg runtime directory, change the user and set the permissions
+**** Create the xdg runtime directory, change the user and set the permissions
 
 #+begin_src sh
 sudo mkdir -p /var/run/user/1001
@@ -1323,7 +1323,7 @@ sudo chown -R username:1001 /var/run/user/1001
 sudo chmod 700 /var/run/user/1001
 #+end_src
 
-**** wayland environment
+**** Wayland environment
 
 we need to set an enviormental variable for wayland in our shell config
 
@@ -1375,7 +1375,7 @@ cp .zshrc .zshenv /compat/ubuntu/home/username
 # Horizontal Rule
 -----
 
-** pulseaudio
+** Pulseaudio
 *** cookie
 
 copy the pulseaudio cookie from the host to the chroot
@@ -1530,8 +1530,8 @@ open resolve in the chroot and it will be displayed in the xwayland window on fr
 # Horizontal Rule
 -----
 
-** davinci resolve launcher
-*** freebsd
+** Davinci resolve launcher
+*** Freebsd
 **** resolve
 
 freebsd path to script
@@ -1558,7 +1558,7 @@ Xwayland -host-grab -fullscreen -geometry 1920x1080 :01 &
 doas chroot /compat/ubuntu /usr/local/bin/wrapper
 #+end_src
 
-*** ubuntu
+*** Ubuntu
 **** wrapper-resolve
 
 freebsd path to script in the chroot
@@ -1582,7 +1582,7 @@ wrapper-resolve script
 su username -c '/opt/resolve/bin/resolve' 2>/dev/null
 #+end_src
 
-*** desktop entry
+*** Desktop entry
 
 copy the desktop entry to
 
@@ -1613,7 +1613,7 @@ Categories=AudioVideo
 # Horizontal Rule
 -----
 
-** linuxulator delete
+** Linuxulator delete
 
 disable ubuntu
 

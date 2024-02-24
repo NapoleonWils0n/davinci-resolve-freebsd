@@ -650,6 +650,9 @@ APT::Cache-Start 251658240;" >> "$TARGET/etc/apt/apt.conf.d/00freebsd"
 
 #+end_src
 
+# Horizontal Rule
+-----
+
 *** Install Ubuntu
 
 use debootstrap

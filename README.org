@@ -1187,7 +1187,7 @@ Go to the Davinci Resolve website and click the \\
 
 [[https://www.blackmagicdesign.com/products/davinciresolve/][Davinci Resolve]]
 
-then click the Linux download link for either the Free version or the paid Studio version
+then click the Linux download link for either the Free version or the paid Studio version \\
 you will then need to register on the site with an email address
 
 once you have submitted the form the Davinci Resolve zip file will start to download,

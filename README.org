@@ -964,7 +964,7 @@ edit the sudoers file with visudo
 visudo
 #+end_src
 
-add your user to the sudoers file
+add your user to the sudoers file, change username to your username
 
 #+begin_src sh
 username ALL=(ALL:ALL) ALL

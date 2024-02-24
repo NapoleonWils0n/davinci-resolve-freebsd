@@ -17,11 +17,11 @@ git clone https://github.com/NapoleonWils0n/davinci-resolve-freebsd.git
 
 *** debootstrap
 
+install debootstrap which we use to create an ubuntu chroot on freebsd
+
 [[https://wiki.debian.org/Debootstrap][Debootstrap - Debian Wiki]]
 
 [[https://docs.freebsd.org/en/books/handbook/linuxemu/][Linux Binary Compatibility]]
-
-install debootstrap which we use to create an ubuntu chroot on freebsd
 
 #+begin_src sh
 sudo pkg install debootstrap 

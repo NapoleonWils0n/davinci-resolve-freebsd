@@ -690,7 +690,7 @@ sudo service ubuntu restart
 
 *** Chroot into your Ubuntu with doas
 
-use doas to chroot into ubuntu without a password
+use doas to chroot into Ubuntu as root without a password
 
 #+begin_src sh
 doas chroot /compat/ubuntu /bin/bash

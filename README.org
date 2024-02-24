@@ -285,10 +285,11 @@ lunar and mantic script in this repository
 
 + [[file:freebsd/usr/local/share/debootstrap/scripts/mantic][mantic]]
 
-copy the scripts to the debootstrap scripts directory
+copy the scripts from the repository to the debootstrap scripts directory
 
 #+begin_src sh
-sudo cp lunar mantic /usr/local/share/debootstrap/scripts
+sudo cp davinci-resolve-freebsd/freebsd/usr/local/share/debootstrap/scripts/lunar /usr/local/share/debootstrap/scripts
+sudo cp davinci-resolve-freebsd/freebsd/usr/local/share/debootstrap/scripts/mantic /usr/local/share/debootstrap/scripts
 #+end_src
 
 lunar and mantic script

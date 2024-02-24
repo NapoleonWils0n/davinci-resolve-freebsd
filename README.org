@@ -1213,20 +1213,12 @@ on the Freebsd host download the makeresolvedeb script
 
 [[https://www.danieltufvesson.com/makeresolvedeb][makeresolvedeb]]
 
-**** copy the resolve.run and make resolve script to the chroot
-
-copy the resolve.run to the chroot home directory \\
-replace username with your username in the command below
-
 #+begin_src sh
-cp -rv DaVinci_Resolve_18.6.4_Linux.run /compat/ubuntu/home/username
+cp -rv makeresolvedeb_1.6.4_multi.sh.tar.gz /compat/ubuntu/home/username
 #+end_src
 
-copy the resolve.run to the chroot home directory
-
-#+begin_src sh
-cp -rv makeresolvedeb_1.6.4_multi.sh /compat/ubuntu/home/username
-#+end_src
+# Horizontal Rule
+-----
 
 **** makeresolvedeb create deb file
 

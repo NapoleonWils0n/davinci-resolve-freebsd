@@ -701,17 +701,19 @@ doas chroot /compat/ubuntu /bin/bash
 
 *** Set correct timezone inside your chroot
 
+you will now be logged in as root inside the chroot
+
 #+begin_src sh
 printf "%b\n" "0.0 0 0.0\n0\nUTC" > /etc/adjtime
 #+end_src
-
-For some reason sudo is necessary here, otherwise it fails.
 
 install sudo
 
 #+begin_src sh
 apt install sudo
 #+end_src
+
+For some reason sudo is necessary here, otherwise it fails.
 
 run dpkg-reconfigure tzdata with sudo
 
@@ -724,7 +726,7 @@ sudo dpkg-reconfigure tzdata
 
 *** Fix APT package manager
 
-run the following command as we haven't set up sudo for our user yet
+run the following command as root
 
 #+begin_src sh
 printf "APT::Cache-Start 251658240;" > /etc/apt/apt.conf.d/00aptitude
@@ -764,7 +766,7 @@ deb [trusted=yes] http://archive.ubuntu.com/ubuntu/ mantic-security main restric
 
 *** apt update
 
-run the following commands as we haven't set up sudo for our user yet
+run the following commands as root
 
 #+begin_src sh
 apt update
@@ -813,7 +815,7 @@ LC_IDENTIFICATION="en_GB.UTF-8"
 LC_ALL=
 #+end_src
 
-run the following commands as we haven't set up sudo for our user yet
+run the following commands as root
 
 locale-gen
 
@@ -832,10 +834,10 @@ dpkg-reconfigure locales
 
 *** Shell install
 
-run the following commands as we haven't set up sudo for our user yet
-
 install the shell our user is going to use \\
 it must match the shell set in the ubuntu /etc/passwd file which we will set up 
+
+run the following command as root
 
 #+begin_src sh
 apt install zsh pulseaudio 
@@ -926,10 +928,10 @@ username:*:1001:
 
 *** Add user to groups in the chroot
 
-run the following commands as we haven't set up sudo for our user yet
-
 add the user we created to groups in the chroot \\
 replace username with the username you created
+
+run the following command as root
 
 #+begin_src sh
 usermod -a -G adm username
@@ -949,7 +951,7 @@ usermod -a -G pulse-access username
 
 *** sudo set up
 
-run the following commands as we haven't set up sudo for our user yet
+run the following command as root
 
 edit the sudoers file with visudo
 
@@ -970,7 +972,7 @@ username ALL=(ALL:ALL) ALL
 
 create a passwd for your user
 
-as root
+run the following command as root
 
 #+begin_src sh
 passwd username
@@ -983,8 +985,6 @@ ubuntu
 -----
 
 *** Couldnt resolve hostname fix
-
-run the following commands as we haven't set up sudo for our user yet
 
 add the your hostname from freebsd to the hosts file in the ubuntu chroot \\
 to stop errors when using sudo saying couldnt resolve hostname

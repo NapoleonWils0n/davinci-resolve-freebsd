@@ -6,9 +6,14 @@ project intro
 ** Freebsd
 *** clone this repository
 
+more info
+
 #+begin_src sh
 git clone https://github.com/NapoleonWils0n/davinci-resolve-freebsd.git
 #+end_src
+
+# Horizontal Rule
+-----
 
 *** debootstrap
 

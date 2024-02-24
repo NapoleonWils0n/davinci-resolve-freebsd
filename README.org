@@ -1326,7 +1326,7 @@ su - username
 create the gpu directory
 
 #+begin_src sh
-mkdir -p ~/.config/gpu
+mkdir -p "${HOME}/.config/gpu"
 #+end_src
 
 **** freebsd host
@@ -1443,10 +1443,11 @@ sudo apt install xorg xserver-xorg xserver-xorg-core
 ** Pulseaudio
 *** cookie
 
-copy the pulseaudio cookie from the host to the chroot
+copy the pulseaudio cookie from the host to the chroot \\
+replace username with your username in the command below
 
 #+begin_src sh
-cp ~/.config/pulse/cookie /compat/ubuntu/home/username/.config/pulse/cookie
+cp "${HOME}/.config/pulse/cookie" /compat/ubuntu/home/username/.config/pulse/cookie
 #+end_src
 
 *** freebsd

@@ -1344,21 +1344,36 @@ cp davinci-resolve-freebsd/compat/ubuntu/home/username/.config/gpu/dummy-uvm.so 
 *** Wayland install
 **** Wayland packages
 
+install some wayland packages and the wlroot compositor
+
 #+begin_src sh
-sudo apt install libinput-tools wayland-protocols qtwayland5 qt6-wayland wayland-utils adwaita-qt qt5ct
+sudo apt install libinput-tools wayland-protocols libwlroots11 libwlroots-dev libxkbcommon0 qtwayland5 qt6-wayland wayland-utils adwaita-qt qt5ct
 #+end_src
 
-packages that may need to be installed 
+**** Create the XDG_RUNTIME_DIR directory
 
-#+begin_example
-sudo apt install libwlroots11 libwlroots-dev libxkbcommon0
-#+end_example
+check your id in the chroot
 
-**** Create the xdg runtime directory, change the user and set the permissions
+#+begin_src sh
+id
+#+end_src
+
+create the XDG_RUNTIME_DIR directory \\
+replace 1001 with your user id
 
 #+begin_src sh
 sudo mkdir -p /var/run/user/1001
+#+end_src
+
+chown the directory replace username with your user and 1001 with your id
+
+#+begin_src sh
 sudo chown -R username:1001 /var/run/user/1001
+#+end_src
+
+chmod the directory replace 1001 with your user id
+
+#+begin_src sh
 sudo chmod 700 /var/run/user/1001
 #+end_src
 

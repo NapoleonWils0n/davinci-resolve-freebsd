@@ -737,7 +737,8 @@ printf "APT::Cache-Start 251658240;" > /etc/apt/apt.conf.d/00aptitude
 
 *** Enable more repositories:
 
-edit the apt sources.list and add more repositories [trusted=yes] is needed for lunar and mantic
+edit the apt sources.list and add more repositories \\
+[trusted=yes] is needed for lunar and mantic
 
 freebsd path to the sources.list in the chroot
 

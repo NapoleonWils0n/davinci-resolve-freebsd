@@ -1307,15 +1307,39 @@ sudo apt install liblog4cxx-dev
 # Horizontal Rule
 -----
 
-*** gpu dummy-uvm.so
+*** gpu set up in the chroot
+**** ubuntu chroot
 
-enable the gpu in the chroot
+make sure you have chrooted into ubuntu by running
 
-in the ubuntu chroot
+#+begin_src sh
+doas chroot /compat/ubuntu /bin/bash
+#+end_src
+
+switch to out user in the chroot, replace username with your username
+
+#+begin_src sh
+su - username
+#+end_src
+
+create the gpu directory
 
 #+begin_src sh
 mkdir -p ~/.config/gpu
-cp dummy-uvm.so ~/.config/gpu
+#+end_src
+
+**** freebsd host
+
+on the freebsd host copy the dummy-uvm.so from the repository to the chroot \\
+replace username with your username
+
+#+begin_src sh
+cp davinci-resolve-freebsd/compat/ubuntu/home/username/.config/gpu/dummy-uvm.so /compat/ubuntu/home/username/.config/gpu
+#+end_src
+
+
+
+#+begin_src sh
 LD_PRELOAD=/home/username/.config/gpu/dummy-uvm.so
 #+end_src
 

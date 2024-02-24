@@ -1180,15 +1180,9 @@ nvidia-smi
 
 *** Davinci Resolve download
 
-download da vinci resolve
 
-[[https://www.blackmagicdesign.com/products/davinciresolve/][da vinci resolve]]
 
-unzip the da-vinci-resolve.zip
-
-#+begin_src sh
-unzip "DaVinci_Resolve_*_Linux.zip"
-#+end_src
+[[https://www.blackmagicdesign.com/products/davinciresolve/][Davinci Resolve]]
 
 # Horizontal Rule
 -----
@@ -1225,10 +1219,10 @@ cp -rv makeresolvedeb_1.6.4_multi.sh /compat/ubuntu/home/username
 make sure you have chrooted into ubuntu by running
 
 #+begin_src sh
-sudo chroot /compat/ubuntu /bin/bash
+doas chroot /compat/ubuntu /bin/bash
 #+end_src
 
-switch to out user in the chroot
+switch to out user in the chroot, replace username with your username
 
 #+begin_src sh
 su - username

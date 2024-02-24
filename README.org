@@ -688,10 +688,12 @@ sudo service ubuntu restart
 # Horizontal Rule
 -----
 
-*** Chroot into your Linux environment:
+*** Chroot into your Ubuntu with doas
+
+use doas to chroot into ubuntu without a password
 
 #+begin_src sh
-sudo chroot /compat/ubuntu /bin/bash
+doas chroot /compat/ubuntu /bin/bash
 #+end_src
 
 *** Set correct timezone inside your chroot:

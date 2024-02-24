@@ -1196,17 +1196,11 @@ the zip file has a file size of 2.4 gigabytes so may take an hour or so to downl
 # Horizontal Rule
 -----
 
-*** makeresolvedeb
+*** makeresolvedeb download
 
-download the makeresolvedeb script
+on the Freebsd host download the makeresolvedeb script
 
 [[https://www.danieltufvesson.com/makeresolvedeb][makeresolvedeb]]
-
-extract the makeresolvedeb.tar.gz file
-
-#+begin_src sh
-tar zxvf makeresolvedeb_1.6.4_multi.sh.tar.gz
-#+end_src  
 
 **** copy the resolve.run and make resolve script to the chroot
 
@@ -1249,6 +1243,12 @@ unzip the resolve zip
 unzip DaVinci_Resolve_18.6.5_Linux.zip
 #+end_src
 
+extract the makeresolvedeb.tar.gz file
+
+#+begin_src sh
+tar zxvf makeresolvedeb_1.6.4_multi.sh.tar.gz
+#+end_src  
+
 then run makeresolvedeb
 
 #+begin_src sh
@@ -1257,7 +1257,7 @@ then run makeresolvedeb
 
 this may take about an hour
 
-**** install the da vinci resolve deb file
+**** DaVinci Resolve deb install
 
 #+begin_src sh
 sudo dpkg -i davinci-resolve_18.6.5-mrd1.6.4_amd64.deb 

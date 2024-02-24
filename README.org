@@ -798,6 +798,8 @@ path to the locale in the chroot
 
 + [[file:compat/ubuntu/etc/default/locale][locale]] in this repository
 
+change the locale file to match your locale
+
 locale
 
 #+begin_src sh

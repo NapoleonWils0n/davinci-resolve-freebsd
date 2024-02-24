@@ -1406,7 +1406,12 @@ otherwise zsh will complain that theres is no config file
 
 ***** zshenv
 
+set the shell path to include resolve bin directory \\
+this allows us to type resolve instead of the full path to open Davinci Resolve in the chroot
 
+#+begin_example
+/opt/resolve/bin
+#+end_example
 
 #+begin_src sh
 # ~/.zshenv

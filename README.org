@@ -699,13 +699,21 @@ doas chroot /compat/ubuntu /bin/bash
 # Horizontal Rule
 -----
 
-*** Set correct timezone inside your chroot:
+*** Set correct timezone inside your chroot
 
 #+begin_src sh
 printf "%b\n" "0.0 0 0.0\n0\nUTC" > /etc/adjtime
 #+end_src
 
 For some reason sudo is necessary here, otherwise it fails.
+
+install sudo
+
+#+begin_src sh
+apt install sudo
+#+end_src
+
+run dpkg-reconfigure tzdata with sudo
 
 #+begin_src sh
 sudo dpkg-reconfigure tzdata 
@@ -714,7 +722,7 @@ sudo dpkg-reconfigure tzdata
 # Horizontal Rule
 -----
 
-*** Fix APT package manager:
+*** Fix APT package manager
 
 #+begin_src sh
 printf "APT::Cache-Start 251658240;" > /etc/apt/apt.conf.d/00aptitude
@@ -931,7 +939,7 @@ usermod -a -G pulse-access username
 
 *** sudo set up
 
-edit the sudoers file
+edit the sudoers file with visudo
 
 #+begin_src sh
 visudo

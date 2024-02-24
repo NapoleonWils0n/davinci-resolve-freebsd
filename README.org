@@ -983,9 +983,6 @@ run the following command as root
 passwd username
 #+end_src
 
-passwd
-ubuntu
-
 # Horizontal Rule
 -----
 

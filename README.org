@@ -688,7 +688,6 @@ sudo service ubuntu restart
 # Horizontal Rule
 -----
 
-** ubuntu
 *** Chroot into your Linux environment:
 
 #+begin_src sh

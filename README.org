@@ -1191,7 +1191,7 @@ then click the Linux download link for either the Free version or the paid Studi
 you will then need to register on the site with an email address
 
 once you have submitted the form the Davinci Resolve zip file will start to download, \\
-the zip file has a file size of 2.4 gigabytes so may take an hour or so to download depending on your download speed
+the zip file has a file size of 2.4 gigabytes so may take an hour or so to download
 
 # Horizontal Rule
 -----

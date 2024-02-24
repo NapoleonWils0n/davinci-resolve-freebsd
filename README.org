@@ -115,7 +115,11 @@ ubuntu
 
 + [[file:freebsd/usr/local/etc/rc.d/ubuntu][ubuntu]] script in this repository
 
-copy the ubuntu script from the repository to /usr/local/etc/rc.d/
+copy the ubuntu script from the repository to
+
+#+begin_example
+/usr/local/etc/rc.d/
+#+end_example
 
 #+begin_src sh
 sudo cp davinci-resolve-freebsd/freebsd/usr/local/etc/rc.d/ubuntu /usr/local/etc/rc.d/

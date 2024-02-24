@@ -257,8 +257,13 @@ the debootstrap scripts are installed in this location of freebsd
 /usr/local/share/debootstrap/scripts
 #+end_example
 
-ubuntu jammy is the latest version of ubuntu including as a script with debootstrap \\
+ubuntu jammy is the latest version of ubuntu including as a script with debootstrap
+
 however there seems to be a bug with ubuntu jammy installed in a chroot on freebsd
+that sets the permission of a lot of binaries and libraries in the ubuntu chroot to 700
+
+which means that only the root user can execute the binaries and libaries \\
+so you would have to run GUI applications as root
 
 lunar and mantic script in this repository
 

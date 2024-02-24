@@ -1338,12 +1338,6 @@ replace username with your username
 cp davinci-resolve-freebsd/compat/ubuntu/home/username/.config/gpu/dummy-uvm.so /compat/ubuntu/home/username/.config/gpu
 #+end_src
 
-
-
-#+begin_src sh
-LD_PRELOAD=/home/username/.config/gpu/dummy-uvm.so
-#+end_src
-
 # Horizontal Rule
 -----
 

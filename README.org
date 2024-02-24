@@ -751,7 +751,7 @@ path to the sources.list in the chroot
 /etc/apt/sources.list
 #+end_example
 
-[[file:compat/ubuntu/etc/apt/sources.list][sources.list]] in this repository
++ [[file:compat/ubuntu/etc/apt/sources.list][sources.list]] in this repository
 
 sources.list
 
@@ -783,17 +783,19 @@ apt upgrade
 
 *** Set locale
 
-on the host
+freebsd path to the locale in the chroot
 
 #+begin_src sh
 /compat/ubuntu/etc/default/locale
 #+end_src
 
-in the chroot
+path to the locale in the chroot
 
 #+begin_src sh
 /etc/default/locale
 #+end_src
+
++ [[file:compat/ubuntu/etc/default/locale][locale]] in this repository
 
 locale
 

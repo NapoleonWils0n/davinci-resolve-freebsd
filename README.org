@@ -711,11 +711,17 @@ For some reason sudo is necessary here, otherwise it fails.
 sudo dpkg-reconfigure tzdata 
 #+end_src
 
+# Horizontal Rule
+-----
+
 *** Fix APT package manager:
 
 #+begin_src sh
 printf "APT::Cache-Start 251658240;" > /etc/apt/apt.conf.d/00aptitude
 #+end_src
+
+# Horizontal Rule
+-----
 
 *** Enable more repositories:
 
@@ -744,6 +750,9 @@ deb [trusted=yes] http://archive.ubuntu.com/ubuntu/ mantic-updates main restrict
 deb [trusted=yes] http://archive.ubuntu.com/ubuntu/ mantic-security main restricted universe multiverse
 #+end_src
 
+# Horizontal Rule
+-----
+
 *** apt update
 
 make sure you are chrooted with sudo
@@ -757,6 +766,9 @@ upgrade
 #+begin_src sh
 apt upgrade 
 #+end_src
+
+# Horizontal Rule
+-----
 
 *** set locale
 
@@ -803,6 +815,9 @@ dpkg-reconfigure locales
 #+begin_src sh
 dpkg-reconfigure locales
 #+end_src
+
+# Horizontal Rule
+-----
 
 *** Install required programs:
 

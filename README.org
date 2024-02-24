@@ -672,6 +672,9 @@ install mantic
 sudo debootstrap --arch=amd64 --no-check-gpg mantic /compat/ubuntu http://archive.ubuntu.com/ubuntu/
 #+end_src
 
+# Horizontal Rule
+-----
+
 *** Restart Ubuntu
 
 Restart the Ubuntu service to make sure everything is properly mounted:
@@ -679,6 +682,9 @@ Restart the Ubuntu service to make sure everything is properly mounted:
 #+begin_src sh
 sudo service ubuntu restart
 #+end_src
+
+# Horizontal Rule
+-----
 
 ** ubuntu
 *** Chroot into your Linux environment:

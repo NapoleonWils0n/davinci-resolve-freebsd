@@ -999,7 +999,7 @@ hosts
 *** Switch to out user with su
 
 #+begin_src sh
-sudo chroot /compat/ubuntu /bin/bash
+doas chroot /compat/ubuntu /bin/bash
 #+end_src
 
 switch to your user in the chroot

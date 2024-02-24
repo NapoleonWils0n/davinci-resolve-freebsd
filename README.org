@@ -1231,7 +1231,8 @@ make sure you have chrooted into ubuntu by running
 doas chroot /compat/ubuntu /bin/bash
 #+end_src
 
-switch to out user in the chroot, replace username with your username
+switch to out user in the chroot, \\
+replace username with your username
 
 #+begin_src sh
 su - username

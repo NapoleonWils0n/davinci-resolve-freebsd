@@ -1213,6 +1213,9 @@ on the Freebsd host download the makeresolvedeb script
 
 [[https://www.danieltufvesson.com/makeresolvedeb][makeresolvedeb]]
 
+copy the makeresolvedeb_1.6.4_multi.sh.tar.gz from the freebsd host to the home directory in the choot \\
+replace username with your username
+
 #+begin_src sh
 cp -rv makeresolvedeb_1.6.4_multi.sh.tar.gz /compat/ubuntu/home/username
 #+end_src

@@ -15,7 +15,7 @@ git clone https://github.com/NapoleonWils0n/davinci-resolve-freebsd.git
 # Horizontal Rule
 -----
 
-*** debootstrap
+*** Install debootstrap
 
 install debootstrap which we use to create an ubuntu chroot on freebsd
 
@@ -30,7 +30,7 @@ sudo pkg install debootstrap
 # Horizontal Rule
 -----
 
-*** doas
+*** Install doas
 
 [[https://man.freebsd.org/cgi/man.cgi?query=doas.conf&sektion=5&format=html][doas.conf man page]]
 
@@ -653,20 +653,22 @@ APT::Cache-Start 251658240;" >> "$TARGET/etc/apt/apt.conf.d/00freebsd"
 # Horizontal Rule
 -----
 
-*** Install Ubuntu
+*** debootstrap install Ubuntu
 
-use debootstrap
-
-#+begin_example
-/compat/ubuntu
-#+end_example
-
+use debootstrap with the mantic script we created earlier as well the url
 
 #+begin_example
 http://archive.ubuntu.com/ubuntu/
 #+end_example
 
-install mantic
+to the ubuntu archive with lunar and mantic and install 
+ubuntu into this location on freebsd
+
+#+begin_example
+/compat/ubuntu
+#+end_example
+
+debootstrap ubuntu mantic
 
 #+begin_src sh
 sudo debootstrap --arch=amd64 --no-check-gpg mantic /compat/ubuntu http://archive.ubuntu.com/ubuntu/

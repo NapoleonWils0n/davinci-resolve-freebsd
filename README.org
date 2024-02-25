@@ -1675,6 +1675,34 @@ run printenv and check the DISPLAY variable is set to :1
 printenv
 #+end_src
 
+make sure the following options are set
+
++ DISPLAY set to 1, this is the id of the Xwayland window on the Freebsd host
+
++ PATH set to include the resolve bin directory so we can just type resolve to open Davinci Resolve
+
++ XDG directories are set up
+
++ LD_PRELOAD is set to load dummy-uvm.so
+
+
+#+begin_src conf
+DISPLAY=:1
+PATH=/opt/resolve/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+XDG_CONFIG_HOME=/home/username/.config
+XDG_CACHE_HOME=/home/username/.cache
+XDG_DATA_HOME=/home/username/.local/share
+XDG_RUNTIME_DIR=/var/run/user/1001
+LD_PRELOAD=/home/username/.config/gpu/dummy-uvm.so
+__NV_PRIME_RENDER_OFFLOAD=1
+__GLX_VENDOR_LIBRARY_NAME=nvidia
+XDG_SESSION_TYPE=wayland
+WAYLAND_DISPLAY=wayland-0
+DISPLAY=:1
+QT_QPA_PLATFORMTHEME=qt5ct
+QT_QPA_PLATFORM=xcb
+#+end_src
+
 run pactl info
 
 #+begin_src sh

@@ -1669,6 +1669,8 @@ su - username
 
 make sure you have switched to your user and aren't running as root
 
+**** printenv
+
 run printenv and check the DISPLAY variable is set to :1
 
 #+begin_src sh
@@ -1710,13 +1712,43 @@ QT_QPA_PLATFORMTHEME=qt5ct
 QT_QPA_PLATFORM=xcb
 #+end_src
 
-run pactl info
+**** pactl
+
+run pactl info in the chroot
 
 #+begin_src sh
 pactl info
 #+end_src
 
-resolve
+make sure the following options are set
+
++ Server String is set to /tmp/pulseaudio.socket
+
++ User Name is set to the username on the host
+
++ Host Name is set to the same hostname as on the freebsd host
+
++ Cookie matches the cookie on the freebsd host, remember we set that up in a previous step
+
+#+begin_src conf
+Server String: /tmp/pulseaudio.socket
+Library Protocol Version: 35
+Server Protocol Version: 35
+Is Local: yes
+Client Index: 0
+Tile Size: 65472
+User Name: username
+Host Name: hostname
+Server Name: pulseaudio
+Server Version: 16.1
+Default Sample Specification: s16le 2ch 44100Hz
+Default Channel Map: front-left,front-right
+Default Sink: oss_output.dsp1
+Default Source: oss_input.dsp0
+Cookie: 1550:2200
+#+end_src
+
+**** resolve
 
 ** X11
 

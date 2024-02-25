@@ -1762,7 +1762,22 @@ Default Source: oss_input.dsp0
 Cookie: 1550:2200
 #+end_src
 
-**** resolve
+**** start Davinci Resolve
+
+we set the shell path in the chroots .zshenv to include the resolve bin directory \\
+so we can just type
+
+#+begin_example
+resolve 
+#+end_example
+
+instead of the full path to the binary
+
+#+begin_example
+/opt/resolve/bin/resolve
+#+end_example
+
+in the Ubuntu chroot and not on the Freebsd host run resolve
 
 #+begin_src sh
 resolve

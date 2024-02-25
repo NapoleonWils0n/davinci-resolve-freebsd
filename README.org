@@ -294,15 +294,27 @@ which we will use later to install Ubuntu Mantic which doesn't have the persmiss
 
 lunar and mantic script in this repository
 
-+ [[file:freebsd/usr/local/share/debootstrap/scripts/lunar][lunar]]
++ [[file:freebsd/usr/local/share/debootstrap/scripts/lunar][lunar]] link
 
-+ [[file:freebsd/usr/local/share/debootstrap/scripts/mantic][mantic]]
++ [[file:freebsd/usr/local/share/debootstrap/scripts/mantic][mantic]] link
+
+path to the lunar script in this repository
+
+#+begin_example
+davinci-resolve-freebsd/freebsd/usr/local/share/debootstrap/scripts/lunar
+#+end_example
 
 copy the lunar script from the repository to the debootstrap scripts directory
 
 #+begin_src sh
 sudo cp davinci-resolve-freebsd/freebsd/usr/local/share/debootstrap/scripts/lunar /usr/local/share/debootstrap/scripts
 #+end_src
+
+path to the mantic script in this repository
+
+#+begin_example
+davinci-resolve-freebsd/freebsd/usr/local/share/debootstrap/scripts/mantic
+#+end_example
 
 copy the mantic script from the repository to the debootstrap scripts directory
 

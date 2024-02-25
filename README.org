@@ -1638,7 +1638,7 @@ drwx------  2 djwilcox wheel   3 25 Feb 16:01 tmux-1001
 
 **** create the Xwayland or Xephyr window on freebsd
 
-we use Xwayland or Xephyr on X11 to create a new window with an id of :1 \\
+we use Xwayland on Wayland or Xephyr on X11 to create a new window with an id of :1 \\
 in the chroot we set the DISPLAY variable to equal to :1 so that applications are displayed in the Freebsd window
 
 ***** Xwayland

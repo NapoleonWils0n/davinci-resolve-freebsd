@@ -1637,8 +1637,7 @@ drwx------  2 djwilcox wheel   3 25 Feb 16:01 tmux-1001
 #+end_example
 
 **** create the Xwayland or Xephyr window on freebsd
-
-1920x1080 fullscreen
+***** Xwayland
 
 #+begin_src sh
 Xwayland -host-grab -fullscreen -geometry 1920x1080 :01
@@ -1647,17 +1646,15 @@ Xwayland -host-grab -fullscreen -geometry 1920x1080 :01
 host-grab is needed so you can click around in resolve
 press ctrl + shift to release the mouse
 
-if you are running X11 on Freebsd
+***** X11
 
-install Xephyr
+install Xephyr if you are running X11 on Freebsd
 
 #+begin_src sh
 sudo pkg install Xephyr
 #+end_src
 
 create the Xephyr window on freebsd
-
-1920x1080 
 
 #+begin_src sh
 Xephyr -br -ac -noreset -screen 1920x1080 :1
@@ -1760,6 +1757,11 @@ Cookie: 1550:2200
 #+end_src
 
 **** resolve
+
+#+begin_src sh
+resolve
+#+end_src
+
 ** Davinci resolve launcher
 *** Freebsd
 **** resolve

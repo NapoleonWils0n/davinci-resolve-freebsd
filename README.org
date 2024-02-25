@@ -1783,6 +1783,26 @@ in the Ubuntu chroot and not on the Freebsd host run resolve
 resolve
 #+end_src
 
+Davinci Resolve will open in the Xwayland or Xephyr window on Freebsd
+
+switch to the home directory in the chroot if you have't already
+
+#+begin_src sh
+cd 
+#+end_src
+
+list the contents of the home directory in the chroot \\
+
+#+begin_example
+drwxrwxrwx 4 username username          4 Feb 22 22:25  CacheClip
+drwxrwxrwx 3 username username          3 Feb 21 18:19  Documents
+drwxrwxrwx 3 username username          3 Feb 18 21:43 'Resolve Project Backups'
+#+end_example
+
+#+begin_example
+drwxrwxrwx 3 username username 3 Feb 18 15:12 BlackmagicDesign
+#+end_example
+
 ** Davinci resolve launcher
 *** Freebsd
 **** resolve

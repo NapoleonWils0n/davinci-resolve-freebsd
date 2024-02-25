@@ -51,7 +51,7 @@ path to the doas.conf on freebsd
 
 doas.conf
 
-+ [[file:freebsd/usr/local/etc/doas.conf][doas.conf]] link
++ [[file:freebsd/usr/local/etc/doas.conf][doas.conf]]
 
 path to doas.conf in this repository
 
@@ -120,7 +120,7 @@ reboot so the linux mount points are unmounted
 
 ubuntu script
 
-+ [[file:freebsd/usr/local/etc/rc.d/ubuntu][ubuntu]] link
++ [[file:freebsd/usr/local/etc/rc.d/ubuntu][ubuntu]]
 
 path to ubuntu script in this repository
 
@@ -294,9 +294,9 @@ which we will use later to install Ubuntu Mantic which doesn't have the persmiss
 
 lunar and mantic script in this repository
 
-+ [[file:freebsd/usr/local/share/debootstrap/scripts/lunar][lunar]] link
++ [[file:freebsd/usr/local/share/debootstrap/scripts/lunar][lunar]]
 
-+ [[file:freebsd/usr/local/share/debootstrap/scripts/mantic][mantic]] link
++ [[file:freebsd/usr/local/share/debootstrap/scripts/mantic][mantic]]
 
 path to the lunar script in this repository
 

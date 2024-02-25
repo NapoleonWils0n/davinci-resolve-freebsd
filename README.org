@@ -1,4 +1,5 @@
 #+STARTUP: show2levels
+#+TOC: listings
 * DaVinci Resolve Freebsd
 
 project intro and screenshot of resolve with gpu settings

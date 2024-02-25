@@ -1602,9 +1602,9 @@ default-server = /tmp/pulseaudio.socket
 # Horizontal Rule
 -----
 
-** Xwayland start Davinci Resolve
+** Davinci Resolve check list
 
-Starting Davinci Resolve manually on Wayland running on Freebsd
+Starting Davinci Resolve manually on Wayland and X11 running on Freebsd
 
 we need to manually test the steps to launch Davinci Resolve \\
 before setting up the Desktop entry for Freebsd 
@@ -1636,7 +1636,7 @@ drwxr-xr-x  2 root     wheel   3 25 Feb 16:01 sndio
 drwx------  2 djwilcox wheel   3 25 Feb 16:01 tmux-1001
 #+end_example
 
-**** create the Xwayland window on freebsd
+**** create the Xwayland or Xephyr window on freebsd
 
 1920x1080 fullscreen
 
@@ -1647,7 +1647,25 @@ Xwayland -host-grab -fullscreen -geometry 1920x1080 :01
 host-grab is needed so you can click around in resolve
 press ctrl + shift to release the mouse
 
-**** chroot into ubuntu
+if you are running X11 on Freebsd
+
+install Xephyr
+
+#+begin_src sh
+sudo pkg install Xephyr
+#+end_src
+
+create the Xephyr window on freebsd
+
+1920x1080 
+
+#+begin_src sh
+Xephyr -br -ac -noreset -screen 1920x1080 :1
+#+end_src
+
+press ctrl + shift to release the mouse
+
+*** chroot into ubuntu
 
 use doas to chroot into Ubuntu as root without a password
 
@@ -1661,13 +1679,6 @@ replace username with your username
 #+begin_src sh
 su - username
 #+end_src
-
-# Horizontal Rule
------
-
-*** ubuntu chroot
-
-make sure you have switched to your user and aren't running as root
 
 **** printenv
 
@@ -1749,36 +1760,6 @@ Cookie: 1550:2200
 #+end_src
 
 **** resolve
-
-** X11
-
-install Xephyr
-
-#+begin_src sh
-sudo pkg install Xephyr
-#+end_src
-
-create the Xephyr window on freebsd
-
-1920x1080 
-
-#+begin_src sh
-Xephyr -br -ac -noreset -screen 1920x1080 :1
-#+end_src
-
-in the chroots ~/.zshenv
-
-export the display
-
-#+begin_src sh
-export DISPLAY=:1
-#+end_src
-
-open resolve in the chroot and it will be displayed in the xwayland window on freebsd
-
-# Horizontal Rule
------
-
 ** Davinci resolve launcher
 *** Freebsd
 **** resolve

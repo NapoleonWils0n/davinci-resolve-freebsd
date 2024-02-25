@@ -1606,11 +1606,37 @@ default-server = /tmp/pulseaudio.socket
 
 Starting Davinci Resolve manually on Wayland
 
+we need to manually test the steps to launch Davinci Resolve \\
+before setting up the Desktop entry for Freebsd 
+
+*** Freebsd host
+**** start pulseaudio with the daemonize option
+
 #+begin_src sh
 pulseaudio --start --daemonize
 #+end_src
 
-create the xwayland window on freebsd
+make sure the pulseaudio.socket is created in the /tmp directory \\
+the pulseaudio.socket is created by the default.pa pulseaudio file you set up earlier
+
+#+begin_src sh
+ls -l /tmp
+#+end_src
+
+/tmp directory note the pulseaudio.socket
+
+#+begin_example
+drwx------  2 djwilcox wheel   2 25 Feb 16:01 babel-KwYFVT
+drwxr-xr-x  2 djwilcox wheel   2 25 Feb 16:01 babel-stable-30
+srwxrwxrwx  1 djwilcox wheel   0 25 Feb 16:01 dbus-JgcNbycnKi
+drwxr-xr-x  2 djwilcox wheel   3 25 Feb 17:31 emacs1001
+-rw-r--r--  1 djwilcox wheel 244 25 Feb 17:34 emacs100127121-pollux~
+srwxrwxrwx  1 djwilcox wheel   0 25 Feb 17:38 pulseaudio.socket
+drwxr-xr-x  2 root     wheel   3 25 Feb 16:01 sndio
+drwx------  2 djwilcox wheel   3 25 Feb 16:01 tmux-1001
+#+end_example
+
+**** create the xwayland window on freebsd
 
 1920x1080 fullscreen
 
@@ -1633,6 +1659,9 @@ open resolve in the chroot and it will be displayed in the xwayland window on fr
 
 # Horizontal Rule
 -----
+
+*** ubuntu chroot
+
 
 ** X11
 

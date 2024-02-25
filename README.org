@@ -1604,7 +1604,7 @@ default-server = /tmp/pulseaudio.socket
 
 ** Xwayland start Davinci Resolve
 
-Starting Davinci Resolve manually on Wayland
+Starting Davinci Resolve manually on Wayland running on Freebsd
 
 we need to manually test the steps to launch Davinci Resolve \\
 before setting up the Desktop entry for Freebsd 
@@ -1666,6 +1666,22 @@ su - username
 -----
 
 *** ubuntu chroot
+
+make sure you have switched to your user and aren't running as root
+
+run printenv and check the DISPLAY variable is set to :1
+
+#+begin_src sh
+printenv
+#+end_src
+
+run pactl info
+
+#+begin_src sh
+pactl info
+#+end_src
+
+resolve
 
 ** X11
 

@@ -833,7 +833,13 @@ path to the locale in the chroot
 /etc/default/locale
 #+end_src
 
-+ [[file:compat/ubuntu/etc/default/locale][locale]] in this repository
++ [[file:compat/ubuntu/etc/default/locale][locale]]
+
+path to locale in this repository
+
+#+begin_example
+davinci-resolve-freebsd/compat/ubuntu/etc/default/locale
+#+end_example
 
 change the locale file to match your locale
 

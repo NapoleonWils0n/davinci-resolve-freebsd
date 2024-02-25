@@ -1,4 +1,3 @@
-#+TITLE: Davinvi Resolve Freebsd
 #+STARTUP: show2levels
 * DaVinci Resolve Freebsd
 

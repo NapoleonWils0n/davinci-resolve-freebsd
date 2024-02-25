@@ -1502,7 +1502,7 @@ sudo apt install xorg xserver-xorg xserver-xorg-core
 # Horizontal Rule
 -----
 
-** Pulseaudio
+** Pulseaudio set up 
 *** cookie
 
 copy the pulseaudio cookie from the host to the chroot \\
@@ -1522,6 +1522,8 @@ the /tmp directory is mounted in the chroot and allows us to route the audio fro
 #+begin_example
 ~/.config/pulse/default.pa
 #+end_example
+
++ [[file:freebsd/home/username/.config/pulse/default.pa][default.pa]] in this repository
 
 default.pa
 

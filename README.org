@@ -1808,7 +1808,7 @@ if you list the contents of the Documents directory you will see it has created 
 drwxrwxrwx 3 username username 3 Feb 18 15:12 BlackmagicDesign
 #+end_example
 
-** Davinci resolve launcher
+** Davinci Resolve desktop entry
 *** Freebsd
 **** resolve
 

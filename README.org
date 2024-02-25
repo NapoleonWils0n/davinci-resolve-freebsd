@@ -51,7 +51,13 @@ path to the doas.conf on freebsd
 
 doas.conf
 
-+ [[file:freebsd/usr/local/etc/doas.conf][doas.conf]] in this repository
++ [[file:freebsd/usr/local/etc/doas.conf][doas.conf]] link
+
+path to doas.conf in this repository
+
+#+begin_example
+davinci-resolve-freebsd/freebsd/usr/local/etc/doas.conf
+#+end_example
 
 #+begin_src conf
 # permit user
@@ -1810,18 +1816,20 @@ drwxrwxrwx 3 username username 3 Feb 18 15:12 BlackmagicDesign
 
 ** Davinci Resolve desktop entry
 *** Freebsd
-**** resolve
+**** resolve script
 
 Freebsd script to launch Davinci Resolve from a Linuxulator chroot
 
 the window is displayed on Freebsd using either Xwayland or Xephyr \\
-and the audio is routed over a pulseaudio socker from the chroot to the host
+and the audio is routed over a pulseaudio socket from the chroot to the host
 
 freebsd path to script
 
 #+begin_example
 /usr/local/bin/resolve
 #+end_example
+
++ resolve in this repository
 
 resolve script
 

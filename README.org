@@ -118,9 +118,15 @@ reboot so the linux mount points are unmounted
 
 *** Ubuntu rc.d script 
 
-ubuntu
+ubuntu script
 
-+ [[file:freebsd/usr/local/etc/rc.d/ubuntu][ubuntu]] script in this repository
++ [[file:freebsd/usr/local/etc/rc.d/ubuntu][ubuntu]] link
+
+path to ubuntu script in this repository
+
+#+begin_example
+davinci-resolve-freebsd/freebsd/usr/local/etc/rc.d/ubuntu
+#+end_example
 
 copy the ubuntu script from the repository to
 

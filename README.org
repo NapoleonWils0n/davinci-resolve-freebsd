@@ -1685,6 +1685,11 @@ make sure the following options are set
 
 + LD_PRELOAD is set to load dummy-uvm.so
 
++ __NV_PRIME_RENDER_OFFLOAD is set 1 needed otherwise you will get an error message saying gpu is full
+
++ __GLX_VENDOR_LIBRARY_NAME is set to nvidia needed otherwise you will get an error message saying gpu is full
+
++ QT_QPA_PLATFORM is set to xcb, Davinci Resolve is use the qt framework but doesnt run as a native wayland application
 
 #+begin_src conf
 DISPLAY=:1
@@ -1698,7 +1703,6 @@ __NV_PRIME_RENDER_OFFLOAD=1
 __GLX_VENDOR_LIBRARY_NAME=nvidia
 XDG_SESSION_TYPE=wayland
 WAYLAND_DISPLAY=wayland-0
-DISPLAY=:1
 QT_QPA_PLATFORMTHEME=qt5ct
 QT_QPA_PLATFORM=xcb
 #+end_src

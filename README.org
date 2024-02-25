@@ -1431,19 +1431,29 @@ export LD_PRELOAD="$HOME/.config/gpu/dummy-uvm.so"
 #+end_src
 
 you need to export some variables for Nvidia \\
-otherwise you won't be able to drag a clip into the timeline in Davinci Resolve and you will get a error saying gpu is full
+otherwise you won't be able to drag a clip into the timeline in Davinci Resolve  \\
+and you will get a error saying gpu is full
 
 #+begin_src conf
 export __NV_PRIME_RENDER_OFFLOAD=1
 export __GLX_VENDOR_LIBRARY_NAME=nvidia
 #+end_src
 
-export DISPLAY
+export DISPLAY so application use the Xwayland window on the host
 
 #+begin_src conf
 export DISPLAY=:1
 #+end_src
 
+
+Davinci Resolve is a native Wayland application \\
+so wee need to set the QT_QPA_PLATFORM to xcb
+
+#+begin_src conf
+export QT_QPA_PLATFORM=xcb
+#+end_src
+
+~/.zshenv
 
 #+begin_src conf
 # ~/.zshenv

@@ -1636,7 +1636,7 @@ drwxr-xr-x  2 root     wheel   3 25 Feb 16:01 sndio
 drwx------  2 djwilcox wheel   3 25 Feb 16:01 tmux-1001
 #+end_example
 
-**** create the xwayland window on freebsd
+**** create the Xwayland window on freebsd
 
 1920x1080 fullscreen
 
@@ -1647,21 +1647,25 @@ Xwayland -host-grab -fullscreen -geometry 1920x1080 :01
 host-grab is needed so you can click around in resolve
 press ctrl + shift to release the mouse
 
-in the chroots ~/.zshenv
+**** chroot into ubuntu
 
-export the display
+use doas to chroot into Ubuntu as root without a password
 
 #+begin_src sh
-export DISPLAY=:1
+doas chroot /compat/ubuntu /bin/bash
 #+end_src
 
-open resolve in the chroot and it will be displayed in the xwayland window on freebsd
+switch to our user \\
+replace username with your username
+
+#+begin_src sh
+su - username
+#+end_src
 
 # Horizontal Rule
 -----
 
 *** ubuntu chroot
-
 
 ** X11
 

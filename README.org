@@ -1641,7 +1641,9 @@ drwx------  2 djwilcox wheel   3 25 Feb 16:01 tmux-1001
 we use Xwayland on Wayland or Xephyr on X11 to create a new window with an id of :1 \\
 in the chroot we set the DISPLAY variable to equal to :1 so that applications are displayed in the Freebsd window
 
-***** Xwayland
+***** Wayland
+
+create a 1920x1080 fullscreen window
 
 #+begin_src sh
 Xwayland -host-grab -fullscreen -geometry 1920x1080 :01
@@ -1658,7 +1660,7 @@ install Xephyr if you are running X11 on Freebsd
 sudo pkg install Xephyr
 #+end_src
 
-create the Xephyr window on freebsd
+create a 1920x1080 fullscreen window
 
 #+begin_src sh
 Xephyr -br -ac -noreset -screen 1920x1080 :1

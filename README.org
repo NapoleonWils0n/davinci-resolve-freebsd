@@ -1812,6 +1812,11 @@ drwxrwxrwx 3 username username 3 Feb 18 15:12 BlackmagicDesign
 *** Freebsd
 **** resolve
 
+Freebsd script to launch Davinci Resolve from a Linuxulator chroot
+
+the window is displayed on Freebsd using either Xwayland or Xephyr \\
+and the audio is routed over a pulseaudio socker from the chroot to the host
+
 freebsd path to script
 
 #+begin_example

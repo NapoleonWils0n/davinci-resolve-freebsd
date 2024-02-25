@@ -1792,12 +1792,17 @@ cd
 #+end_src
 
 list the contents of the home directory in the chroot \\
+and you will see that several directories have been created including the Documents directory
+
+the Documents is created because we set up the XDG directories in the chroots shell config
 
 #+begin_example
 drwxrwxrwx 4 username username          4 Feb 22 22:25  CacheClip
 drwxrwxrwx 3 username username          3 Feb 21 18:19  Documents
 drwxrwxrwx 3 username username          3 Feb 18 21:43 'Resolve Project Backups'
 #+end_example
+
+if you list the contents of the Documents directory you will see it has created the BlackmagicDesign directory as well
 
 #+begin_example
 drwxrwxrwx 3 username username 3 Feb 18 15:12 BlackmagicDesign

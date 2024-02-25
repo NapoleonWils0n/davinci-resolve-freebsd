@@ -1493,7 +1493,7 @@ export QT_QPA_PLATFORM=xcb
 
 *** X11 install
 
-on ubuntu in the chroot
+X11 install on ubuntu in the chroot
 
 #+begin_src sh
 sudo apt install xorg xserver-xorg xserver-xorg-core

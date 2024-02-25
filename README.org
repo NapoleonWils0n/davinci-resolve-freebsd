@@ -1540,12 +1540,6 @@ load-module module-esound-protocol-unix
 load-module module-native-protocol-unix socket=/tmp/pulseaudio.socket
 #+end_src
 
-**** start pulseaudio
-
-#+begin_src sh
-pulseaudio --start --daemonize
-#+end_src
-
 *** ubuntu
 **** client.conf
 

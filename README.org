@@ -1602,7 +1602,13 @@ default-server = /tmp/pulseaudio.socket
 # Horizontal Rule
 -----
 
-** Xwayland
+** Xwayland start Davinci Resolve
+
+Starting Davinci Resolve manually on Wayland
+
+#+begin_src sh
+pulseaudio --start --daemonize
+#+end_src
 
 create the xwayland window on freebsd
 

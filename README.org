@@ -777,9 +777,21 @@ path to the sources.list in the chroot
 /etc/apt/sources.list
 #+end_example
 
-+ [[file:compat/ubuntu/etc/apt/sources.list][sources.list]] in this repository
-
 sources.list
+
++ [[file:compat/ubuntu/etc/apt/sources.list][sources.list]] 
+
+path to the sources.list file in this repository
+
+#+begin_example
+davinci-resolve-freebsd/compat/ubuntu/etc/apt/sources.list
+#+end_example
+
+copy the source.list from the freebsd host to the ubuntu chroot
+
+#+begin_src sh
+sudo cp davinci-resolve-freebsd/compat/ubuntu/etc/apt/sources.list /compat/ubuntu/etc/apt/sources.list
+#+end_src
 
 #+begin_src conf
 deb [trusted=yes] http://archive.ubuntu.com/ubuntu/ mantic main restricted universe multiverse

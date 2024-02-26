@@ -1944,7 +1944,13 @@ wrapper-resolve
 su username -c '/opt/resolve/bin/resolve' 2>/dev/null
 #+end_src
 
-*** Desktop entry
+*** davinci-resolve.desktop
+
+path to resolve in this repository
+
+#+begin_example
+davinci-resolve-freebsd/freebsd/home/username/.local/share/applications/davinci-resolve.desktop
+#+end_example
 
 copy the desktop entry to
 
@@ -1952,11 +1958,12 @@ copy the desktop entry to
 ~/.local/share/applications
 #+end_example
 
+
 #+begin_src sh
-cp davinci-resolve.desktop ~/.local/share/applications
+cp davinci-resolve-freebsd/freebsd/home/username/.local/share/applications/davinci-resolve.desktop "${HOME}/.local/share/applications"
 #+end_src
 
-davinci resolve desktop entry for freebsd
+davinci-resolve.desktop
 
 #+begin_src conf
 [Desktop Entry]
@@ -1964,7 +1971,7 @@ Version=1.0
 Encoding=UTF-8
 Type=Application
 Name=DaVinci Resolve
-Exec=/usr/local/bin/resolve
+Exec=/usr/local/bin/resolve-wrapper
 Icon=/compat/ubuntu/opt/resolve/graphics/DV_Resolve.png
 Terminal=false
 MimeType=application/x-resolveproj;

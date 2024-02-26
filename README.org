@@ -1904,7 +1904,7 @@ doas chroot /compat/ubuntu /usr/local/bin/wrapper-resolve
 
 wrapper-resolve script
 
-+ wrapper-resolve
++ [[file:compat/ubuntu/usr/local/bin/wrapper-resolve][wrapper-resolve]]
 
 path to resolve in this repository
 

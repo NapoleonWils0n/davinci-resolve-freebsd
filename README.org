@@ -1536,6 +1536,8 @@ cp davinci-resolve-freebsd/compat/ubuntu/home/username/.zshrc /compat/ubuntu/hom
 we create a blank .zshrc file \\
 otherwise zsh will complain that theres is no config file
 
++ ~/.zshrc code
+
 #+begin_src sh
 # ~/.zshrc
 
@@ -1591,7 +1593,7 @@ so wee need to set the QT_QPA_PLATFORM to xcb
 export QT_QPA_PLATFORM=xcb
 #+end_src
 
-~/.zshenv
++ ~/.zshenv code
 
 #+begin_src conf
 # ~/.zshenv

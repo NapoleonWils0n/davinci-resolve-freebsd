@@ -1246,13 +1246,37 @@ sudo apt install nvidia-cuda-toolkit ocl-icd-opencl-dev libglu1-mesa libfuse2 in
 
 *** Blacklist Nouveau nvidia driver
 
-create the blacklist-nvidia-nouveau.conf file
+Path to ubuntu script in this repository
+
+#+begin_example
+davinci-resolve-freebsd/compat/ubuntu/etc/modprobe.d/blacklist-nvidia-nouveau.conf
+#+end_example
+
+Freebsd path to the blacklist-nvidia-nouveau.conf in the chroot
+
+#+begin_example
+/compat/ubuntu/etc/modprobe.d/blacklist-nvidia-nouveau.conf
+#+end_example
+
+Path to the blacklist-nvidia-nouveau.conf in the chroot
+
+#+begin_example
+/etc/modprobe.d/blacklist-nvidia-nouveau.conf
+#+end_example
+
+On the Freebsd host create the modprobe.d directory in the chroot directory
 
 #+begin_src sh
-/etc/modprobe.d/blacklist-nvidia-nouveau.conf
+sudo mkdir -p /compat/ubuntu/etc/modprobe.d
 #+end_src
 
-add the following code and save the file
+Copy the ubuntu script from the repository to the chroot
+
+#+begin_src sh
+sudo cp davinci-resolve-freebsd/davinci-resolve-freebsd/compat/ubuntu/etc/modprobe.d/blacklist-nvidia-nouveau.conf /compat/ubuntu/etc/modprobe.d
+#+end_src
+
++ blacklist-nvidia-nouveau.conf code
 
 #+begin_src conf
 blacklist nouveau
@@ -2042,6 +2066,27 @@ Categories=AudioVideo
 
 # Horizontal Rule
 -----
+
+** Mount Video directory from the host to the chroot
+
+#+begin_src sh
+mkdir -p /compat/ubuntu/home/djwilcox/video
+#+end_src
+
+#+begin_src sh
+mount -t nullfs /home/djwilcox/video /compat/ubuntu/home/djwilcox/video
+#+end_src
+
+fstab
+
+#+begin_src conf
+# mount the video directory from the host to the chroot
+/home/djwilcox/video           /compat/ubuntu/home/dwjwilcox/video     nullfs          rw,late                      0       0
+#+end_src
+
+#+begin_src sh
+sudo mount -al
+#+end_src
 
 ** Linuxulator delete
 

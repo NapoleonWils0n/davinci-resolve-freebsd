@@ -2074,9 +2074,10 @@ Categories=AudioVideo
 ** Mount Video directory from the host to the chroot
 
 Mount the Video directory from the Freebsd host inside the home directory in the chroot, \\
-this allows us to access the Video on directory on the Freebsd host from the chroot with Davinci Resolve
+this allows us to access the Video on directory on the Freebsd host from within the chroot with Davinci Resolve
 
-
+That means we can import and export footage from Davinci Resolve from the Video directory on the Freebsd, \\
+rather than copying files from the host to the chroot
 
 Create a mount point in the chroot to mount the Video directory from the host in the chroot
 

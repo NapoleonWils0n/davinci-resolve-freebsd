@@ -1864,9 +1864,15 @@ freebsd path to script
 /usr/local/bin/resolve
 #+end_example
 
-+ resolve in this repository
++ [[file:freebsd/usr/local/bin/resolve][resolve]]
 
-resolve script
+path to resolve in this repository
+
+#+begin_example
+davinci-resolve-freebsd/freebsd/usr/local/bin/resolve
+#+end_example
+
+resolve 
 
 #+begin_src sh
 #!/bin/sh

@@ -4,15 +4,13 @@
 project intro and screenshot of resolve with gpu settings
 
 ** Freebsd
-*** Clone repository
-
-Clone the DaVinci Resolve Freebsd git repository
+*** Clone the DaVinci Resolve Freebsd git repository
 
 #+begin_src sh
 git clone https://github.com/NapoleonWils0n/davinci-resolve-freebsd.git
 #+end_src
 
-**** tree listing
+*** Tree listing
 
 #+begin_example
 davinci-resolve-freebsd
@@ -766,7 +764,7 @@ sudo service ubuntu restart
 
 ** Chroot into Ubuntu with doas
 
-use doas to chroot into Ubuntu as root without a password
+Use doas to chroot into Ubuntu as root without a password
 
 #+begin_src sh
 doas chroot /compat/ubuntu /bin/bash
@@ -1124,7 +1122,7 @@ su - username
 
 ** Davinci Resolve install
 
-da vinci resolve install on ubuntu with nvidia graphics
+Davinci Resolve install on Ubuntu with Nvidia and Cuda
 
 *** Nvidia download
 

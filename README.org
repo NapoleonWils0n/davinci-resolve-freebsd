@@ -1877,6 +1877,8 @@ resolve
 #+begin_src sh
 #!/bin/sh
 
+# resolve
+
 # Freebsd script to launch Davinci Resolve from a Linuxulator chroot
 # the window is displayed on Freebsd using either Xwayland or Xephyr
 # and the audio is routed over a pulseaudio socker from the chroot to the host
@@ -1894,13 +1896,13 @@ Xwayland -host-grab -fullscreen -geometry 1920x1080 :01
 # Xephyr -br -ac -noreset -screen 1920x1080 :1
 
 # doas chroot into ubuntu run run the wrapper script to start resolve
-doas chroot /compat/ubuntu /usr/local/bin/wrapper
+doas chroot /compat/ubuntu /usr/local/bin/wrapper-resolve
 #+end_src
 
 *** Ubuntu
 **** wrapper-resolve
 
-wrapper-resolve script explaination 
+wrapper-resolve script
 
 + wrapper-resolve
 

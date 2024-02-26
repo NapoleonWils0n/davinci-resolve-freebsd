@@ -12,6 +12,58 @@ more info about the repo
 git clone https://github.com/NapoleonWils0n/davinci-resolve-freebsd.git
 #+end_src
 
+tree listing of this repository
+
+#+begin_example
+davinci-resolve-freebsd
+├── README.org
+├── compat
+│   └── ubuntu
+│       ├── etc
+│       │   ├── apt
+│       │   │   └── sources.list
+│       │   └── default
+│       │       └── locale
+│       ├── home
+│       │   └── username
+│       │       ├── .config
+│       │       │   ├── gpu
+│       │       │   │   └── dummy-uvm.so
+│       │       │   └── pulse
+│       │       │       └── client.conf
+│       │       ├── .zshenv
+│       │       └── .zshrc
+│       └── usr
+│           └── local
+│               └── bin
+│                   └── wrapper-resolve
+└── freebsd
+    ├── home
+    │   └── username
+    │       ├── .config
+    │       │   └── pulse
+    │       │       ├── .config
+    │       │       │   └── pulse
+    │       │       └── default.pa
+    │       └── .local
+    │           └── share
+    │               └── applications
+    │                   └── davinci-resolve.desktop
+    └── usr
+        └── local
+            ├── bin
+            │   └── resolve
+            ├── etc
+            │   ├── doas.conf
+            │   └── rc.d
+            │       └── ubuntu
+            └── share
+                └── debootstrap
+                    └── scripts
+                        ├── lunar
+                        └── mantic
+#+end_example
+
 # Horizontal Rule
 -----
 

@@ -1246,7 +1246,11 @@ sudo apt install nvidia-cuda-toolkit ocl-icd-opencl-dev libglu1-mesa libfuse2 in
 
 *** Blacklist Nouveau nvidia driver
 
-Path to ubuntu script in this repository
+blacklist-nvidia-nouveau.conf
+
++ [[file:compat/ubuntu/etc/modprobe.d/blacklist-nvidia-nouveau.conf][blacklist-nvidia-nouveau.conf]]
+
+Path to blacklist-nvidia-nouveau.conf in this repository
 
 #+begin_example
 davinci-resolve-freebsd/compat/ubuntu/etc/modprobe.d/blacklist-nvidia-nouveau.conf
@@ -1270,7 +1274,7 @@ On the Freebsd host create the modprobe.d directory in the chroot directory
 sudo mkdir -p /compat/ubuntu/etc/modprobe.d
 #+end_src
 
-Copy the ubuntu script from the repository to the chroot
+Copy the blacklist-nvidia-nouveau.conf file from the repository to the chroot
 
 #+begin_src sh
 sudo cp davinci-resolve-freebsd/davinci-resolve-freebsd/compat/ubuntu/etc/modprobe.d/blacklist-nvidia-nouveau.conf /compat/ubuntu/etc/modprobe.d

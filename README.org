@@ -1946,18 +1946,17 @@ su username -c '/opt/resolve/bin/resolve' 2>/dev/null
 
 *** davinci-resolve.desktop
 
-path to resolve in this repository
+path to davinci-resolve.desktop in this repository
 
 #+begin_example
 davinci-resolve-freebsd/freebsd/home/username/.local/share/applications/davinci-resolve.desktop
 #+end_example
 
-copy the desktop entry to
+on the freebsd host copy the davinci-resolve.desktop to
 
 #+begin_example
 ~/.local/share/applications
 #+end_example
-
 
 #+begin_src sh
 cp davinci-resolve-freebsd/freebsd/home/username/.local/share/applications/davinci-resolve.desktop "${HOME}/.local/share/applications"

@@ -1912,6 +1912,14 @@ path to resolve in this repository
 davinci-resolve-freebsd/compat/ubuntu/usr/local/bin/wrapper-resolve
 #+end_example
 
+copy the script to the chroot
+
+#+begin_src sh
+sudo cp davinci-resolve-freebsd/compat/ubuntu/usr/local/bin/wrapper-resolve /compat/ubuntu/usr/local/bin
+#+end_src
+
+then edit the wrapper-resolve and change username to your username
+
 freebsd path to wrapper-resolve in the chroot
 
 #+begin_example
@@ -1923,12 +1931,6 @@ path to wrapper-resolve in the chroot
 #+begin_example
 /usr/local/bin/wrapper-resolve
 #+end_example
-
-copy the script to the chroot
-
-#+begin_src sh
-sudo cp davinci-resolve-freebsd/compat/ubuntu/usr/local/bin/wrapper-resolve /compat/ubuntu/usr/local/bin
-#+end_src
 
 wrapper-resolve 
 

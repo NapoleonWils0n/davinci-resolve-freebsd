@@ -1938,6 +1938,7 @@ wrapper-resolve
 #!/bin/bash
 
 # wrapper-resolve
+# switch to our user in the choot and start resolve
 
 # change username below to the name of the user in the chroot
 su username -c '/opt/resolve/bin/resolve' 2>/dev/null

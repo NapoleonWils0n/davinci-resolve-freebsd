@@ -1858,7 +1858,6 @@ Freebsd script to launch Davinci Resolve from a Linuxulator chroot
 the window is displayed on Freebsd using either Xwayland or Xephyr \\
 and the audio is routed over a pulseaudio socket from the chroot to the host
 
-
 + [[file:freebsd/usr/local/bin/resolve][resolve]]
 
 path to resolve in this repository
@@ -1901,13 +1900,23 @@ doas chroot /compat/ubuntu /usr/local/bin/wrapper
 *** Ubuntu
 **** wrapper-resolve
 
-freebsd path to script in the chroot
+wrapper-resolve script explaination 
+
++ wrapper-resolve
+
+path to resolve in this repository
+
+#+begin_example
+davinci-resolve-freebsd/compat/ubuntu/usr/local/bin/wrapper-resolve
+#+end_example
+
+freebsd path to wrapper-resolve in the chroot
 
 #+begin_example
 /compat/ubuntu/usr/local/bin/wrapper-resolve
 #+end_example
 
-chroot path
+path to wrapper-resolve in the chroot
 
 #+begin_example
 /usr/local/bin/wrapper-resolve
@@ -1915,7 +1924,11 @@ chroot path
 
 copy the script to the chroot
 
-wrapper-resolve script
+#+begin_src sh
+sudo cp davinci-resolve-freebsd/compat/ubuntu/usr/local/bin/wrapper-resolve /compat/ubuntu/usr/local/bin
+#+end_src
+
+wrapper-resolve 
 
 #+begin_src sh
 #!/bin/bash

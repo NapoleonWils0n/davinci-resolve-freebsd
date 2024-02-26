@@ -1937,6 +1937,8 @@ wrapper-resolve
 #+begin_src sh
 #!/bin/bash
 
+# wrapper-resolve
+
 # change username below to the name of the user in the chroot
 su username -c '/opt/resolve/bin/resolve' 2>/dev/null
 #+end_src

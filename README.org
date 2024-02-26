@@ -1515,7 +1515,7 @@ sudo chmod 700 /var/run/user/1001
 
 we need to set an enviormental variable for wayland in our shell config
 
-+ [[file:compat/ubuntu/home/username/.zshrc][zshrc]] in the repository
++ [[file:compat/ubuntu/home/username/.zshrc][zshrc]]
 
 copy the zshrc config from this reposiory to the chroot
 
@@ -1523,7 +1523,7 @@ copy the zshrc config from this reposiory to the chroot
 cp davinci-resolve-freebsd/compat/ubuntu/home/username/.zshrc /compat/ubuntu/home/username
 #+end_src
 
-+ [[file:compat/ubuntu/home/username/.zshenv][zshenv]] in the repository
++ [[file:compat/ubuntu/home/username/.zshenv][zshenv]]
 
 copy the zshenv config from this reposiory to the chroot
 

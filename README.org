@@ -1872,6 +1872,12 @@ path to resolve in this repository
 davinci-resolve-freebsd/freebsd/usr/local/bin/resolve
 #+end_example
 
+copy the resolve script from the repository to the freebsd bin directory
+
+#+begin_src sh
+sudo cp davinci-resolve-freebsd/freebsd/usr/local/bin/resolve /usr/local/bin
+#+end_src
+
 resolve 
 
 #+begin_src sh

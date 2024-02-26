@@ -774,13 +774,13 @@ doas chroot /compat/ubuntu /bin/bash
 
 *** Set correct timezone inside your chroot
 
-you will now be logged in as root inside the chroot
+You will now be logged in as root inside the chroot
 
 #+begin_src sh
 printf "%b\n" "0.0 0 0.0\n0\nUTC" > /etc/adjtime
 #+end_src
 
-install sudo
+Install sudo
 
 #+begin_src sh
 apt install sudo
@@ -788,7 +788,7 @@ apt install sudo
 
 For some reason sudo is necessary here, otherwise it fails.
 
-run dpkg-reconfigure tzdata with sudo
+Run dpkg-reconfigure tzdata with sudo
 
 #+begin_src sh
 sudo dpkg-reconfigure tzdata 

@@ -4,15 +4,15 @@
 project intro and screenshot of resolve with gpu settings
 
 ** Freebsd
-*** Clone this repository
+*** Clone repository
 
-more info about the repo
+Clone the DaVinci Resolve Freebsd git repository
 
 #+begin_src sh
 git clone https://github.com/NapoleonWils0n/davinci-resolve-freebsd.git
 #+end_src
 
-tree listing of this repository
+**** tree listing
 
 #+begin_example
 davinci-resolve-freebsd

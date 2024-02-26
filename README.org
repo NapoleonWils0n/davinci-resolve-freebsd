@@ -1659,9 +1659,11 @@ The /tmp directory is mounted in the chroot and allows us to route the audio fro
 ~/.config/pulse/default.pa
 #+end_example
 
-+ [[file:freebsd/home/username/.config/pulse/default.pa][default.pa]] in this repository
++ [[file:freebsd/home/username/.config/pulse/default.pa][default.pa]]
 
-default.pa
+  
+
++ default.pa code
 
 #+begin_src conf
 #!/usr/local/bin/pulseaudio -nF

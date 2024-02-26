@@ -1707,7 +1707,7 @@ before setting up the Desktop entry for Freebsd
 pulseaudio --start --daemonize
 #+end_src
 
-make sure the pulseaudio.socket is created in the /tmp directory \\
+Make sure the pulseaudio.socket is created in the /tmp directory \\
 the pulseaudio.socket is created by the default.pa pulseaudio file you set up earlier
 
 #+begin_src sh
@@ -1729,45 +1729,45 @@ drwx------  2 djwilcox wheel   3 25 Feb 16:01 tmux-1001
 
 **** create the Xwayland or Xephyr window on freebsd
 
-we use Xwayland on Wayland or Xephyr on X11 to create a new window with an id of :1 \\
+We use Xwayland on Wayland or Xephyr on X11 to create a new window with an id of :1 \\
 in the chroot we set the DISPLAY variable to equal to :1 so that applications are displayed in the Freebsd window
 
 ***** Wayland
 
-create a 1920x1080 fullscreen window
+Create a 1920x1080 fullscreen window
 
 #+begin_src sh
 Xwayland -host-grab -fullscreen -geometry 1920x1080 :01
 #+end_src
 
-host-grab is needed so you can click around in resolve
+host-grab is needed so you can click around in resolve \\
 press ctrl + shift to release the mouse
 
 ***** X11
 
-install Xephyr if you are running X11 on Freebsd
+Install Xephyr if you are running X11 on Freebsd
 
 #+begin_src sh
 sudo pkg install Xephyr
 #+end_src
 
-create a 1920x1080 fullscreen window
+Create a 1920x1080 fullscreen window
 
 #+begin_src sh
 Xephyr -br -ac -noreset -screen 1920x1080 :1
 #+end_src
 
-press ctrl + shift to release the mouse
+Press ctrl + shift to release the mouse
 
 *** chroot into ubuntu
 
-use doas to chroot into Ubuntu as root without a password
+Use doas to chroot into Ubuntu as root without a password
 
 #+begin_src sh
 doas chroot /compat/ubuntu /bin/bash
 #+end_src
 
-switch to our user \\
+Switch to our user \\
 replace username with your username
 
 #+begin_src sh
@@ -1776,13 +1776,13 @@ su - username
 
 **** printenv
 
-run printenv and check the DISPLAY variable is set to :1
+Run printenv and check the DISPLAY variable is set to :1
 
 #+begin_src sh
 printenv
 #+end_src
 
-make sure the following options are set
+Make sure the following options are set
 
 + DISPLAY set to 1, this is the id of the Xwayland window on the Freebsd host
 
@@ -1819,13 +1819,13 @@ QT_QPA_PLATFORM=xcb
 
 **** pactl
 
-run pactl info in the chroot
+Run pactl info in the chroot
 
 #+begin_src sh
 pactl info
 #+end_src
 
-make sure the following options are set
+Make sure the following options are set
 
 + Server String is set to /tmp/pulseaudio.socket
 
@@ -1855,7 +1855,7 @@ Cookie: 1550:2200
 
 **** start Davinci Resolve
 
-we set the shell path in the chroots .zshenv to include the resolve bin directory \\
+We set the shell path in the chroots .zshenv to include the resolve bin directory \\
 so we can just type
 
 #+begin_example
@@ -1868,7 +1868,7 @@ instead of the full path to the binary
 /opt/resolve/bin/resolve
 #+end_example
 
-in the Ubuntu chroot and not on the Freebsd host run resolve
+In the Ubuntu chroot and not on the Freebsd host run resolve
 
 #+begin_src sh
 resolve
@@ -1876,16 +1876,16 @@ resolve
 
 Davinci Resolve will open in the Xwayland or Xephyr window on Freebsd
 
-switch to the home directory in the chroot if you have't already
+Switch to the home directory in the chroot if you have't already
 
 #+begin_src sh
 cd 
 #+end_src
 
-list the contents of the home directory in the chroot \\
+List the contents of the home directory in the chroot \\
 and you will see that several directories have been created including the Documents directory
 
-the Documents is created because we set up the XDG directories in the chroots shell config
+The Documents is created because we set up the XDG directories in the chroots shell config
 
 #+begin_example
 drwxrwxrwx 4 username username          4 Feb 22 22:25  CacheClip
@@ -1893,7 +1893,7 @@ drwxrwxrwx 3 username username          3 Feb 21 18:19  Documents
 drwxrwxrwx 3 username username          3 Feb 18 21:43 'Resolve Project Backups'
 #+end_example
 
-if you list the contents of the Documents directory you will see it has created the BlackmagicDesign directory as well
+If you list the contents of the Documents directory you will see it has created the BlackmagicDesign directory as well
 
 #+begin_example
 drwxrwxrwx 3 username username 3 Feb 18 15:12 BlackmagicDesign
@@ -1905,18 +1905,18 @@ drwxrwxrwx 3 username username 3 Feb 18 15:12 BlackmagicDesign
 
 Freebsd script to launch Davinci Resolve from a Linuxulator chroot
 
-the window is displayed on Freebsd using either Xwayland or Xephyr \\
+The window is displayed on Freebsd using either Xwayland or Xephyr \\
 and the audio is routed over a pulseaudio socket from the chroot to the host
 
 + [[file:freebsd/usr/local/bin/resolve][resolve]]
 
-path to resolve in this repository
+Path to resolve in this repository
 
 #+begin_example
 davinci-resolve-freebsd/freebsd/usr/local/bin/resolve
 #+end_example
 
-copy the resolve script from the repository to the freebsd bin directory
+Copy the resolve script from the repository to the freebsd bin directory
 
 #+begin_src sh
 sudo cp davinci-resolve-freebsd/freebsd/usr/local/bin/resolve /usr/local/bin
@@ -1956,13 +1956,13 @@ wrapper-resolve script
 
 + [[file:compat/ubuntu/usr/local/bin/wrapper-resolve][wrapper-resolve]]
 
-path to resolve in this repository
+Path to resolve in this repository
 
 #+begin_example
 davinci-resolve-freebsd/compat/ubuntu/usr/local/bin/wrapper-resolve
 #+end_example
 
-copy the script to the chroot
+Copy the script to the chroot
 
 #+begin_src sh
 sudo cp davinci-resolve-freebsd/compat/ubuntu/usr/local/bin/wrapper-resolve /compat/ubuntu/usr/local/bin
@@ -1970,13 +1970,13 @@ sudo cp davinci-resolve-freebsd/compat/ubuntu/usr/local/bin/wrapper-resolve /com
 
 then edit the wrapper-resolve and change username to your username
 
-freebsd path to wrapper-resolve in the chroot
+Freebsd path to wrapper-resolve in the chroot
 
 #+begin_example
 /compat/ubuntu/usr/local/bin/wrapper-resolve
 #+end_example
 
-path to wrapper-resolve in the chroot
+Path to wrapper-resolve in the chroot
 
 #+begin_example
 /usr/local/bin/wrapper-resolve
@@ -1996,13 +1996,13 @@ su username -c '/opt/resolve/bin/resolve' 2>/dev/null
 
 *** davinci-resolve.desktop
 
-path to davinci-resolve.desktop in this repository
+Path to davinci-resolve.desktop in this repository
 
 #+begin_example
 davinci-resolve-freebsd/freebsd/home/username/.local/share/applications/davinci-resolve.desktop
 #+end_example
 
-on the freebsd host copy the davinci-resolve.desktop to
+On the freebsd host copy the davinci-resolve.desktop to
 
 #+begin_example
 ~/.local/share/applications
@@ -2033,15 +2033,15 @@ Categories=AudioVideo
 
 ** Linuxulator delete
 
-disable ubuntu
+Disable ubuntu
 
 #+begin_src sh
 sudo sysrc ubuntu_enable="NO"
 #+end_src
 
-reboot to make sure the linux mounts are unmounted
+Reboot to make sure the linux mounts are unmounted
 
-delete the /compat/ubuntu directory
+Delete the /compat/ubuntu directory
 
 #+begin_src sh
 sudo rm -rxv /compat/ubuntu

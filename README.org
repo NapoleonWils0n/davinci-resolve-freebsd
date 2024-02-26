@@ -67,7 +67,7 @@ davinci-resolve-freebsd
 
 *** debootstrap install
 
-install debootstrap which we use to create an ubuntu chroot on freebsd
+Install debootstrap which we use to create an ubuntu chroot on freebsd
 
 [[https://wiki.debian.org/Debootstrap][Debootstrap - Debian Wiki]]
 
@@ -84,15 +84,15 @@ sudo pkg install debootstrap
 
 [[https://man.freebsd.org/cgi/man.cgi?query=doas.conf&sektion=5&format=html][doas.conf man page]]
 
-install doas so we enter the chroot without being prompted for a password
+Install doas so we enter the chroot without being prompted for a password
 
 #+begin_src sh
 sudo pkg install doas
 #+end_src
 
-edit the doas.conf file and change username to your username on freebsd
+Edit the doas.conf file and change username to your username on freebsd
 
-path to the doas.conf on freebsd
+Path to the doas.conf on freebsd
 
 #+begin_example
 /usr/local/etc/doas.conf
@@ -102,7 +102,7 @@ doas.conf
 
 + [[file:freebsd/usr/local/etc/doas.conf][doas.conf]]
 
-path to doas.conf in this repository
+Path to doas.conf in this repository
 
 #+begin_example
 davinci-resolve-freebsd/freebsd/usr/local/etc/doas.conf
@@ -124,24 +124,24 @@ permit nopass keepenv root as root
 
 *** Stop linux if its running
 
-if you have centos installed in
+If you have centos installed in
 
 #+begin_example
 /compat/linux
 #+end_example
 
-you need to stop it before starting ubuntu \\
+You need to stop it before starting ubuntu \\
 because you can only run instance of the linuxulator at a time
 
-if you don't have a linux install in /compat/linux you can skip this step
+If you don't have a linux install in /compat/linux you can skip this step
 
-stop linux
+Stop linux
 
 #+begin_src sh
 sudo service linux stop
 #+end_src
 
-use sysrc to set linux_enable="NO" in your /etc/rc.conf
+Use sysrc to set linux_enable="NO" in your /etc/rc.conf
 
 #+begin_src sh
 sudo sysrc linux_enable="NO"
@@ -159,8 +159,7 @@ and set linux_enable to NO
 linux_enable="NO"
 #+end_src
 
-
-reboot so the linux mount points are unmounted
+Reboot so the linux mount points are unmounted
 
 # Horizontal Rule
 -----
@@ -1126,11 +1125,12 @@ Davinci Resolve install on Ubuntu with Nvidia and Cuda
 
 *** Nvidia download
 
-download the linux version matching the version on the freebsd host
+Download the linux version matching the version on the freebsd host \\
+the version must match exactly or it won't work
 
 [[https://www.nvidia.com/Download/Find.aspx?lang=en-us]]
 
-download link for 535.146.02 
+Download link for 535.146.02 
 
 [[https://www.nvidia.com/download/driverResults.aspx/216728/en-us/]]
 
@@ -1597,7 +1597,7 @@ sudo apt install xorg xserver-xorg xserver-xorg-core
 ** Pulseaudio set up 
 *** cookie
 
-copy the pulseaudio cookie from the host to the chroot \\
+Copy the pulseaudio cookie from the host to the chroot \\
 replace username with your username in the command below
 
 #+begin_src sh
@@ -1607,9 +1607,9 @@ cp "${HOME}/.config/pulse/cookie" /compat/ubuntu/home/username/.config/pulse/coo
 *** freebsd
 **** default.pa
 
-use the pulseaudio default.pa config file to create a pulseaudio socket in the /tmp directory
+Use the pulseaudio default.pa config file to create a pulseaudio socket in the /tmp directory
 
-the /tmp directory is mounted in the chroot and allows us to route the audio from the chroot to the host
+The /tmp directory is mounted in the chroot and allows us to route the audio from the chroot to the host
 
 #+begin_example
 ~/.config/pulse/default.pa
@@ -1635,7 +1635,7 @@ load-module module-native-protocol-unix socket=/tmp/pulseaudio.socket
 *** ubuntu
 **** client.conf
 
-full path to the client.conf from freebsd to the chroot
+Full path to the client.conf from freebsd to the chroot
 
 #+begin_example
 /compat/ubuntu/home/username/.config/pulse/client.conf
@@ -1697,7 +1697,7 @@ default-server = /tmp/pulseaudio.socket
 
 Starting Davinci Resolve manually on Wayland and X11 running on Freebsd
 
-we need to manually test the steps to launch Davinci Resolve \\
+We need to manually test the steps to launch Davinci Resolve \\
 before setting up the Desktop entry for Freebsd 
 
 *** Freebsd host

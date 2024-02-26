@@ -930,10 +930,10 @@ LC_ALL=
 
 *** Shell install
 
-install the shell our user is going to use \\
+Install the shell our user is going to use \\
 it must match the shell set in the ubuntu /etc/passwd file which we will set up 
 
-run the following command as root
+Run the following command as root
 
 #+begin_src sh
 apt install zsh pulseaudio 
@@ -966,7 +966,7 @@ to the passwd file on Ubuntu
 username:*:1001:1001:USER NAME:/home/username:/usr/local/bin/zsh
 #+end_example
 
-we also need to check that the shell path is correct \\
+We also need to check that the shell path is correct \\
 change zsh path to /bin/zsh in the chroot
 
 Freebsd passwd
@@ -977,13 +977,13 @@ username:*:1001:1001:USER NAME:/home/username:/usr/local/bin/zsh
 
 **** ubuntu passwd
 
-host path
+Host path
 
 #+begin_example
 /compat/ubuntu/etc/passwd
 #+end_example
 
-chroot path
+Chroot path
 
 #+begin_example
 /etc/passwd
@@ -993,13 +993,13 @@ chroot path
 username:*:1001:1001:USER NAME:/home/djwilcox:/bin/zsh
 #+end_src
 
-check your user and group on freebsd
+Check your user and group on freebsd
 
 #+begin_src sh
 id
 #+end_src
 
-output
+Output
 
 #+begin_src sh
 uid=1001(username) gid=1001(username) groups=1001(username),0(wheel),5(operator),44(video),47(realtime)
@@ -1007,13 +1007,13 @@ uid=1001(username) gid=1001(username) groups=1001(username),0(wheel),5(operator)
 
 **** copy the group from freebsd to ubuntu
 
-freebsd /etc/group
+Freebsd /etc/group
 
 #+begin_src conf
 username:*:1001:
 #+end_src
 
-ubuntu /etc/group
+Ubuntu /etc/group
 
 #+begin_src conf
 username:*:1001:
@@ -1024,10 +1024,10 @@ username:*:1001:
 
 *** Add user to groups in the chroot
 
-add the user we created to groups in the chroot \\
+Add the user we created to groups in the chroot \\
 replace username with the username you created
 
-run the following command as root
+Run the following command as root
 
 #+begin_src sh
 usermod -a -G adm username
@@ -1047,15 +1047,15 @@ usermod -a -G pulse-access username
 
 *** sudo set up
 
-run the following command as root
+Run the following command as root
 
-edit the sudoers file with visudo
+Edit the sudoers file with visudo
 
 #+begin_src sh
 visudo
 #+end_src
 
-add your user to the sudoers file, change username to your username
+Add your user to the sudoers file, change username to your username
 
 #+begin_src sh
 username ALL=(ALL:ALL) ALL
@@ -1066,9 +1066,9 @@ username ALL=(ALL:ALL) ALL
 
 *** passwd
 
-create a passwd for your user, replace username with your username
+Create a passwd for your user, replace username with your username
 
-run the following command as root
+Run the following command as root
 
 #+begin_src sh
 passwd username
@@ -1079,16 +1079,16 @@ passwd username
 
 *** Couldnt resolve hostname fix
 
-add the your hostname from freebsd to the hosts file in the ubuntu chroot \\
+Add the your hostname from freebsd to the hosts file in the ubuntu chroot \\
 to stop errors when using sudo saying couldnt resolve hostname
 
-freebsd path to the hosts in the chroot
+Freebsd path to the hosts in the chroot
 
 #+begin_example
 /compat/ubuntu/etc/hosts
 #+end_example
 
-path to the hosts in the chroot
+Path to the hosts in the chroot
 
 #+begin_example
 /etc/hosts
@@ -1109,7 +1109,7 @@ hosts
 doas chroot /compat/ubuntu /bin/bash
 #+end_src
 
-switch to your user in the chroot
+Switch to your user in the chroot \\
 replace username with your username
 
 #+begin_src sh

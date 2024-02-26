@@ -14,8 +14,6 @@ git clone https://github.com/NapoleonWils0n/davinci-resolve-freebsd.git
 
 *** Tree listing
 
-NOTE update listing
-
 Tree list of the DaVinci Resolve Freebsd git repository
 
 #+begin_example

@@ -166,17 +166,17 @@ Reboot so the linux mount points are unmounted
 
 *** Ubuntu rc.d script 
 
-ubuntu script
+Ubuntu script
 
 + [[file:freebsd/usr/local/etc/rc.d/ubuntu][ubuntu]]
 
-path to ubuntu script in this repository
+Path to ubuntu script in this repository
 
 #+begin_example
 davinci-resolve-freebsd/freebsd/usr/local/etc/rc.d/ubuntu
 #+end_example
 
-copy the ubuntu script from the repository to
+Copy the ubuntu script from the repository to
 
 #+begin_example
 /usr/local/etc/rc.d/
@@ -186,7 +186,7 @@ copy the ubuntu script from the repository to
 sudo cp davinci-resolve-freebsd/freebsd/usr/local/etc/rc.d/ubuntu /usr/local/etc/rc.d/
 #+end_src
 
-make the script executable
+Make the script executable
 
 #+begin_src sh
 sudo chmod +x /usr/local/etc/rc.d/ubuntu
@@ -286,7 +286,7 @@ sudo mkdir -p {/compat/ubuntu/dev/fd,/compat/ubuntu/dev/shm,/compat/ubuntu/home,
 
 *** Enable the Ubuntu service
 
-use sysrc to set ubuntu_enable="YES" in your /etc/rc.conf
+Use sysrc to set ubuntu_enable="YES" in your /etc/rc.conf
 
 #+begin_src sh
 sudo sysrc ubuntu_enable="YES"
@@ -310,7 +310,7 @@ Start the Ubuntu service
 sudo service ubuntu start
 #+end_src
 
-check everything is mounted
+Check everything is mounted
 
 #+begin_src sh
 mount

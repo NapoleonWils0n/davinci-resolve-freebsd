@@ -323,54 +323,54 @@ mount
 
 debootstrap has a collection of scripts to install different version of debian and ubuntu
 
-the debootstrap scripts are installed in this location of freebsd
+The debootstrap scripts are installed in this location of freebsd
 
 #+begin_example
 /usr/local/share/debootstrap/scripts
 #+end_example
 
-ubuntu jammy is the latest version of ubuntu including as a script with debootstrap
+Ubuntu Jammy is the latest version of ubuntu including as a script with debootstrap
 
-however there seems to be a bug with ubuntu jammy installed in a chroot on freebsd
+However there seems to be a bug with ubuntu jammy installed in a chroot on freebsd
 that sets the permission of a lot of binaries and libraries in the ubuntu chroot to 700
 
-which means that only the root user can execute the binaries and libaries \\
+Which means that only the root user can execute the binaries and libaries \\
 so you would have to run GUI applications as root
 
-i copied one of the existing debootstrap files and added the lunar and mantic version of Ubuntu to the file
+I copied one of the existing debootstrap files and added the Lunar and Mantic version of Ubuntu to the file
 which we will use later to install Ubuntu Mantic which doesn't have the persmissions bug
 
-lunar and mantic script in this repository
+Lunar and Mantic script in this repository
 
 + [[file:freebsd/usr/local/share/debootstrap/scripts/lunar][lunar]]
 
 + [[file:freebsd/usr/local/share/debootstrap/scripts/mantic][mantic]]
 
-path to the lunar script in this repository
+Path to the lunar script in this repository
 
 #+begin_example
 davinci-resolve-freebsd/freebsd/usr/local/share/debootstrap/scripts/lunar
 #+end_example
 
-copy the lunar script from the repository to the debootstrap scripts directory
+Copy the lunar script from the repository to the debootstrap scripts directory
 
 #+begin_src sh
 sudo cp davinci-resolve-freebsd/freebsd/usr/local/share/debootstrap/scripts/lunar /usr/local/share/debootstrap/scripts
 #+end_src
 
-path to the mantic script in this repository
+Path to the mantic script in this repository
 
 #+begin_example
 davinci-resolve-freebsd/freebsd/usr/local/share/debootstrap/scripts/mantic
 #+end_example
 
-copy the mantic script from the repository to the debootstrap scripts directory
+Copy the mantic script from the repository to the debootstrap scripts directory
 
 #+begin_src sh
 sudo cp davinci-resolve-freebsd/freebsd/usr/local/share/debootstrap/scripts/mantic /usr/local/share/debootstrap/scripts
 #+end_src
 
-lunar and mantic script
+Lunar and Mantic script
 
 #+begin_src sh
 case $ARCH in
@@ -728,20 +728,20 @@ APT::Cache-Start 251658240;" >> "$TARGET/etc/apt/apt.conf.d/00freebsd"
 
 *** debootstrap install Ubuntu
 
-use debootstrap with the mantic script we created earlier as well the url
+Use debootstrap with the Mantic script we created earlier as well the url
 
 #+begin_example
 http://archive.ubuntu.com/ubuntu/
 #+end_example
 
-to the ubuntu archive with lunar and mantic and install 
-ubuntu into this location on freebsd
+to the Ubuntu archive with Lunar and Mantic and install 
+Ubuntu into this location on Freebsd
 
 #+begin_example
 /compat/ubuntu
 #+end_example
 
-debootstrap ubuntu mantic
+debootstrap Ubuntu Mantic
 
 #+begin_src sh
 sudo debootstrap --arch=amd64 --no-check-gpg mantic /compat/ubuntu http://archive.ubuntu.com/ubuntu/

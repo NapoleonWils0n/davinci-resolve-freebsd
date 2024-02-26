@@ -2073,20 +2073,41 @@ Categories=AudioVideo
 
 ** Mount Video directory from the host to the chroot
 
-#+begin_src sh
-mkdir -p /compat/ubuntu/home/djwilcox/video
-#+end_src
+Mount the Video directory from the Freebsd host inside the home directory in the chroot, \\
+this allows us to access the Video on directory on the Freebsd host from the chroot with Davinci Resolve
+
+
+
+Create a mount point in the chroot to mount the Video directory from the host in the chroot
+
+These commands are run as your regular user and not as root \\
+replace username with your username
 
 #+begin_src sh
-mount -t nullfs /home/djwilcox/video /compat/ubuntu/home/djwilcox/video
+mkdir -p /compat/ubuntu/home/username/Video
 #+end_src
 
-fstab
+Mount the Video directory from the Freebsd host to the Video directory in the chroot
+
+#+begin_src sh
+mount -t nullfs /home/username/Video /compat/ubuntu/home/username/Video
+#+end_src
+
+Edit your fstab on the Freebsd host and set the mount point
+
+#+begin_example
+/etc/fstab
+#+end_example
+
++ fstab code
 
 #+begin_src conf
-# mount the video directory from the host to the chroot
-/home/djwilcox/video           /compat/ubuntu/home/dwjwilcox/video     nullfs          rw,late                      0       0
+# mount the video directory from the host to the chroot,
+# change username to your username
+/home/username/Video           /compat/ubuntu/home/username/Video     nullfs          rw,late                      0       0
 #+end_src
+
+Mount all the mount points in your fstab
 
 #+begin_src sh
 sudo mount -al

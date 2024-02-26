@@ -799,7 +799,7 @@ sudo dpkg-reconfigure tzdata
 
 *** Fix APT package manager
 
-run the following command as root
+Run the following command as root
 
 #+begin_src sh
 printf "APT::Cache-Start 251658240;" > /etc/apt/apt.conf.d/00aptitude
@@ -810,16 +810,16 @@ printf "APT::Cache-Start 251658240;" > /etc/apt/apt.conf.d/00aptitude
 
 *** Enable more repositories:
 
-edit the apt sources.list and add more repositories \\
+Edit the apt sources.list and add more repositories \\
 [trusted=yes] is needed for lunar and mantic
 
-freebsd path to the sources.list in the chroot
+Freebsd path to the sources.list in the chroot
 
 #+begin_example
 /compat/ubuntu/etc/apt/sources.list
 #+end_example
 
-path to the sources.list in the chroot
+Path to the sources.list in the chroot
 
 #+begin_example
 /etc/apt/sources.list
@@ -829,13 +829,13 @@ sources.list
 
 + [[file:compat/ubuntu/etc/apt/sources.list][sources.list]] 
 
-path to the sources.list file in this repository
+Path to the sources.list file in this repository
 
 #+begin_example
 davinci-resolve-freebsd/compat/ubuntu/etc/apt/sources.list
 #+end_example
 
-copy the source.list from the freebsd host to the ubuntu chroot
+Copy the source.list from the freebsd host to the ubuntu chroot
 
 #+begin_src sh
 sudo cp davinci-resolve-freebsd/compat/ubuntu/etc/apt/sources.list /compat/ubuntu/etc/apt/sources.list
@@ -852,13 +852,13 @@ deb [trusted=yes] http://archive.ubuntu.com/ubuntu/ mantic-security main restric
 
 *** apt update
 
-run the following commands as root
+Run the following commands as root to update and upgrade Ubuntu
 
 #+begin_src sh
 apt update
 #+end_src
 
-upgrade
+Upgrade
 
 #+begin_src sh
 apt upgrade 

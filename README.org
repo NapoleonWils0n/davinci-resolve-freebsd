@@ -2,6 +2,8 @@
 * DaVinci Resolve Freebsd
 ** Davinci Resolve install on Freebsd using the Linuxulator
 
+[[https://www.blackmagicdesign.com/uk/products/davinciresolve][DaVinci Resolve]] installed in a Ubuntu Mantic chroot on Freebsd
+
 Features
 
 #+begin_quote

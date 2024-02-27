@@ -1536,6 +1536,9 @@ install some wayland packages and the wlroot compositor
 sudo apt install libinput-tools wayland-protocols libwlroots11 libwlroots-dev libxkbcommon0 qtwayland5 qt6-wayland wayland-utils adwaita-qt qt5ct
 #+end_src
 
+# Horizontal Rule
+-----
+
 **** Create the XDG_RUNTIME_DIR directory
 
 check your id in the chroot
@@ -1585,9 +1588,6 @@ copy the zshenv config from this reposiory to the chroot
 #+begin_src sh
 cp davinci-resolve-freebsd/compat/ubuntu/home/username/.zshrc /compat/ubuntu/home/username
 #+end_src
-
-# Horizontal Rule
------
 
 ***** zshrc
 

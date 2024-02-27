@@ -2155,6 +2155,16 @@ umount /compat/ubuntu/home/username/Video
 
 ** Linuxulator delete
 
+Comment out the fstab entry to mount the video directory from the host to the chroot on the Freebsd host
+
+#+begin_example
+/etc/fstab
+#+end_example
+
+#+begin_src conf
+#/home/username/Video           /compat/ubuntu/home/username/Video     nullfs          rw,noauto                      0       0
+#+end_src
+
 Disable ubuntu
 
 #+begin_src sh

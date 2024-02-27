@@ -1852,10 +1852,16 @@ drwxr-xr-x  2 root     wheel   3 25 Feb 16:01 sndio
 drwx------  2 djwilcox wheel   3 25 Feb 16:01 tmux-1001
 #+end_example
 
+# Horizontal Rule
+-----
+
 **** create the Xwayland or Xephyr window on freebsd
 
 We use Xwayland on Wayland or Xephyr on X11 to create a new window with an id of :1 \\
 in the chroot we set the DISPLAY variable to equal to :1 so that applications are displayed in the Freebsd window
+
+# Horizontal Rule
+-----
 
 ***** Wayland
 
@@ -1867,6 +1873,9 @@ Xwayland -host-grab -fullscreen -geometry 1920x1080 :01
 
 host-grab is needed so you can click around in resolve \\
 press ctrl + shift to release the mouse
+
+# Horizontal Rule
+-----
 
 ***** X11
 
@@ -1884,6 +1893,9 @@ Xephyr -br -ac -noreset -screen 1920x1080 :1
 
 Press ctrl + shift to release the mouse
 
+# Horizontal Rule
+-----
+
 *** chroot into ubuntu
 
 Use doas to chroot into Ubuntu as root without a password
@@ -1898,6 +1910,9 @@ replace username with your username
 #+begin_src sh
 su - username
 #+end_src
+
+# Horizontal Rule
+-----
 
 **** printenv
 
@@ -1942,6 +1957,9 @@ QT_QPA_PLATFORMTHEME=qt5ct
 QT_QPA_PLATFORM=xcb
 #+end_src
 
+# Horizontal Rule
+-----
+
 **** pactl
 
 Run pactl info in the chroot
@@ -1977,6 +1995,9 @@ Default Sink: oss_output.dsp1
 Default Source: oss_input.dsp0
 Cookie: 1550:2200
 #+end_src
+
+# Horizontal Rule
+-----
 
 **** start Davinci Resolve
 
@@ -2023,6 +2044,9 @@ If you list the contents of the Documents directory you will see it has created 
 #+begin_example
 drwxrwxrwx 3 username username 3 Feb 18 15:12 BlackmagicDesign
 #+end_example
+
+# Horizontal Rule
+-----
 
 ** Davinci Resolve desktop entry
 *** Freebsd

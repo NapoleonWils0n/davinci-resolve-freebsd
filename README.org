@@ -1691,11 +1691,19 @@ Use the pulseaudio default.pa config file to create a pulseaudio socket in the /
 
 The /tmp directory is mounted in the chroot and allows us to route the audio from the chroot to the host
 
++ [[file:freebsd/home/username/.config/pulse/default.pa][default.pa]]
+
+Copy the default.pa from this repository to 
+
 #+begin_example
 ~/.config/pulse/default.pa
 #+end_example
 
-+ [[file:freebsd/home/username/.config/pulse/default.pa][default.pa]]
+Replace username with your username in the command below
+
+#+begin_src sh
+cp davinci-resolve-freebsd/freebsd/home/username/.config/pulse/default.pa "${HOME}/.config/pulse"
+#+end_src
 
 + default.pa code
 

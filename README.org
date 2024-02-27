@@ -19,6 +19,9 @@ Opened using a Desktop entry on Freebsd
 
 screenshot
 
+# Horizontal Rule
+-----
+
 ** Freebsd
 *** System Requirements to run Davinci Resolve
 
@@ -27,6 +30,9 @@ screenshot
 GPU: Discrete with at least 2GB VRAM, supporting OpenCL 1.2 or CUDA 11. 
 #+end_quote
 
+# Horizontal Rule
+-----
+
 *** Clone the DaVinci Resolve Freebsd git repository
 
 Clone this repository by running the following command
@@ -34,6 +40,9 @@ Clone this repository by running the following command
 #+begin_src sh
 git clone https://github.com/NapoleonWils0n/davinci-resolve-freebsd.git
 #+end_src
+
+# Horizontal Rule
+-----
 
 *** Tree listing
 
@@ -2226,11 +2235,17 @@ Unmount the video directory in the chroot
 umount /compat/ubuntu/home/username/Video
 #+end_src
 
+# horizontal rule
+-----
+
 ** Packages installed on Ubuntu
 
 List of installed packages on Ubuntu for reference
 
 + [[file:assets/apt/apt-installed.txt][apt-installed.txt]]
+
+# horizontal rule
+-----
 
 ** Linuxulator delete
 

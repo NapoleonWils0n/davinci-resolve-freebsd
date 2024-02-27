@@ -26,6 +26,11 @@ Tree list of the DaVinci Resolve Freebsd git repository
 #+begin_example
 davinci-resolve-freebsd
 ├── README.org
+├── assets
+│   ├── apt
+│   │   └── apt-installed.txt
+│   └── screenshot
+│       └── screenshot.png
 ├── compat
 │   └── ubuntu
 │       ├── etc
@@ -74,7 +79,7 @@ davinci-resolve-freebsd
                         ├── lunar
                         └── mantic
 
-33 directories, 16 files
+36 directories, 18 files
 #+end_example
 
 # Horizontal Rule

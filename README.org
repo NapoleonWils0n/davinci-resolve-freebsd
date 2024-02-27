@@ -18,7 +18,7 @@ Video directory from the Freebsd host mounted inside the home directory in the c
 Opened using a Desktop entry on Freebsd 
 #+end_quote
 
-screenshot
+[[assets/screenshot/screenshot.png]]
 
 # Horizontal Rule
 -----

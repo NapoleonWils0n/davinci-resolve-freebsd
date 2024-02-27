@@ -1735,9 +1735,9 @@ client.conf path in the chroot
 ~/.config/pulse/client.conf
 #+end_example
 
-+ [[file:compat/ubuntu/home/username/.config/pulse/client.conf][client.conf]] in this repository
++ [[file:compat/ubuntu/home/username/.config/pulse/client.conf][client.conf]] 
 
-client.conf
++ client.conf code
 
 #+begin_src conf
 # This file is part of PulseAudio.

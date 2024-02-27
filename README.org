@@ -4,6 +4,12 @@
 project intro and screenshot of resolve with gpu settings
 
 ** Freebsd
+*** System Requirements to run Davinci Resolve
+
+16 GB of system memory. 32 GB when using Fusion.
+
+GPU: Discrete with at least 2GB VRAM, supporting OpenCL 1.2 or CUDA 11. 
+
 *** Clone the DaVinci Resolve Freebsd git repository
 
 Clone this repository by running the following command
@@ -72,6 +78,28 @@ davinci-resolve-freebsd
 
 # Horizontal Rule
 -----
+
+*** Freebsd Nvidia and Cuda
+
+Make sure Nvidia and Cuda is set up on the Freebsd host
+
+#+begin_src sh
+sudo pkg install nvidia-driver linux-nvidia-libs libc6-shim libvdpau-va-gl libva-nvidia-driver
+#+end_src
+
+run nv-sglrun nvidia-smi
+
+#+begin_src sh
+nv-sglrun nvidia-smi
+#+end_src
+
+nv-sglrun nvidia-smi output
+
+#+begin_example
+shim init
++---------------------------------------------------------------------------------------+
+| NVIDIA-SMI 535.146.02             Driver Version: 535.146.02   CUDA Version: 12.2     |
+#+end_example
 
 *** debootstrap install
 

@@ -1737,6 +1737,14 @@ client.conf path in the chroot
 
 + [[file:compat/ubuntu/home/username/.config/pulse/client.conf][client.conf]] 
 
+Copy client.conf from this repository into the chroot
+
+Remember to change username in the path to the chroot in the second part of the command
+
+#+begin_src sh
+cp davinci-resolve-freebsd/compat/ubuntu/home/username/.config/pulse/client.conf /compat/ubuntu/home/username/.config/pulse
+#+end_src
+
 + client.conf code
 
 #+begin_src conf

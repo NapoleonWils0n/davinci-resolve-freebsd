@@ -1,7 +1,21 @@
 #+STARTUP: show2levels
 * DaVinci Resolve Freebsd
 
-project intro and screenshot of resolve with gpu settings
+Features
+
+#+begin_quote
+Nvidia and Cuda enabled
+
+Xwayland on Wayland or Xephyr on X11 is used to display Davinci Resolve on Freebsd
+
+Audio routed from the chroot to the host using a pulseaudio socket for zero latency
+
+Video directory from the Freebsd host mounted inside the home directory in the chroot
+
+Opened using a Desktop entry on Freebsd 
+#+end_quote
+
+screenshot
 
 ** Freebsd
 *** System Requirements to run Davinci Resolve

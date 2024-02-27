@@ -1,7 +1,6 @@
 #+STARTUP: show2levels
 * DaVinci Resolve Freebsd
-
-Davinci Resolve install on Freebsd using the Linuxulator
+** Davinci Resolve install on Freebsd using the Linuxulator
 
 Features
 

@@ -1337,6 +1337,13 @@ use nvidia-smi to see GPU info and process that are using Nvidia GPU
 nvidia-smi
 #+end_src
 
+nvidia-smi output
+
+#+begin_example
++---------------------------------------------------------------------------------------+
+| NVIDIA-SMI 535.146.02             Driver Version: 535.146.02   CUDA Version: 12.2     |
+#+end_example
+
 # Horizontal Rule
 -----
 

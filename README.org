@@ -2205,6 +2205,12 @@ Unmount the video directory in the chroot
 umount /compat/ubuntu/home/username/Video
 #+end_src
 
+** Packages installed on Ubuntu
+
+List of user installed packages on Ubuntu for reference
+
++ [[file:assets/apt/apt-installed.txt][apt-installed.txt]]
+
 ** Linuxulator delete
 
 Comment out the fstab entry to mount the video directory from the host to the chroot on the Freebsd host

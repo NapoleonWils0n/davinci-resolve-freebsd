@@ -2293,6 +2293,14 @@ List of installed packages on Ubuntu for reference
 # horizontal rule
 -----
 
+** Single Window
+
+Xwayland doesn't have the capability to create 2 windows yet \\
+so Davinci Resolve is limited to a single window
+
+# horizontal rule
+-----
+
 ** Linuxulator delete
 
 Comment out the fstab entry to mount the video directory from the host to the chroot on the Freebsd host

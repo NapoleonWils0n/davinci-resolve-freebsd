@@ -2077,6 +2077,26 @@ Categories=AudioVideo
 
 ** Mount Video directory from the host to the chroot
 
+Allow your user to run the mount command without sudo
+
+You can set this using sysctl
+
+#+begin_src sh
+sudo sysctl vfs.usermount=1
+#+end_src
+
+or by editing your sysctl.conf
+
+#+begin_example
+/etc/sysctl.conf
+#+end_example
+
+and setting the following option to 
+
+#+begin_src conf
+vfs.usermount=1
+#+end_src
+
 Mount the Video directory from the Freebsd host inside the home directory in the chroot, \\
 this allows us to access the Video on directory on the Freebsd host from within the chroot with Davinci Resolve
 

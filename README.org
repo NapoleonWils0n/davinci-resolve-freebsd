@@ -2212,7 +2212,7 @@ umount /compat/ubuntu/home/username/Video
 
 ** Packages installed on Ubuntu
 
-List of user installed packages on Ubuntu for reference
+List of installed packages on Ubuntu for reference
 
 + [[file:assets/apt/apt-installed.txt][apt-installed.txt]]
 

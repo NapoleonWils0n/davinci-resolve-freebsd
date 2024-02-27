@@ -1,0 +1,18 @@
+#+STARTUP: content
+* Packages installed with apt in the chroot
+
++ [[file:apt-installed.txt][apt-installed.txt]]
+
+List of user installed packages on Ubuntu
+
+#+begin_src sh
+apt list --installed
+#+end_src
+
++ [[file:apt-list.txt][apt-list.txt]]
+
+List of all installed packages on Ubuntu
+
+#+begin_src sh
+apt list 
+#+end_src

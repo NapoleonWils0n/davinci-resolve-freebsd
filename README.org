@@ -1330,24 +1330,6 @@ sudo update-initramfs -u
 # Horizontal Rule
 -----
 
-*** nvidia-smi
-
-use nvidia-smi to see GPU info and process that are using Nvidia GPU
-
-#+begin_src sh
-nvidia-smi
-#+end_src
-
-nvidia-smi output
-
-#+begin_example
-+---------------------------------------------------------------------------------------+
-| NVIDIA-SMI 535.146.02             Driver Version: 535.146.02   CUDA Version: 12.2     |
-#+end_example
-
-# Horizontal Rule
------
-
 *** Davinci Resolve download
 
 on the Freebsd host
@@ -1507,6 +1489,24 @@ replace username with your username
 #+begin_src sh
 cp davinci-resolve-freebsd/compat/ubuntu/home/username/.config/gpu/dummy-uvm.so /compat/ubuntu/home/username/.config/gpu
 #+end_src
+
+# Horizontal Rule
+-----
+
+*** nvidia-smi
+
+use nvidia-smi to see GPU info and process that are using Nvidia GPU
+
+#+begin_src sh
+nvidia-smi
+#+end_src
+
+nvidia-smi output
+
+#+begin_example
++---------------------------------------------------------------------------------------+
+| NVIDIA-SMI 535.146.02             Driver Version: 535.146.02   CUDA Version: 12.2     |
+#+end_example
 
 # Horizontal Rule
 -----

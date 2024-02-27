@@ -1675,7 +1675,7 @@ nvidia-smi output
 -----
 
 ** Pulseaudio set up 
-*** cookie
+*** Cookie
 
 Copy the pulseaudio cookie from the host to the chroot \\
 replace username with your username in the command below
@@ -1684,7 +1684,7 @@ replace username with your username in the command below
 cp "${HOME}/.config/pulse/cookie" /compat/ubuntu/home/username/.config/pulse/cookie
 #+end_src
 
-*** freebsd
+*** Freebsd
 **** default.pa
 
 Use the pulseaudio default.pa config file to create a pulseaudio socket in the /tmp directory
@@ -1720,7 +1720,7 @@ load-module module-esound-protocol-unix
 load-module module-native-protocol-unix socket=/tmp/pulseaudio.socket
 #+end_src
 
-*** ubuntu
+*** Ubuntu
 **** client.conf
 
 Full path to the client.conf from freebsd to the chroot

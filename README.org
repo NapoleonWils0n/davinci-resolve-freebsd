@@ -1716,6 +1716,9 @@ replace username with your username in the command below
 cp "${HOME}/.config/pulse/cookie" /compat/ubuntu/home/username/.config/pulse/cookie
 #+end_src
 
+# Horizontal Rule
+-----
+
 *** Freebsd
 **** default.pa
 
@@ -1751,6 +1754,9 @@ load-module module-esound-protocol-unix
 .endif
 load-module module-native-protocol-unix socket=/tmp/pulseaudio.socket
 #+end_src
+
+# Horizontal Rule
+-----
 
 *** Ubuntu
 **** client.conf

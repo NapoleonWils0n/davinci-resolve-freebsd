@@ -2115,6 +2115,9 @@ Xwayland -host-grab -fullscreen -geometry 1920x1080 :01 &
 doas chroot /compat/ubuntu /usr/local/bin/wrapper-resolve
 #+end_src
 
+# Horizontal Rule
+-----
+
 *** Ubuntu
 **** wrapper-resolve
 
@@ -2159,6 +2162,9 @@ Path to wrapper-resolve in the chroot
 # change username below to the name of the user in the chroot
 su username -c '/opt/resolve/bin/resolve' 2>/dev/null
 #+end_src
+
+# Horizontal Rule
+-----
 
 *** davinci-resolve.desktop
 

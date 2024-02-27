@@ -1966,7 +1966,7 @@ Copy the resolve script from the repository to the freebsd bin directory
 sudo cp davinci-resolve-freebsd/freebsd/usr/local/bin/resolve /usr/local/bin
 #+end_src
 
-resolve 
++ resolve code
 
 #+begin_src sh
 #!/bin/sh
@@ -2026,7 +2026,7 @@ Path to wrapper-resolve in the chroot
 /usr/local/bin/wrapper-resolve
 #+end_example
 
-wrapper-resolve 
++ wrapper-resolve code
 
 #+begin_src sh
 #!/bin/bash

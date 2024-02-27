@@ -9,8 +9,8 @@ List of user installed packages on Ubuntu
 apt list --installed
 #+end_src
 
+
 + [[file:apt-list.txt][apt-list.txt]]
-  
   
 List of all installed packages on Ubuntu
 

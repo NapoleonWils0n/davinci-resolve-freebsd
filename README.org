@@ -1563,6 +1563,9 @@ chmod the directory replace 1001 with your user id
 sudo chmod 700 /var/run/user/1001
 #+end_src
 
+# Horizontal Rule
+-----
+
 **** Wayland environment
 
 we need to set an enviormental variable for wayland in our shell config
@@ -1582,6 +1585,9 @@ copy the zshenv config from this reposiory to the chroot
 #+begin_src sh
 cp davinci-resolve-freebsd/compat/ubuntu/home/username/.zshrc /compat/ubuntu/home/username
 #+end_src
+
+# Horizontal Rule
+-----
 
 ***** zshrc
 

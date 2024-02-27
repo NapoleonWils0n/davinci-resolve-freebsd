@@ -1493,26 +1493,6 @@ cp davinci-resolve-freebsd/compat/ubuntu/home/username/.config/gpu/dummy-uvm.so 
 # Horizontal Rule
 -----
 
-*** nvidia-smi
-
-use nvidia-smi to see GPU info and process that are using Nvidia GPU
-
-run the following command as your user in the chroot
-
-#+begin_src sh
-nvidia-smi
-#+end_src
-
-nvidia-smi output
-
-#+begin_example
-+---------------------------------------------------------------------------------------+
-| NVIDIA-SMI 535.146.02             Driver Version: 535.146.02   CUDA Version: 12.2     |
-#+end_example
-
-# Horizontal Rule
------
-
 *** Wayland install
 **** Wayland packages
 
@@ -1670,6 +1650,26 @@ X11 install on ubuntu in the chroot
 #+begin_src sh
 sudo apt install xorg xserver-xorg xserver-xorg-core
 #+end_src
+
+# Horizontal Rule
+-----
+
+*** nvidia-smi
+
+use nvidia-smi to see GPU info and process that are using Nvidia GPU
+
+run the following command as your user in the chroot
+
+#+begin_src sh
+nvidia-smi
+#+end_src
+
+nvidia-smi output
+
+#+begin_example
++---------------------------------------------------------------------------------------+
+| NVIDIA-SMI 535.146.02             Driver Version: 535.146.02   CUDA Version: 12.2     |
+#+end_example
 
 # Horizontal Rule
 -----

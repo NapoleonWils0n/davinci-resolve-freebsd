@@ -2091,7 +2091,7 @@ or by editing your sysctl.conf
 /etc/sysctl.conf
 #+end_example
 
-and setting the following option to 
+and setting the following option
 
 #+begin_src conf
 vfs.usermount=1

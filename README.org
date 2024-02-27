@@ -131,6 +131,9 @@ shim init
 | NVIDIA-SMI 535.146.02             Driver Version: 535.146.02   CUDA Version: 12.2     |
 #+end_example
 
+# Horizontal Rule
+-----
+
 *** debootstrap install
 
 Install debootstrap which we use to create an ubuntu chroot on freebsd

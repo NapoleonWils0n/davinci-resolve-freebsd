@@ -2118,10 +2118,16 @@ Edit your fstab on the Freebsd host and set the mount point
 /home/username/Video           /compat/ubuntu/home/username/Video     nullfs          rw,noauto                      0       0
 #+end_src
 
-Mount all the mount points in your fstab
+Mount the video directory in the chroot
 
 #+begin_src sh
 mount /compat/ubuntu/home/username/Video
+#+end_src
+
+Unmount the video directory in the chroot
+
+#+begin_src sh
+umount /compat/ubuntu/home/username/Video
 #+end_src
 
 ** Linuxulator delete

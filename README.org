@@ -6,9 +6,10 @@ project intro and screenshot of resolve with gpu settings
 ** Freebsd
 *** System Requirements to run Davinci Resolve
 
+#+begin_quote
 16 GB of system memory. 32 GB when using Fusion.
-
 GPU: Discrete with at least 2GB VRAM, supporting OpenCL 1.2 or CUDA 11. 
+#+end_quote
 
 *** Clone the DaVinci Resolve Freebsd git repository
 

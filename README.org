@@ -1497,6 +1497,8 @@ cp davinci-resolve-freebsd/compat/ubuntu/home/username/.config/gpu/dummy-uvm.so 
 
 use nvidia-smi to see GPU info and process that are using Nvidia GPU
 
+run the following command as your user in the chroot
+
 #+begin_src sh
 nvidia-smi
 #+end_src

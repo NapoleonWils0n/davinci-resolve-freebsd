@@ -1309,7 +1309,7 @@ sudo apt install nvidia-cuda-toolkit ocl-icd-opencl-dev libglu1-mesa libfuse2 in
 # Horizontal Rule
 -----
 
-*** Blacklist Nouveau nvidia driver
+*** Blacklist Nouveau Nvidia driver
 
 Blacklist-nvidia-nouveau.conf
 

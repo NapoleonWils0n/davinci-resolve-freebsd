@@ -1913,7 +1913,7 @@ Press ctrl + shift to release the mouse
 # Horizontal Rule
 -----
 
-*** chroot into ubuntu
+*** chroot into Ubuntu
 
 Use doas to chroot into Ubuntu as root without a password
 

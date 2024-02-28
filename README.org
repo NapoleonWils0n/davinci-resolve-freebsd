@@ -2022,7 +2022,7 @@ Cookie: 1550:2200
 # Horizontal Rule
 -----
 
-**** start Davinci Resolve
+**** Start Davinci Resolve
 
 We set the shell path in the chroots .zshenv to include the resolve bin directory \\
 so we can just type

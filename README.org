@@ -1216,7 +1216,7 @@ Download link for 535.146.02
 
 *** Copy the nvidia run file in the chroot home direcory
 
-change into the directory you download the nvidia drivers into on the freebsd host
+Change into the directory you download the nvidia drivers into on the freebsd host
 
 then copy the nvidia run file into the home directory in the chroot
 change username for your username
@@ -1230,13 +1230,13 @@ cp -rv NVIDIA-Linux-x86_64-535.146.02.run /compat/ubuntu/home/username
 
 *** Chroot into ubuntu 
 
-chroot into ubuntu
+Chroot into ubuntu
 
 #+begin_src sh
 doas chroot /compat/ubuntu /bin/bash
 #+end_src
 
-switch to our user \\
+Switch to our user \\
 replace username with your username
 
 #+begin_src sh
@@ -1252,7 +1252,7 @@ su - username
 
 Verify the system has build tools such as make, gcc installed  
 
-install build-essential for gcc
+Install build-essential for gcc
 
 #+begin_src sh
 sudo apt install build-essential
@@ -1278,7 +1278,7 @@ chmod the Nvidia run file
 chmod +x NVIDIA-Linux-x86_64-535.146.02.run
 #+end_src
 
-install the Nvidia driver
+Install the Nvidia driver
 
 #+begin_src sh
 sudo ./NVIDIA-Linux-x86_64-535.146.02.run --install-compat32-libs --no-nvidia-modprobe --no-backup --no-kernel-module --no-x-check --no-nouveau-check --no-cc-version-check --no-kernel-module-source --no-check-for-alternate-installs --install-libglvnd --skip-depmod --no-systemd
@@ -1289,7 +1289,7 @@ sudo ./NVIDIA-Linux-x86_64-535.146.02.run --install-compat32-libs --no-nvidia-mo
 
 *** xorriso and fakeroot install
 
-install fakeroot and xorriso for makeresolvedeb
+Install fakeroot and xorriso for makeresolvedeb
 
 #+begin_src sh
 sudo apt install fakeroot xorriso
@@ -1300,7 +1300,7 @@ sudo apt install fakeroot xorriso
 
 *** Nvidia-cuda-toolkit
 
-+ install the nvidia-cuda-toolkit
+Install the nvidia-cuda-toolkit
 
 #+begin_src sh
 sudo apt install nvidia-cuda-toolkit ocl-icd-opencl-dev libglu1-mesa libfuse2 initramfs-tools
@@ -1311,7 +1311,7 @@ sudo apt install nvidia-cuda-toolkit ocl-icd-opencl-dev libglu1-mesa libfuse2 in
 
 *** Blacklist Nouveau nvidia driver
 
-blacklist-nvidia-nouveau.conf
+Blacklist-nvidia-nouveau.conf
 
 + [[file:compat/ubuntu/etc/modprobe.d/blacklist-nvidia-nouveau.conf][blacklist-nvidia-nouveau.conf]]
 
@@ -1366,7 +1366,7 @@ sudo update-initramfs -u
 
 *** Davinci Resolve download
 
-on the Freebsd host
+On the Freebsd host
 
 Go to the Davinci Resolve website and click the \\
 "Davinci Resolve Free Download Now" link
@@ -1376,15 +1376,15 @@ Go to the Davinci Resolve website and click the \\
 then click the Linux download link for either the Free version or the paid Studio version \\
 you will then need to register on the site with an email address
 
-once you have submitted the form the Davinci Resolve zip file will start to download, \\
+Once you have submitted the form the Davinci Resolve zip file will start to download, \\
 the zip file has a file size of 2.4 gigabytes so may take an hour or so to download
 
-copy the Davinci Resolve zip into the home directory in the chroot
+Copy the Davinci Resolve zip into the home directory in the chroot
 
-you dont need to use sudo to copy files in the home directory in the chroot \\
+You dont need to use sudo to copy files in the home directory in the chroot \\
 because we have the same user with the same id in the chroot as on the host
 
-replace username with your username in the chroot in the command below
+Replace username with your username in the chroot in the command below
 
 #+begin_src sh
 cp -rv DaVinci_Resolve_18.6.4_Linux.zip /compat/ubuntu/home/username
@@ -1395,11 +1395,11 @@ cp -rv DaVinci_Resolve_18.6.4_Linux.zip /compat/ubuntu/home/username
 
 *** makeresolvedeb download
 
-on the Freebsd host download the makeresolvedeb script
+On the Freebsd host download the makeresolvedeb script
 
 [[https://www.danieltufvesson.com/makeresolvedeb][makeresolvedeb]]
 
-copy the makeresolvedeb_1.6.4_multi.sh.tar.gz from the freebsd host to the home directory in the choot \\
+Copy the makeresolvedeb_1.6.4_multi.sh.tar.gz from the freebsd host to the home directory in the choot \\
 replace username with your username
 
 #+begin_src sh
@@ -1411,32 +1411,32 @@ cp -rv makeresolvedeb_1.6.4_multi.sh.tar.gz /compat/ubuntu/home/username
 
 *** makeresolvedeb create deb file
 
-make sure you have chrooted into ubuntu by running
+Make sure you have chrooted into ubuntu by running
 
 #+begin_src sh
 doas chroot /compat/ubuntu /bin/bash
 #+end_src
 
-switch to out user in the chroot, \\
+Switch to out user in the chroot, \\
 replace username with your username
 
 #+begin_src sh
 su - username
 #+end_src
 
-install zip
+Install zip
 
 #+begin_src sh
 sudo apt install zip
 #+end_src
 
-unzip the resolve zip
+Unzip the resolve zip
 
 #+begin_src sh
 unzip DaVinci_Resolve_18.6.5_Linux.zip
 #+end_src
 
-extract the makeresolvedeb.tar.gz file
+Extract the makeresolvedeb.tar.gz file
 
 #+begin_src sh
 tar zxvf makeresolvedeb_1.6.4_multi.sh.tar.gz
@@ -1448,7 +1448,7 @@ then run makeresolvedeb
 ./makeresolvedeb_1.6.4_multi.sh DaVinci_Resolve_18.6.5_Linux.run
 #+end_src
 
-this may take about an hour
+This may take about an hour
 
 *** DaVinci Resolve deb install
 
@@ -1467,25 +1467,25 @@ sudo apt install davinci-resolve_18.6.5-mrd1.6.4_amd64.deb
 
 *** libglib-2.0.so.0 fix
 
-change directory in the chroot to the resolve libs directory
+Change directory in the chroot to the resolve libs directory
 
 #+begin_src sh
 cd /opt/resolve/libs
 #+end_src
 
-rename libglib-2.0.so.0 to libglib-2.0.so.0.bak
+Rename libglib-2.0.so.0 to libglib-2.0.so.0.bak
 
 #+begin_src sh
 sudo mv libglib-2.0.so.0 libglib-2.0.so.0.bak
 #+end_src
 
-copy the libglib-2.0.so.0 from the chroot system lib directory to the resolve libs directory
+Copy the libglib-2.0.so.0 from the chroot system lib directory to the resolve libs directory
 
 #+begin_src sh
 sudo cp /usr/lib/x86_64-linux-gnu/libglib-2.0.so.0 /opt/resolve/libs/
 #+end_src
 
-install liblog4cxx-dev
+Install liblog4cxx-dev
 
 #+begin_src sh
 sudo apt install liblog4cxx-dev
@@ -1495,29 +1495,29 @@ sudo apt install liblog4cxx-dev
 -----
 
 *** gpu set up in the chroot
-**** ubuntu chroot
+**** Ubuntu chroot
 
-make sure you have chrooted into ubuntu by running
+Make sure you have chrooted into Ubuntu by running
 
 #+begin_src sh
 doas chroot /compat/ubuntu /bin/bash
 #+end_src
 
-switch to out user in the chroot, replace username with your username
+Switch to out user in the chroot, replace username with your username
 
 #+begin_src sh
 su - username
 #+end_src
 
-create the gpu directory
+Create the gpu directory
 
 #+begin_src sh
 mkdir -p "${HOME}/.config/gpu"
 #+end_src
 
-**** freebsd host
+**** Freebsd host
 
-on the freebsd host copy the dummy-uvm.so from the repository to the chroot \\
+On the Freebsd host copy the dummy-uvm.so from the repository to the chroot \\
 replace username with your username
 
 #+begin_src sh
@@ -1530,7 +1530,7 @@ cp davinci-resolve-freebsd/compat/ubuntu/home/username/.config/gpu/dummy-uvm.so 
 *** Wayland install
 **** Wayland packages
 
-install some wayland packages and the wlroot compositor
+Install some wayland packages and the wlroot compositor
 
 #+begin_src sh
 sudo apt install libinput-tools wayland-protocols libwlroots11 libwlroots-dev libxkbcommon0 qtwayland5 qt6-wayland wayland-utils adwaita-qt qt5ct
@@ -1541,26 +1541,26 @@ sudo apt install libinput-tools wayland-protocols libwlroots11 libwlroots-dev li
 
 **** Create the XDG_RUNTIME_DIR directory
 
-check your id in the chroot
+Check your id in the chroot
 
 #+begin_src sh
 id
 #+end_src
 
-create the XDG_RUNTIME_DIR directory \\
+Create the XDG_RUNTIME_DIR directory \\
 replace 1001 with your user id
 
 #+begin_src sh
 sudo mkdir -p /var/run/user/1001
 #+end_src
 
-chown the directory replace username with your user and 1001 with your id
+Chown the directory replace username with your user and 1001 with your id
 
 #+begin_src sh
 sudo chown -R username:1001 /var/run/user/1001
 #+end_src
 
-chmod the directory replace 1001 with your user id
+Chmod the directory replace 1001 with your user id
 
 #+begin_src sh
 sudo chmod 700 /var/run/user/1001
@@ -1571,11 +1571,11 @@ sudo chmod 700 /var/run/user/1001
 
 **** Wayland environment
 
-we need to set an enviormental variable for wayland in our shell config
+We need to set an enviormental variable for wayland in our shell config
 
 + [[file:compat/ubuntu/home/username/.zshrc][zshrc]]
 
-copy the zshrc config from this reposiory to the chroot
+Copy the zshrc config from this reposiory to the chroot
 
 #+begin_src sh
 cp davinci-resolve-freebsd/compat/ubuntu/home/username/.zshrc /compat/ubuntu/home/username
@@ -1583,7 +1583,7 @@ cp davinci-resolve-freebsd/compat/ubuntu/home/username/.zshrc /compat/ubuntu/hom
 
 + [[file:compat/ubuntu/home/username/.zshenv][zshenv]]
 
-copy the zshenv config from this reposiory to the chroot
+Copy the zshenv config from this reposiory to the chroot
 
 #+begin_src sh
 cp davinci-resolve-freebsd/compat/ubuntu/home/username/.zshrc /compat/ubuntu/home/username
@@ -1591,7 +1591,7 @@ cp davinci-resolve-freebsd/compat/ubuntu/home/username/.zshrc /compat/ubuntu/hom
 
 ***** zshrc
 
-we create a blank .zshrc file \\
+We create a blank .zshrc file \\
 otherwise zsh will complain that theres is no config file
 
 + ~/.zshrc code
@@ -1606,20 +1606,20 @@ otherwise zsh will complain that theres is no config file
 
 shell path
 
-set the shell path to include resolve bin directory \\
+Set the shell path to include resolve bin directory \\
 this allows us to type resolve
 
 #+begin_example
 resolve
 #+end_example
 
-instead of the full path to open Davinci Resolve in the chroot
+Instead of the full path to open Davinci Resolve in the chroot
 
 #+begin_example
 /opt/resolve/bin/resolve
 #+end_example
 
-export the XDG directories \\
+Export the XDG directories \\
 remember to create the XDG_RUNTIME_DIR directory
 
 LD_PRELOAD is used to load the so file
@@ -1628,7 +1628,7 @@ LD_PRELOAD is used to load the so file
 export LD_PRELOAD="$HOME/.config/gpu/dummy-uvm.so"
 #+end_src
 
-you need to export some variables for Nvidia \\
+You need to export some variables for Nvidia \\
 otherwise you won't be able to drag a clip into the timeline in Davinci Resolve  \\
 and you will get a error saying gpu is full
 
@@ -1637,7 +1637,7 @@ export __NV_PRIME_RENDER_OFFLOAD=1
 export __GLX_VENDOR_LIBRARY_NAME=nvidia
 #+end_src
 
-export DISPLAY so application use the Xwayland window on the host
+Export DISPLAY so application use the Xwayland window on the host
 
 #+begin_src conf
 export DISPLAY=:1
@@ -1696,9 +1696,9 @@ sudo apt install xorg xserver-xorg xserver-xorg-core
 
 *** nvidia-smi
 
-use nvidia-smi to see GPU info and process that are using Nvidia GPU
+Use nvidia-smi to see GPU info and process that are using Nvidia GPU
 
-run the following command as your user in the chroot
+Run the following command as your user in the chroot
 
 #+begin_src sh
 nvidia-smi

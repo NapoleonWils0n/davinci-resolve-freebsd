@@ -1977,7 +1977,7 @@ QT_QPA_PLATFORM=xcb
 # Horizontal Rule
 -----
 
-**** pactl
+**** pactl info
 
 Start pulseaudio on the Freebsd host
 

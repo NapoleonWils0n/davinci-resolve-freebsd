@@ -1979,6 +1979,12 @@ QT_QPA_PLATFORM=xcb
 
 **** pactl
 
+Start pulseaudio on the Freebsd host
+
+#+begin_src sh
+pulseaudio --start --daemonize
+#+end_src
+
 Run pactl info in the chroot
 
 #+begin_src sh

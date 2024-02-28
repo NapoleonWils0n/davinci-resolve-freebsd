@@ -1586,7 +1586,7 @@ cp davinci-resolve-freebsd/compat/ubuntu/home/username/.zshrc /compat/ubuntu/hom
 Copy the zshenv config from this reposiory to the chroot
 
 #+begin_src sh
-cp davinci-resolve-freebsd/compat/ubuntu/home/username/.zshrc /compat/ubuntu/home/username
+cp davinci-resolve-freebsd/compat/ubuntu/home/username/.zshenv /compat/ubuntu/home/username
 #+end_src
 
 ***** zshrc
@@ -1629,7 +1629,7 @@ export LD_PRELOAD="$HOME/.config/gpu/dummy-uvm.so"
 #+end_src
 
 You need to export some variables for Nvidia \\
-otherwise you won't be able to drag a clip into the timeline in Davinci Resolve  \\
+otherwise you won't be able to drag a clip into the timeline in Davinci Resolve \\
 and you will get a error saying gpu is full
 
 #+begin_src conf

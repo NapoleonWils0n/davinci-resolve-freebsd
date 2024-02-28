@@ -2127,11 +2127,9 @@ doas chroot /compat/ubuntu /usr/local/bin/wrapper-resolve
 *** Ubuntu
 **** wrapper-resolve
 
-wrapper-resolve script
-
 + [[file:compat/ubuntu/usr/local/bin/wrapper-resolve][wrapper-resolve]]
 
-Path to resolve in this repository
+Path to wrapper-resolve in this repository
 
 #+begin_example
 davinci-resolve-freebsd/compat/ubuntu/usr/local/bin/wrapper-resolve

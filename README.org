@@ -1342,7 +1342,7 @@ sudo mkdir -p /compat/ubuntu/etc/modprobe.d
 Copy the blacklist-nvidia-nouveau.conf file from the repository to the chroot
 
 #+begin_src sh
-sudo cp davinci-resolve-freebsd/davinci-resolve-freebsd/compat/ubuntu/etc/modprobe.d/blacklist-nvidia-nouveau.conf /compat/ubuntu/etc/modprobe.d
+sudo cp davinci-resolve-freebsd/compat/ubuntu/etc/modprobe.d/blacklist-nvidia-nouveau.conf /compat/ubuntu/etc/modprobe.d
 #+end_src
 
 + blacklist-nvidia-nouveau.conf code

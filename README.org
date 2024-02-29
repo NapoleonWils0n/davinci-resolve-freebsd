@@ -2071,7 +2071,7 @@ drwxrwxrwx 3 username username 3 Feb 18 15:12 BlackmagicDesign
 # Horizontal Rule
 -----
 
-** Davinci Resolve desktop entry
+** Davinci Resolve Desktop entry
 *** Freebsd
 **** resolve script
 

@@ -2112,7 +2112,7 @@ pulseaudio --start --daemonize 2>/dev/null
 # and uncomment the Xephyr line
 
 # Wayland - create the Xwayland window to display Davinci Resolve
-Xwayland -host-grab -fullscreen -geometry 1920x1080 :01 &
+Xwayland -fullscreen -geometry 1920x1080 :01 &
 
 # X11 - create the Xwayland window to display Davinci Resolve
 # Xephyr -br -ac -noreset -screen 1920x1080 :1 &

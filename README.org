@@ -2207,7 +2207,7 @@ Categories=AudioVideo
 # Horizontal Rule
 -----
 
-** Mount Video directory from the host to the chroot
+** Mount the Video directory from the host to the chroot
 
 Allow your user to run the mount command without sudo
 

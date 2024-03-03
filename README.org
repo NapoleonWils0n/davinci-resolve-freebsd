@@ -1219,10 +1219,9 @@ Download link for 535.146.02
 Change into the directory you download the nvidia drivers into on the freebsd host
 
 then copy the nvidia run file into the home directory in the chroot
-change username for your username
 
 #+begin_src sh
-cp -rv NVIDIA-Linux-x86_64-535.146.02.run /compat/ubuntu/home/username
+cp -rv NVIDIA-Linux-x86_64-535.146.02.run /compat/ubuntu/home/"${USER}"
 #+end_src
 
 # Horizontal Rule
@@ -1384,10 +1383,8 @@ Copy the Davinci Resolve zip into the home directory in the chroot
 You dont need to use sudo to copy files in the home directory in the chroot \\
 because we have the same user with the same id in the chroot as on the host
 
-Replace username with your username in the chroot in the command below
-
 #+begin_src sh
-cp -rv DaVinci_Resolve_18.6.4_Linux.zip /compat/ubuntu/home/username
+cp -rv DaVinci_Resolve_18.6.4_Linux.zip /compat/ubuntu/home/"${USER}"
 #+end_src
 
 # Horizontal Rule
@@ -1400,10 +1397,9 @@ On the Freebsd host download the makeresolvedeb script
 [[https://www.danieltufvesson.com/makeresolvedeb][makeresolvedeb]]
 
 Copy the makeresolvedeb_1.6.4_multi.sh.tar.gz from the freebsd host to the home directory in the choot \\
-replace username with your username
 
 #+begin_src sh
-cp -rv makeresolvedeb_1.6.4_multi.sh.tar.gz /compat/ubuntu/home/username
+cp -rv makeresolvedeb_1.6.4_multi.sh.tar.gz /compat/ubuntu/home/"${USER}"
 #+end_src
 
 # Horizontal Rule
@@ -1518,10 +1514,9 @@ mkdir -p "${HOME}/.config/gpu"
 **** Freebsd host
 
 On the Freebsd host copy the dummy-uvm.so from the repository to the chroot \\
-replace username with your username
 
 #+begin_src sh
-cp davinci-resolve-freebsd/compat/ubuntu/home/username/.config/gpu/dummy-uvm.so /compat/ubuntu/home/username/.config/gpu
+cp davinci-resolve-freebsd/compat/ubuntu/home/username/.config/gpu/dummy-uvm.so /compat/ubuntu/home/"${USER}"/.config/gpu
 #+end_src
 
 # Horizontal Rule
@@ -1548,22 +1543,21 @@ id
 #+end_src
 
 Create the XDG_RUNTIME_DIR directory \\
-replace 1001 with your user id
 
 #+begin_src sh
-sudo mkdir -p /var/run/user/1001
+sudo mkdir -p /var/run/user/"$(id -u)"
 #+end_src
 
-Chown the directory replace username with your user and 1001 with your id
+Chown the directory 
 
 #+begin_src sh
-sudo chown -R username:1001 /var/run/user/1001
+sudo chown -R "${USER}":"$(id -u)" /var/run/user/"$(id -u)"
 #+end_src
 
-Chmod the directory replace 1001 with your user id
+Chmod the directory
 
 #+begin_src sh
-sudo chmod 700 /var/run/user/1001
+sudo chmod 700 /var/run/user/"$(id -u)"
 #+end_src
 
 # Horizontal Rule
@@ -1578,7 +1572,7 @@ We need to set an enviormental variable for wayland in our shell config
 Copy the zshrc config from this reposiory to the chroot
 
 #+begin_src sh
-cp davinci-resolve-freebsd/compat/ubuntu/home/username/.zshrc /compat/ubuntu/home/username
+cp davinci-resolve-freebsd/compat/ubuntu/home/username/.zshrc /compat/ubuntu/home/"${USER}"
 #+end_src
 
 + [[file:compat/ubuntu/home/username/.zshenv][zshenv]]
@@ -1586,7 +1580,7 @@ cp davinci-resolve-freebsd/compat/ubuntu/home/username/.zshrc /compat/ubuntu/hom
 Copy the zshenv config from this reposiory to the chroot
 
 #+begin_src sh
-cp davinci-resolve-freebsd/compat/ubuntu/home/username/.zshenv /compat/ubuntu/home/username
+cp davinci-resolve-freebsd/compat/ubuntu/home/username/.zshenv /compat/ubuntu/home/"${USER}"
 #+end_src
 
 ***** zshrc
@@ -1730,8 +1724,6 @@ Copy the default.pa from this repository to
 ~/.config/pulse/default.pa
 #+end_example
 
-Replace username with your username in the command below
-
 #+begin_src sh
 cp davinci-resolve-freebsd/freebsd/home/username/.config/pulse/default.pa "${HOME}/.config/pulse"
 #+end_src
@@ -1773,10 +1765,8 @@ client.conf path in the chroot
 
 Copy client.conf from this repository into the chroot
 
-Remember to change username in the path to the chroot in the second part of the command
-
 #+begin_src sh
-cp davinci-resolve-freebsd/compat/ubuntu/home/username/.config/pulse/client.conf /compat/ubuntu/home/username/.config/pulse
+cp davinci-resolve-freebsd/compat/ubuntu/home/username/.config/pulse/client.conf /compat/ubuntu/home/"${USER}"/.config/pulse
 #+end_src
 
 + client.conf code
@@ -1870,10 +1860,10 @@ in the chroot we set the DISPLAY variable to equal to :1 so that applications ar
 
 ***** Wayland
 
-Create a 1920x1080 fullscreen window
+Create a 1920x1080 window
 
 #+begin_src sh
-Xwayland -host-grab -fullscreen -geometry 1920x1080 :01
+Xwayland -host-grab -geometry 1920x1080 :01
 #+end_src
 
 host-grab is needed so you can click around in resolve \\
@@ -2265,22 +2255,21 @@ rather than copying files from the host to the chroot
 Create a mount point in the chroot to mount the Video directory from the host in the chroot
 
 These commands are run as your regular user and not as root \\
-replace username with your username
 
 #+begin_src sh
-mkdir -p /compat/ubuntu/home/username/Video
+mkdir -p /compat/ubuntu/home/"${USER}"/Video
 #+end_src
 
 Mount the Video directory from the Freebsd host to the Video directory in the chroot
 
 #+begin_src sh
-mount -t nullfs /home/username/Video /compat/ubuntu/home/username/Video
+mount -t nullfs /home/"${USER}"/Video /compat/ubuntu/home/"${USER}"/Video
 #+end_src
 
 umount video
 
 #+begin_src sh
-umount  /compat/ubuntu/home/username/Video
+umount  /compat/ubuntu/home/"${USER}"/Video
 #+end_src
 
 Edit your fstab on the Freebsd host and set the mount point
@@ -2303,13 +2292,13 @@ so you need to manually mount the video directory after you log in
 Mount the video directory in the chroot
 
 #+begin_src sh
-mount /compat/ubuntu/home/username/Video
+mount /compat/ubuntu/home/"${USER}"/Video
 #+end_src
 
 Unmount the video directory in the chroot
 
 #+begin_src sh
-umount /compat/ubuntu/home/username/Video
+umount /compat/ubuntu/home/"${USER}"/Video
 #+end_src
 
 # horizontal rule

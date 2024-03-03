@@ -2112,13 +2112,13 @@ pulseaudio --start --daemonize 2>/dev/null
 # and uncomment the Xephyr line
 
 # Wayland - create the Xwayland window to display Davinci Resolve
-Xwayland -fullscreen -geometry 1920x1080 :01 &
+Xwayland -host-grab -geometry 1920x1080 :01 &
 
 # X11 - create the Xwayland window to display Davinci Resolve
-# Xephyr -br -ac -noreset -screen 1920x1080 :1 &
+# Xephyr -ac -noreset -br -resizeable -screen 1920x1080 -ac :1 &
 
 # doas chroot into ubuntu run run the wrapper script to start resolve
-doas chroot /compat/ubuntu /usr/local/bin/wrapper-resolve
+doas chroot /compat/ubuntu /usr/local/bin/wrapper-resolve -u "${USER}"
 #+end_src
 
 # Horizontal Rule
@@ -2141,8 +2141,6 @@ Copy the script to the chroot
 sudo cp davinci-resolve-freebsd/compat/ubuntu/usr/local/bin/wrapper-resolve /compat/ubuntu/usr/local/bin
 #+end_src
 
-then edit the wrapper-resolve and change username to your username
-
 Freebsd path to wrapper-resolve in the chroot
 
 #+begin_example
@@ -2160,11 +2158,55 @@ Path to wrapper-resolve in the chroot
 #+begin_src sh
 #!/bin/bash
 
+#===============================================================================
 # wrapper-resolve
 # switch to our user in the choot and start resolve
+#===============================================================================
+
+
+#===============================================================================
+# script usage
+#===============================================================================
+
+usage () {
+# if argument passed to function echo it
+[ -z "${1}" ] || echo "! ${1}"
+# display help
+echo "\
+# script usage
+$(basename "$0") -u ${USER}"
+exit 2
+}
+
+#===============================================================================
+# check the number of arguments passed to the script
+#===============================================================================
+
+[ $# -gt 0 ] || usage "${WRONG_ARGS_ERR}"
+
+
+#===============================================================================
+# getopts check the options passed to the script
+#===============================================================================
+
+while getopts ':u:h' opt
+do
+  case ${opt} in
+     u) username="${OPTARG}";;
+     h) usage;;
+     \?) usage "${INVALID_OPT_ERR} ${OPTARG}" 1>&2;;
+     :) usage "${INVALID_OPT_ERR} ${OPTARG} ${REQ_ARG_ERR}" 1>&2;;
+  esac
+done
+shift $((OPTIND-1))
+
+
+#===============================================================================
+# switch to our user in the choot and start resolve
+#===============================================================================
 
 # change username below to the name of the user in the chroot
-su username -c '/opt/resolve/bin/resolve' 2>/dev/null
+su "${username}" -c '/opt/resolve/bin/resolve' 2>/dev/null
 #+end_src
 
 # Horizontal Rule

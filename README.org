@@ -1715,18 +1715,6 @@ nvidia-smi output
 -----
 
 ** Pulseaudio set up 
-*** Cookie
-
-Copy the pulseaudio cookie from the host to the chroot \\
-replace username with your username in the command below
-
-#+begin_src sh
-cp "${HOME}/.config/pulse/cookie" /compat/ubuntu/home/username/.config/pulse/cookie
-#+end_src
-
-# Horizontal Rule
------
-
 *** Freebsd
 **** default.pa
 
@@ -1998,8 +1986,6 @@ Make sure the following options are set
 + User Name is set to the username on the host
 
 + Host Name is set to the same hostname as on the freebsd host
-
-+ Cookie matches the cookie on the freebsd host, remember we set that up in a previous step
 
 #+begin_src conf
 Server String: /tmp/pulseaudio.socket

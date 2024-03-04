@@ -1631,7 +1631,7 @@ export DISPLAY=:1
 
 
 Davinci Resolve is a native Wayland application \\
-so wee need to set the QT_QPA_PLATFORM to xcb
+so we need to set the QT_QPA_PLATFORM to xcb
 
 #+begin_src conf
 export QT_QPA_PLATFORM=xcb

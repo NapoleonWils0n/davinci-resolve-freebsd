@@ -1557,7 +1557,7 @@ sudo chmod 700 /var/run/user/"$(id -u)"
 
 **** Wayland environment
 
-We need to set some enviormental variables for wayland in our shell config
+We need to set some enviormental variables in our shell config
 
 + [[file:compat/ubuntu/home/username/.zshrc][zshrc]]
 

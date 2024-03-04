@@ -1396,7 +1396,7 @@ On the Freebsd host download the makeresolvedeb script
 
 [[https://www.danieltufvesson.com/makeresolvedeb][makeresolvedeb]]
 
-Copy the makeresolvedeb_1.6.4_multi.sh.tar.gz from the freebsd host to the home directory in the choot \\
+Copy the makeresolvedeb_1.6.4_multi.sh.tar.gz from the freebsd host to the home directory in the chroot \\
 
 #+begin_src sh
 cp -rv makeresolvedeb_1.6.4_multi.sh.tar.gz /compat/ubuntu/home/"${USER}"
@@ -1535,12 +1535,6 @@ sudo apt install libinput-tools wayland-protocols libwlroots11 libwlroots-dev li
 -----
 
 **** Create the XDG_RUNTIME_DIR directory
-
-Check your id in the chroot
-
-#+begin_src sh
-id
-#+end_src
 
 Create the XDG_RUNTIME_DIR directory \\
 

@@ -1902,7 +1902,7 @@ su - username
 
 **** printenv
 
-Run printenv and check the DISPLAY variable is set to :1
+Run printenv in the chroot and check the DISPLAY variable is set to :1
 
 #+begin_src sh
 printenv

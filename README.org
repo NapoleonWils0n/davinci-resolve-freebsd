@@ -1615,8 +1615,7 @@ export LD_PRELOAD="$HOME/.config/gpu/dummy-uvm.so"
 #+end_src
 
 You need to export some variables for Nvidia \\
-otherwise you won't be able to drag a clip into the timeline in Davinci Resolve \\
-and you will get a error saying gpu is full
+otherwise you won't be able to drag a clip into the tim and you will get a error saying gpu is full
 
 #+begin_src conf
 export __NV_PRIME_RENDER_OFFLOAD=1

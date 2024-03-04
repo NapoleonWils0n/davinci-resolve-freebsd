@@ -1536,8 +1536,6 @@ sudo apt install libinput-tools wayland-protocols libwlroots11 libwlroots-dev li
 
 **** Create the XDG_RUNTIME_DIR directory
 
-Create the XDG_RUNTIME_DIR directory \\
-
 #+begin_src sh
 sudo mkdir -p /var/run/user/"$(id -u)"
 #+end_src

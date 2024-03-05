@@ -4,6 +4,8 @@
 
 [[https://www.blackmagicdesign.com/uk/products/davinciresolve][DaVinci Resolve]] installed in a Ubuntu Mantic chroot on Freebsd
 
+[[https://youtu.be/uQPNyQmvOIQ][Davinci Resolve on Freebsd on Youtube]]
+
 Features
 
 #+begin_quote
